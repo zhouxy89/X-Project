@@ -1,0 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 28, 2019, 10:17:30 AM
+    Author     : zhouxiaoyan
+*/
+
+.myShip{
+    -fx-shape:"M 350 100 L 450 200 L 400 200 L 400 300 L 500 300 L 500 250 L 600 350 L 500 450 L 500 400 L 400 400 L 400 500 L 450 500 L 350 600 L 250 500 L 300 500 L 300 400 L 200 400 L 200 450 L 100 350 L 200 250 L 200 300 L 300 300 L 300 200 L 250 200 L 350 100";
+    -fx-background-color:yellow;
+}
+
+.question{
+    -fx-text-fill: black;
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="question1Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.QuestionCanvas1Controller">
+   <children>
+      <TextField id="question1" alignment="CENTER" editable="false" layoutX="100.0" layoutY="174.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Are you being followed?" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="174.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
+      <RadioButton id="rdBtnYes" layoutX="233.0" layoutY="326.0" mnemonicParsing="false" onAction="#loadQuestion2" style="-fx-background-color: none;" text="YES" AnchorPane.topAnchor="326.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </RadioButton>
+      <RadioButton id="rdBtnNo" layoutX="508.0" layoutY="326.0" mnemonicParsing="false" onAction="#loadQuestion2" style="-fx-background-color: none;" text="NO" AnchorPane.leftAnchor="508.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="326.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </RadioButton>
+   </children>
+</AnchorPane>
