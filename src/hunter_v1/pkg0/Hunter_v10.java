@@ -26,7 +26,7 @@ public class Hunter_v10 extends Application {
         //FXMLLoader loader = new FXMLLoader(getClass().getResource("MainCanvas.fxml"));
         //MainCanvasController controller = new MainCanvasController();
         //Parent root = loader.load();
-        Parent root = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("WelcomeCanvas.fxml"));
        //loader.setController(controller);
         
         Scene scene = new Scene(root);

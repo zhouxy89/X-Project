@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" styleClass="question" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.EndCanvasController">
+<AnchorPane fx:id="endCanvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" styleClass="question" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.EndCanvasController">
    <children>
       <TextField id="question1" alignment="CENTER" editable="false" layoutX="48.0" layoutY="243.0" prefHeight="57.0" prefWidth="504.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Thank you for your participation." AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0">
          <font>

@@ -7,7 +7,10 @@ package hunter_v1.pkg0;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+
 
 /**
  * FXML Controller class
@@ -15,7 +18,8 @@ import javafx.fxml.Initializable;
  * @author zhouxiaoyan
  */
 public class EndCanvasController implements Initializable {
-
+    @FXML
+    private AnchorPane EndCanvas;
     /**
      * Initializes the controller class.
      */

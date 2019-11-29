@@ -16,12 +16,18 @@
             <Button id="btnShip4" fx:id="btnShip4" layoutX="579.0" layoutY="421.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="4" />
             <Button id="btnShip5" fx:id="btnShip5" layoutX="662.0" layoutY="178.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="5" />
             <Button id="btnMyShip" fx:id="btnMyShip" layoutX="471.0" layoutY="240.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" styleClass="myShip" translateX="5.0" translateY="5.0" />
+            <Button id="btnShip5" fx:id="btnShip6" layoutX="531.0" layoutY="111.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="6" />
          </children></Pane>
-      <Button layoutX="271.0" layoutY="345.0" maxHeight="27.0" maxWidth="59.0" minHeight="27.0" minWidth="59.0" mnemonicParsing="false" onAction="#loadQuestion1" prefHeight="27.0" prefWidth="59.0" text="End" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="20.0" />
+      <Button fx:id="endGame" layoutX="271.0" layoutY="345.0" maxHeight="27.0" maxWidth="59.0" minHeight="27.0" minWidth="59.0" mnemonicParsing="false" onAction="#loadQuestion1" prefHeight="27.0" prefWidth="59.0" text="End" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="20.0" />
       <Text id="status" fx:id="status" layoutX="20.0" layoutY="563.0" onMouseDragOver="#displayPosition" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="249.0" />
-      <Text id="timeup" fx:id="timeup" layoutX="329.0" layoutY="563.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="167.00000095367432">
+      <Text id="timeup" fx:id="timeup" layoutX="330.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="167.00000095367432">
          <font>
             <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="trialText" layoutX="536.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.22900390625">
+         <font>
+            <Font size="18.0" />
          </font>
       </Text>
    </children>
