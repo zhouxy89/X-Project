@@ -17,7 +17,7 @@
             <Font size="17.0" />
          </font>
       </RadioButton>
-      <RadioButton id="rdBtnNo" layoutX="508.0" layoutY="326.0" mnemonicParsing="false" onAction="#loadQuestion2" style="-fx-background-color: none;" text="NO" AnchorPane.leftAnchor="508.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="326.0">
+      <RadioButton id="rdBtnNo" layoutX="508.0" layoutY="326.0" mnemonicParsing="false" onAction="#loadResult" style="-fx-background-color: none;" text="NO" AnchorPane.leftAnchor="508.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="326.0">
          <font>
             <Font size="17.0" />
          </font>

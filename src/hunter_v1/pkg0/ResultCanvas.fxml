@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="resultPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.ResultCanvasController">
+<AnchorPane fx:id="ResultCanvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.ResultCanvasController">
    <children>
-      <TextField id="question1" editable="false" layoutY="10.0" prefHeight="57.0" prefWidth="211.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Right Answer: ">
+      <TextField id="question1" fx:id="rightAnswerLabel" editable="false" layoutY="10.0" prefHeight="57.0" prefWidth="211.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Right Answer: ">
          <font>
             <Font size="30.0" />
          </font>
@@ -23,21 +23,31 @@
             <Button id="btnMyShip" fx:id="btnMyShip" layoutX="471.0" layoutY="240.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" styleClass="myShip" translateX="5.0" translateY="5.0" />
          </children>
       </Pane>
-      <TextField id="question1" editable="false" layoutX="203.0" layoutY="10.0" prefHeight="57.0" prefWidth="127.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="PlaceHolder">
+      <TextField id="question1" fx:id="rightAnswer" editable="false" layoutX="203.0" layoutY="10.0" prefHeight="57.0" prefWidth="127.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="PlaceHolder">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField id="question1" editable="false" layoutX="325.0" layoutY="10.0" prefHeight="57.0" prefWidth="211.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Your Answer: ">
+      <TextField id="question1" fx:id="yourAnswerLabel" editable="false" layoutX="325.0" layoutY="10.0" prefHeight="57.0" prefWidth="211.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Your Answer: ">
          <font>
             <Font size="30.0" />
          </font>
       </TextField>
-      <TextField id="question1" editable="false" layoutX="527.0" layoutY="10.0" prefHeight="57.0" prefWidth="127.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="PlaceHolder">
+      <TextField id="question1" fx:id="yourAnswer" editable="false" layoutX="527.0" layoutY="10.0" prefHeight="57.0" prefWidth="150.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
       <Button layoutX="695.0" layoutY="25.0" maxHeight="27.0" maxWidth="85.0" minHeight="27.0" minWidth="59.0" mnemonicParsing="false" onAction="#loadMain" prefHeight="27.0" prefWidth="85.0" text="Next Round " />
+      <TextField fx:id="resultLabel" layoutX="17.0" layoutY="10.0" prefHeight="57.0" prefWidth="238.0" style="-fx-background-color: None;" text="Your Answer is: ">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="result" layoutX="223.0" layoutY="10.0" style="-fx-background-color: None;">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

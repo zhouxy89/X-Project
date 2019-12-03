@@ -5,12 +5,14 @@
  */
 package hunter_v1.pkg0;
 
+import static hunter_v1.pkg0.QuestionCanvas2Controller.followedShipAnswer;
 import java.awt.Component;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -49,7 +51,11 @@ public class MainCanvasController implements Initializable {
     @FXML
     private Pane scene;
     @FXML
-    private AnchorPane rootPane;
+    private AnchorPane MainCanvas;
+    
+    @FXML
+    private WelcomeCanvasController welcomeController;
+    
     @FXML
     private Button btnShip1;
     @FXML
@@ -89,7 +95,7 @@ public class MainCanvasController implements Initializable {
     double distance_afterMove;
     double distance_beforeMove;
     
-    int step = 0;
+    public int step = 0;
     
     int[][] canvas;
     int[] randomStop_ship1;
@@ -118,6 +124,8 @@ public class MainCanvasController implements Initializable {
     int distanceFromLastPoint_toShip=27+moveDistancePerStep*2;
     int distanceFromCurrentPoint_toShip=0;
     int totalSteps=25;
+    
+    public static int noChange=0;
     //int totalTrials=38;
     public static int trialNum=0;
     Button[] allShips= new Button[7];
@@ -131,10 +139,106 @@ public class MainCanvasController implements Initializable {
     String recordLine="";
     
     List<Integer> currentBlock=Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
-    List<Integer> block50=Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
-    List<Integer> block75=Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
-    List<Integer> block100=Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
+    public static List<Integer> block50=Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
+    public static List<Integer> block75=Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
+    public static List<Integer> block100=Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
+    public static List<List> blockListAfterShuffle = Arrays.asList(block100,block75,block50);
     int trialInBlock = 0;
+    public static int blockListAfterShuffle_number=0;
+    
+    public boolean beFollowed = false;
+    public static Button followShipBtn =null;
+    public static int followShip=0;
+    List<Button> shipList = null;
+    
+    int X_zone1=28;
+    int X_zone2=260;
+    int X_zone3=492;
+    int X_zone4=724;
+    
+    int Y_zone1=32;
+    int Y_zone2=180;
+    int Y_zone3=328;
+    int Y_zone4=475;
+    
+    int XZoneWidth=232;
+    int YZoneWidth=148;
+    
+    int targetX = 0;
+    int targetY = 0;
+    
+    Integer[]zoneX1 = new Integer[232];
+    Integer[]zoneX2 = new Integer[232];
+    Integer[]zoneX3 = new Integer[232];
+    Integer[]zoneY1 = new Integer[148];
+    Integer[]zoneY2 = new Integer[148];
+    Integer[]zoneY3 = new Integer[148];
+
+
+    int randomX1 = 0;
+    int randomY1 = 0;
+    int randomX2 = 0;
+    int randomY2 = 0;
+    int randomX3 = 0;
+    int randomY3 = 0;
+    
+    List<Integer> X1List = null;
+    List<Integer> X2List = null;
+    List<Integer> X3List = null;
+    List<Integer> Y1List = null;
+    List<Integer> Y2List = null;
+    List<Integer> Y3List = null;
+    
+    Random rand = new Random();
+    
+    int[]setTarget1_100 = null;
+    int[]setTarget2_100 = null;
+    int[]setTarget3_100 = null;
+    int[]setCirclePath1_100 = null;
+    int[]setCirclePath2_100 = null;
+    int[]setTarget4_100 = null;
+    int[]setTarget5_100 = null;
+    int[]setTarget6_100 = null;
+    int[]setCirclePath3_100 = null;
+    int[]setTarget7_100 = null;
+    int[]setTarget8_100 = null;
+    int[]setTarget9_100 = null;
+    int[]setTarget10_100 = null;
+    int[]setCirclePath4_100 = null;
+    
+    
+    int[]setTarget1_75 = null;
+    int[]setTarget2_75 = null;
+    int[]setTarget3_75 = null;
+    int[]setCirclePath1_75 = null;
+    int[]setCirclePath2_75 = null;
+    int[]setTarget4_75 = null;
+    int[]setTarget5_75 = null;
+    int[]setTarget6_75 = null;
+    int[]setCirclePath3_75 = null;
+    int[]setTarget7_75 = null;
+    int[]setTarget8_75 = null;
+    int[]setTarget9_75 = null;
+    int[]setTarget10_75 = null;
+    int[]setCirclePath4_75 = null;
+    int[]setCirclePath5_75 = null;
+    
+    int[]setTarget1_50 = null;
+    int[]setTarget2_50 = null;
+    int[]setTarget3_50 = null;
+    int[]setCirclePath1_50 = null;
+    int[]setCirclePath2_50 = null;
+    int[]setTarget4_50 = null;
+    int[]setTarget5_50 = null;
+    int[]setTarget6_50 = null;
+    int[]setCirclePath3_50 = null;
+    int[]setTarget7_50 = null;
+    int[]setTarget8_50 = null;
+    int[]setTarget9_50 = null;
+    int[]setTarget10_50 = null;
+    int[]setCirclePath4_50 = null;
+    
+    
     
     /**
      * Initializes the controller class.
@@ -142,7 +246,7 @@ public class MainCanvasController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
+        endGame.setDisable(true);
         endGame.setFocusTraversable(false);
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeCanvas.fxml"));
@@ -157,14 +261,29 @@ public class MainCanvasController implements Initializable {
 
         trialNum+=1;
         trialText.setText("Trial: "+String.valueOf(trialNum));
+        System.out.println("Current trial: "+trialNum);
         
         welcomeController.setFileNameFromResultCanvas(welcomeController.fileNameFromResultCanvas());
         filePath = "/Users/zhouxiaoyan/Downloads/"+ "ShadowHunt_"+dateTime+ ".csv";
         file = new File(filePath);
-          
+        System.out.println("file: "+file);
+        
+        
+        assignTrialInBlock();
+        //System.out.println("welcomeController.blockListAfterShuffleFromResultCanvas()"+welcomeController.blockListAfterShuffleFromResultCanvas());
+        welcomeController.setblockListFromResultCanvas(welcomeController.blockListAfterShuffleFromResultCanvas());
+ 
+        randomAssignBlock();
+
+        shipList = randomShipList();
+        
+        System.out.println("shipList1: "+shipList);
+        setStartPosition();
+        System.out.println("welcomeController.fileNameFromResultCanvas(): "+welcomeController.fileNameFromResultCanvas());
+        
     }
-            
-     
+    
+
     
 
     @FXML
@@ -211,15 +330,15 @@ public class MainCanvasController implements Initializable {
                 randomMoveY=0;
             }
             
-            System.out.println((ShipX+randomMoveX) +","+(ShipY+shipHeight/2+randomMoveY));
-            System.out.println((ShipX+randomMoveX) +","+(ShipY-shipHeight/2+randomMoveY));
-            System.out.println((ShipX+shipWidth/2+randomMoveX) +","+(ShipY+randomMoveY));
-            System.out.println((ShipX-shipWidth/2+randomMoveX) +","+(ShipY+randomMoveY));
-            System.out.println(canvas[ShipX+randomMoveX][ShipY+shipHeight/2+randomMoveY]);
-            System.out.println(canvas[ShipX+randomMoveX][ShipY-shipHeight/2+randomMoveY]);
-            System.out.println(canvas[ShipX+shipWidth/2+randomMoveX][ShipY+randomMoveY]);
-            System.out.println(canvas[ShipX-shipWidth/2+randomMoveX][ShipY+randomMoveY]);
-            
+//            System.out.println((ShipX+randomMoveX) +","+(ShipY+shipHeight/2+randomMoveY));
+//            System.out.println((ShipX+randomMoveX) +","+(ShipY-shipHeight/2+randomMoveY));
+//            System.out.println((ShipX+shipWidth/2+randomMoveX) +","+(ShipY+randomMoveY));
+//            System.out.println((ShipX-shipWidth/2+randomMoveX) +","+(ShipY+randomMoveY));
+//            System.out.println(canvas[ShipX+randomMoveX][ShipY+shipHeight/2+randomMoveY]);
+//            System.out.println(canvas[ShipX+randomMoveX][ShipY-shipHeight/2+randomMoveY]);
+//            System.out.println(canvas[ShipX+shipWidth/2+randomMoveX][ShipY+randomMoveY]);
+//            System.out.println(canvas[ShipX-shipWidth/2+randomMoveX][ShipY+randomMoveY]);
+//            
             if(canvas[ShipX+randomMoveX][ShipY+shipHeight/2+randomMoveY]==1){
                 randomMoveX=0;
                 randomMoveY=0;
@@ -287,17 +406,17 @@ public class MainCanvasController implements Initializable {
               
                     switch (step) {
                         case 2:
+                        case 3:
                         case 4:
-                        case 6:
                         case 8:
                         case 10:
+                        case 11:
                         case 12:
-                        case 14:
-                        case 16:
+                        case 13:
                         case 18:
-                        case 20:
+                        case 21:
                         case 22:
-                        case 24:
+                        case 23:
                             friendlyShip.relocate(ShipX + givenList_shouldReturnARandomElement(), ShipY + givenList_shouldReturnARandomElement());
                             
                             break;
@@ -491,10 +610,10 @@ public class MainCanvasController implements Initializable {
                             setAllShipsOnCanvas(friendlyShip1);
                             if(canvas[X1][Y1+shipHeight/2]!=1 && canvas[X1][Y1-shipHeight/2]!=1 && canvas[X1-shipWidth/2][Y1]!=1 && canvas[X1+shipWidth/2][Y1]!=1){
                                 friendlyShip1.relocate(X1,Y1);
-                                System.out.println("1rightX: "+(X1+shipWidth/2)+ " 1rightY: "+ Y1);
-                                System.out.println("1leftX: "+(X1-shipWidth/2)+" 1leftY: "+Y1);
-                                System.out.println("1downX: "+X1+" 1downY: "+(Y1+shipHeight/2));
-                                System.out.println("1upX: "+X1+" 1upY: "+(Y1-shipHeight/2));
+//                                System.out.println("1rightX: "+(X1+shipWidth/2)+ " 1rightY: "+ Y1);
+//                                System.out.println("1leftX: "+(X1-shipWidth/2)+" 1leftY: "+Y1);
+//                                System.out.println("1downX: "+X1+" 1downY: "+(Y1+shipHeight/2));
+//                                System.out.println("1upX: "+X1+" 1upY: "+(Y1-shipHeight/2));
 //                                
                             }
                             else{
@@ -505,10 +624,10 @@ public class MainCanvasController implements Initializable {
                             setAllShipsOnCanvas(friendlyShip2);
                             if(canvas[X2][Y2+shipHeight/2]!=1 && canvas[X2][Y2-shipHeight/2]!=1 && canvas[X2-shipWidth/2][Y2]!=1 && canvas[X2+shipWidth/2][Y2]!=1){
                                 friendlyShip2.relocate(X2,Y2);
-                                System.out.println("1rightX: "+(X2+shipWidth/2)+ " 2rightY: "+ Y2);
-                                System.out.println("2leftX: "+(X2-shipWidth/2)+" 2leftY: "+Y2);
-                                System.out.println("2downX: "+X2+" 2downY: "+(Y2+shipHeight/2));
-                                System.out.println("2upX: "+X2+" 2upY: "+(Y2-shipHeight/2));
+//                                System.out.println("1rightX: "+(X2+shipWidth/2)+ " 2rightY: "+ Y2);
+//                                System.out.println("2leftX: "+(X2-shipWidth/2)+" 2leftY: "+Y2);
+//                                System.out.println("2downX: "+X2+" 2downY: "+(Y2+shipHeight/2));
+//                                System.out.println("2upX: "+X2+" 2upY: "+(Y2-shipHeight/2));
                             }
                             else{
                                 friendlyShip2.relocate(friednlyShipX2,friednlyShipY2);
@@ -631,17 +750,17 @@ public class MainCanvasController implements Initializable {
                 case 50:
                     switch (step) {
                         case 2:
+                        case 3:
                         case 4:
-                        case 6:
                         case 8:
                         case 10:
+                        case 11:
                         case 12:
-                        case 14:
-                        case 16:
+                        case 13:
                         case 18:
-                        case 20:
+                        case 21:
                         case 22:
-                        case 24:
+                        case 23:
                             friendlyShipWithTarget(hostileShip, -5, 10,100);
                             break;
                 
@@ -687,10 +806,10 @@ public class MainCanvasController implements Initializable {
 //            System.out.println("ship3: "+ canvas[X][Y]);
 //            System.out.println("ship3X: "+X);
 //            System.out.println("ship3Y: "+Y);
-            System.out.println("hunterRright: "+canvas[X+shipWidth/2][Y]);
-            System.out.println("hunterLeft: "+canvas[X-shipWidth/2][Y]);
-            System.out.println("hunterDown: "+canvas[X][Y-shipHeight/2]);
-            System.out.println("hunterUp: "+canvas[X][Y+shipHeight/2]);
+//            System.out.println("hunterRright: "+canvas[X+shipWidth/2][Y]);
+//            System.out.println("hunterLeft: "+canvas[X-shipWidth/2][Y]);
+//            System.out.println("hunterDown: "+canvas[X][Y-shipHeight/2]);
+//            System.out.println("hunterUp: "+canvas[X][Y+shipHeight/2]);
             
             
             if(distanceFromCurrentPoint<MyShipWidth/2+shipWidth/2+KEYBOARD_MOVEMENT_DELTA||canvas[X+shipWidth/2][Y]==1||canvas[X-shipWidth/2][Y]==1||canvas[X][Y-shipHeight/2]==1||canvas[X][Y+shipHeight/2]==1){
@@ -738,20 +857,20 @@ public class MainCanvasController implements Initializable {
               
               switch (step) {
                 case 2:
+                case 3:
                 case 4:
-                case 6:
                 case 8:
                 case 10:
+                case 11:
                 case 12:
-                case 14:
-                case 16:
+                case 13:
                 case 18:
-                case 20:
+                case 21:
                 case 22:
-                case 24:
+                case 23:
                     friendlyShipWithTarget(hostileShip, -5, 10,100);
                     break;
-                
+
                 default:
         
                     distanceFromLastPoint=(int)Math.sqrt((hostileShipY-MyShipY)*(hostileShipY-MyShipY)+(hostileShipX-MyShipX)*(hostileShipX-MyShipX));
@@ -894,8 +1013,8 @@ public class MainCanvasController implements Initializable {
     
     @FXML
     private void moveMyshipOnKeyPress(KeyEvent event) throws IOException{
-            
-            
+           
+        
             MyShipY = (int)btnMyShip.getLayoutY();
             MyShipX = (int)btnMyShip.getLayoutX();
             MyShipWidth=(int)btnMyShip.getPrefWidth();
@@ -917,11 +1036,15 @@ public class MainCanvasController implements Initializable {
 //            setShipOnCanvas(btnShip4);
 //            setShipOnCanvas(btnShip5);
             
-            
+            noChange+=1;
             step+=1;
             System.out.println("step: "+step);
-            
-            
+            if(step<=5){
+                endGame.setDisable(true);
+            }
+            else{
+                endGame.setDisable(false);
+            }
             Timer timer = new Timer();
             TimerTask getKeyEvent = new TimerTask()
             {
@@ -992,51 +1115,46 @@ public class MainCanvasController implements Initializable {
                           break;
                         }
                     
-            System.out.println("myrightX: "+((int)btnMyShip.getLayoutX()+shipWidth/2)+"myrightY: "+((int)btnMyShip.getLayoutY()));
-            System.out.println("myleftX: "+((int)btnMyShip.getLayoutX()-shipWidth/2)+"myleftY: "+((int)btnMyShip.getLayoutY()));
-            System.out.println("mydownX: "+((int)btnMyShip.getLayoutX())+"mydownY: "+((int)btnMyShip.getLayoutY()+shipHeight/2));
-            System.out.println("myupXX: "+((int)btnMyShip.getLayoutX())+"myupY: "+((int)btnMyShip.getLayoutY()-shipHeight/2));    
-//            clearShipsOnCanvas();
-//            setShipOnCanvas(btnMyShip);
-//            
-//            
-//            setShipOnCanvas(btnShip1);
-//            setShipOnCanvas(btnShip2);
-//            setShipOnCanvas(btnShip4);
-//            setShipOnCanvas(btnShip5);
+//            System.out.println("myrightX: "+((int)btnMyShip.getLayoutX()+shipWidth/2)+"myrightY: "+((int)btnMyShip.getLayoutY()));
+//            System.out.println("myleftX: "+((int)btnMyShip.getLayoutX()-shipWidth/2)+"myleftY: "+((int)btnMyShip.getLayoutY()));
+//            System.out.println("mydownX: "+((int)btnMyShip.getLayoutX())+"mydownY: "+((int)btnMyShip.getLayoutY()+shipHeight/2));
+//            System.out.println("myupXX: "+((int)btnMyShip.getLayoutX())+"myupY: "+((int)btnMyShip.getLayoutY()-shipHeight/2));    
+//            System.out.println("followShip1: "+followShipBtn);
+//            System.out.println("shipList1: "+shipList);
+            if(trialNum<=3){
+                System.out.println("Practic shipList: "+shipList);
+            practicTrials();
+            }
+            else{
+            randomAssignShips();
+            }
+            System.out.println("followShip: "+followShipBtn);
+            System.out.println("shipList2: "+shipList);
+            if(followShipBtn == btnShip1){
+                followShip = 1;
+            }
+            if(followShipBtn == btnShip2){
+                followShip = 2;
+            }
+            if(followShipBtn == btnShip3){
+                followShip = 3;
+            }
+            if(followShipBtn == btnShip4){
+                followShip = 4;
+            }
+            if(followShipBtn == btnShip5){
+                followShip = 5;
+            }
+            if(followShipBtn == btnShip6){
+                followShip = 6;
+            }
+            if(followShipBtn == null){
+                followShip = 0;
+            }
             
-            hostileShipChase(btnShip3,100);
-            
-//            setShipOnCanvas(btnMyShip);
-//            setShipOnCanvas(btnShip1);
-//            setShipOnCanvas(btnShip2);
-//            setShipOnCanvas(btnShip4);
-            hostileShipFollow(btnShip5,75);
-            //friendlyShipWithTarget(btnShip1, 370, 240,75);
-            
-//            setShipOnCanvas(btnMyShip);
-//            setShipOnCanvas(btnShip1);
-//            setShipOnCanvas(btnShip3);
-//            setShipOnCanvas(btnShip4);
-            friendlyShipWithTarget(btnShip2, 579, 510,50);
-            
-            
-            //friendlyShipWithCirclePath(btnShip4,100,150,300,15,75);
-//            setShipOnCanvas(btnMyShip);
-//            setShipOnCanvas(btnShip3);
-//            setShipOnCanvas(btnShip5);
-            friendlyShipsChaseInCircle(btnShip1,btnShip4,150,250,200,30,75);
-                
+            if(trialNum>3){
             saveRecord();    
-        
-                        
-                        
-//                        try {
-//                            writer = new FileWriter(file, true);
-//                        } catch (IOException ex) {
-//                            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
-//                        }
-              
+            }
             }
             else{
                 timeup.setText("Time's up");
@@ -1050,9 +1168,7 @@ public class MainCanvasController implements Initializable {
             
      }
     
-//    public void setTrialText(int trialNumber) throws IOException {
-//        trialNum=trialNumber;
-//    }
+
     
     public int isMoveToHunter(Button Ship){
         int isClose = 1;
@@ -1169,9 +1285,9 @@ public class MainCanvasController implements Initializable {
         }
         
         if(step==1){
-            if(trialNum==1){
-            System.out.println(step);
-            System.out.println(trialNum);
+            if(trialNum==4){
+//            System.out.println(step);
+//            System.out.println(trialNum);
                 try {
                     writer.write("Trial"+","+"Step"+","+"Ship1"+","+"Ship2"+","+"Ship3"+","+"Ship4"+","+"Ship5"+","+"Ship6"+","+"MyShip"+'\n');
                 } catch (IOException ex) {
@@ -1196,21 +1312,24 @@ public class MainCanvasController implements Initializable {
                 
     }
     @FXML
-    private List randomBlocks(){
-        List<List> givenShipList = Arrays.asList(block100,block75,block50);
-        Collections.shuffle(givenShipList);
-        return givenShipList;
+    public List randomBlocks(){
+        Collections.shuffle(block100);
+        Collections.shuffle(block75);
+        Collections.shuffle(block50);
+        System.out.println("blockListBeforeShuffle: "+blockListAfterShuffle);
+        Collections.shuffle(blockListAfterShuffle);
+        System.out.println("blockListAfterShuffle: "+blockListAfterShuffle);
+        return blockListAfterShuffle;
+        
        
     }
     
     @FXML
-    private void randomAssignTrials(){
-        List<List> blockList = randomBlocks();
-        
+    private void assignTrialInBlock(){
         switch(trialNum){
-            case 1:
-            case 2:
-            case 3:
+//            case 1:
+//            case 2:
+//            case 3:
             case 4:
             case 5:    
             case 6:
@@ -1220,13 +1339,14 @@ public class MainCanvasController implements Initializable {
             case 10:
             case 11:
             case 12:
-                currentBlock=blockList.get(0);
+            case 13:
+            case 14:
+            case 15:  
+                trialInBlock=trialNum-3;
                 break;
                 
             
-            case 13:
-            case 14:
-            case 15:    
+              
             case 16:
             case 17:
             case 18:
@@ -1236,12 +1356,13 @@ public class MainCanvasController implements Initializable {
             case 22:
             case 23:
             case 24:
-                currentBlock=blockList.get(1);
-                break;
-                
             case 25:
             case 26:
-            case 27:    
+            case 27:
+                trialInBlock=trialNum-15;
+                break;
+            
+                
             case 28:
             case 29:
             case 30:
@@ -1251,6 +1372,65 @@ public class MainCanvasController implements Initializable {
             case 34:
             case 35:
             case 36:
+            case 37:
+            case 38:
+            case 39:
+                trialInBlock=trialNum-27;
+                break;
+        }
+    }
+    
+    @FXML
+    private void randomAssignBlock(){
+        //List<List> blockList = randomBlocks();
+        List<List> blockList =blockListAfterShuffle;
+        System.out.println("blockList: "+blockList);
+        switch(trialNum){
+//            case 1:
+//            case 2:
+//            case 3:
+            case 4:
+            case 5:    
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+                currentBlock=blockList.get(0);
+                break;
+                
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+            case 27:    
+                currentBlock=blockList.get(1);
+                break;
+                
+            case 28:
+            case 29:
+            case 30:
+            case 31:
+            case 32:
+            case 33:
+            case 34:
+            case 35:
+            case 36:
+            case 37:
+            case 38:
+            case 39:
                 currentBlock=blockList.get(2);
                 break;
         }
@@ -1261,7 +1441,7 @@ public class MainCanvasController implements Initializable {
     
     @FXML
     private List randomShipList() {
-    List<Button> givenShipList = Arrays.asList(btnShip1,btnShip2,btnShip3,btnShip4,btnShip5);
+    List<Button> givenShipList = Arrays.asList(btnShip1,btnShip2,btnShip3,btnShip4,btnShip5,btnShip6);
     
     Collections.shuffle(givenShipList);
     
@@ -1269,154 +1449,544 @@ public class MainCanvasController implements Initializable {
     }
     
     @FXML
+    private void practicTrials(){
+        if(trialNum==1){
+                      if(step==1){
+                        setTarget1_75 = setTarget(shipList.get(1));
+                        setTarget2_75 = setTarget(shipList.get(2));
+                        setTarget3_75 = setTarget(shipList.get(3));
+                        setCirclePath1_75 = setCirclePath();
+                        setCirclePath2_75 = setCirclePath();
+                      }
+                        
+                        hostileShipFollow(shipList.get(0),75);
+                        friendlyShipWithTarget(shipList.get(1), setTarget1_75[0], setTarget1_75[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget2_75[0], setTarget2_75[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget3_75[0], setTarget3_75[1],50);
+                        
+                        
+                        
+                        friendlyShipWithCirclePath(shipList.get(4),setCirclePath1_75[0],setCirclePath1_75[1],setCirclePath1_75[2],totalSteps,75);
+                        
+                        
+                        friendlyShipWithCirclePath(shipList.get(5),setCirclePath2_75[0],setCirclePath2_75[1],setCirclePath2_75[2],totalSteps,75);
+                        
+                 beFollowed = true;
+                 followShipBtn = shipList.get(0);
+        }
+        
+        if(trialNum==2){
+                if(step==1){
+                        setTarget4_75 = setTarget(shipList.get(1));
+                        setTarget5_75 = setTarget(shipList.get(2));
+                        setTarget6_75 = setTarget(shipList.get(3));
+                        setCirclePath3_75 = setCirclePath();
+                        }
+                        hostileShipChase(shipList.get(0),75);
+                        
+                        friendlyShipWithTarget(shipList.get(1), setTarget4_75[0], setTarget4_75[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget5_75[0], setTarget5_75[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget6_75[0], setTarget6_75[1],50);
+                        
+                        
+                        friendlyShipsChaseInCircle(shipList.get(4),shipList.get(5),setCirclePath3_75[0],setCirclePath3_75[1],setCirclePath3_75[2],totalSteps,75);
+
+                 beFollowed = true;
+                 followShipBtn = shipList.get(0);
+        }
+        
+        if(trialNum==3){
+                    if(step==1){
+                        setTarget7_100 = setTarget(shipList.get(0));
+                        setTarget8_100 = setTarget(shipList.get(1));
+                        setTarget9_100 = setTarget(shipList.get(2));
+                        setTarget10_100 = setTarget(shipList.get(3));
+                        setCirclePath4_100 = setCirclePath();
+                        }
+                        friendlyShipWithTarget(shipList.get(0), setTarget7_100[0], setTarget7_100[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(1), setTarget8_100[0], setTarget8_100[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget9_100[0], setTarget9_100[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget10_100[0], setTarget10_100[1],50);
+                        
+                        
+                        friendlyShipsChaseInCircle(shipList.get(4),shipList.get(5),setCirclePath4_100[0],setCirclePath4_100[1],setCirclePath4_100[2],totalSteps,75);
+                      
+                beFollowed = false;
+                followShipBtn = null;
+        }
+    }
+    @FXML
     private void randomAssignShips(){
-     List<Button> givenShipList = randomShipList();
-     
+     System.out.println("block100: "+block100);
+     System.out.println("block75: "+block75);
+     System.out.println("block50: "+block50);
+     System.out.println("currentBlock: "+currentBlock);
+     System.out.println("trialInBlock: "+trialInBlock);
      if(currentBlock==block100){
          //random trial number first
          if(trialInBlock==block100.get(0)||trialInBlock==block100.get(1)||trialInBlock==block100.get(2)||trialInBlock==block100.get(3)||trialInBlock==block100.get(4)){
-                 for(int s=0; s<givenShipList.size(); s++){
-                        //hostileShipChase(givenShipList.get(1),100);
-
-                        hostileShipFollow(givenShipList.get(0),100);
-
-                        friendlyShipWithTarget(givenShipList.get(1), 579, 510,100);
-                        friendlyShipWithTarget(givenShipList.get(2), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(3), 579, 510,50);
-                        friendlyShipWithCirclePath(givenShipList.get(4),100,150,300,15,75);
-                        friendlyShipWithCirclePath(givenShipList.get(5),100,150,300,15,75);
-                        //friendlyShipsChaseInCircle(givenShipList.get(1),givenShipList.get(1),150,250,200,30,75);
-
-                 }
                  
+                        
+                        if(step==1){
+                        setTarget1_100 = setTarget(shipList.get(1));
+                        setTarget2_100 = setTarget(shipList.get(2));
+                        setTarget3_100 = setTarget(shipList.get(3));
+                        setCirclePath1_100 = setCirclePath();
+                        setCirclePath2_100 = setCirclePath();
+                        }
+                        
+                        hostileShipFollow(shipList.get(0),100);
+                        System.out.println("shipList.get(1): "+shipList.get(1));
+                        friendlyShipWithTarget(shipList.get(1), setTarget1_100[0], setTarget1_100[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget2_100[0], setTarget2_100[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget3_100[0], setTarget3_100[1],50);
+                        
+                        
+                        friendlyShipWithCirclePath(shipList.get(4),setCirclePath1_100[0],setCirclePath1_100[1],setCirclePath1_100[2],totalSteps,75);
+                        
+                        
+                        friendlyShipWithCirclePath(shipList.get(5),setCirclePath2_100[0],setCirclePath2_100[1],setCirclePath2_100[2],totalSteps,75);
+                      
+                 beFollowed = true;
+                 followShipBtn = shipList.get(0);
+         }        
          if(trialInBlock==block100.get(5)||trialInBlock==block100.get(6)||trialInBlock==block100.get(7)||trialInBlock==block100.get(8)||trialInBlock==block100.get(9)){
-                 for(int s=0; s<givenShipList.size(); s++){
-                        hostileShipChase(givenShipList.get(0),100);
-
-                        //hostileShipFollow(givenShipList.get(1),100);
-
-                        friendlyShipWithTarget(givenShipList.get(1), 579, 510,100);
-                        friendlyShipWithTarget(givenShipList.get(2), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(3), 579, 510,50);
-                        //friendlyShipWithCirclePath(givenShipList.get(5),100,150,300,15,75);
-
-                        friendlyShipsChaseInCircle(givenShipList.get(4),givenShipList.get(5),150,250,200,30,75);
-
-                 }
-        }
+                
+                        
+                        if(step==1){
+                        setTarget4_100 = setTarget(shipList.get(1));
+                        setTarget5_100 = setTarget(shipList.get(2));
+                        setTarget6_100 = setTarget(shipList.get(3));
+                        setCirclePath3_100 = setCirclePath();
+                        }
+                        
+                        hostileShipChase(shipList.get(0),100);
+                        
+                        friendlyShipWithTarget(shipList.get(1), setTarget4_100[0], setTarget4_100[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget5_100[0], setTarget5_100[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget6_100[0], setTarget6_100[1],50);
+                        
+                        
+                        friendlyShipsChaseInCircle(shipList.get(4),shipList.get(5),setCirclePath3_100[0],setCirclePath3_100[1],setCirclePath3_100[2],totalSteps,75);
+                        
+                 beFollowed = true;
+                 followShipBtn = shipList.get(0);
+            }
          
             if(trialInBlock==block100.get(10)||trialInBlock==block100.get(11)){
-            
-                for(int s=0; s<givenShipList.size(); s++){
-                        friendlyShipWithTarget(givenShipList.get(0), 579, 510,100);
-                        friendlyShipWithTarget(givenShipList.get(1), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(2), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(3), 579, 510,50);
-                        //friendlyShipWithCirclePath(givenShipList.get(5),100,150,300,15,75);
-
-                        friendlyShipsChaseInCircle(givenShipList.get(4),givenShipList.get(5),150,250,200,30,75);
-
-                 }
+                        if(step==1){
+                        setTarget7_100 = setTarget(shipList.get(0));
+                        setTarget8_100 = setTarget(shipList.get(1));
+                        setTarget9_100 = setTarget(shipList.get(2));
+                        setTarget10_100 = setTarget(shipList.get(3));
+                        setCirclePath4_100 = setCirclePath();
+                        }
+                        friendlyShipWithTarget(shipList.get(0), setTarget7_100[0], setTarget7_100[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(1), setTarget8_100[0], setTarget8_100[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget9_100[0], setTarget9_100[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget10_100[0], setTarget10_100[1],50);
+                        
+                        
+                        friendlyShipsChaseInCircle(shipList.get(4),shipList.get(5),setCirclePath4_100[0],setCirclePath4_100[1],setCirclePath4_100[2],totalSteps,75);
+                      
+                beFollowed = false;
+                followShipBtn = null;
             }
-        }
+        
      }
      if(currentBlock==block75){
          if(trialInBlock==block75.get(0)||trialInBlock==block75.get(1)||trialInBlock==block75.get(2)||trialInBlock==block75.get(3)||trialInBlock==block75.get(4)){
-                 for(int s=0; s<givenShipList.size(); s++){
-                        //hostileShipChase(givenShipList.get(1),100);
-
-                        hostileShipFollow(givenShipList.get(0),75);
-
-                        friendlyShipWithTarget(givenShipList.get(1), 579, 510,100);
-                        friendlyShipWithTarget(givenShipList.get(2), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(3), 579, 510,50);
-                        friendlyShipWithCirclePath(givenShipList.get(4),100,150,300,15,75);
-                        friendlyShipWithCirclePath(givenShipList.get(5),100,150,300,15,75);
-                        //friendlyShipsChaseInCircle(givenShipList.get(1),givenShipList.get(1),150,250,200,30,75);
-
-                 }
                  
+                        
+                        if(step==1){
+                        setTarget1_75 = setTarget(shipList.get(1));
+                        setTarget2_75 = setTarget(shipList.get(2));
+                        setTarget3_75 = setTarget(shipList.get(3));
+                        setCirclePath1_75 = setCirclePath();
+                        setCirclePath2_75 = setCirclePath();
+                        }
+                        
+                        hostileShipFollow(shipList.get(0),75);
+                        friendlyShipWithTarget(shipList.get(1), setTarget1_75[0], setTarget1_75[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget2_75[0], setTarget2_75[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget3_75[0], setTarget3_75[1],50);
+                        
+                        
+                        
+                        friendlyShipWithCirclePath(shipList.get(4),setCirclePath1_75[0],setCirclePath1_75[1],setCirclePath1_75[2],totalSteps,75);
+                        
+                        
+                        friendlyShipWithCirclePath(shipList.get(5),setCirclePath2_75[0],setCirclePath2_75[1],setCirclePath2_75[2],totalSteps,75);
+                        
+                 beFollowed = true;
+                 followShipBtn = shipList.get(0);
+         }     
          if(trialInBlock==block75.get(5)||trialInBlock==block75.get(6)||trialInBlock==block75.get(7)||trialInBlock==block75.get(8)||trialInBlock==block75.get(9)){
-                 for(int s=0; s<givenShipList.size(); s++){
-                        hostileShipChase(givenShipList.get(0),75);
+                 
+                        
+                        if(step==1){
+                        setTarget4_75 = setTarget(shipList.get(1));
+                        setTarget5_75 = setTarget(shipList.get(2));
+                        setTarget6_75 = setTarget(shipList.get(3));
+                        setCirclePath3_75 = setCirclePath();
+                        }
+                        hostileShipChase(shipList.get(0),75);
+                        
+                        friendlyShipWithTarget(shipList.get(1), setTarget4_75[0], setTarget4_75[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget5_75[0], setTarget5_75[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget6_75[0], setTarget6_75[1],50);
+                        
+                        
+                        friendlyShipsChaseInCircle(shipList.get(4),shipList.get(5),setCirclePath3_75[0],setCirclePath3_75[1],setCirclePath3_75[2],totalSteps,75);
 
-                        //hostileShipFollow(givenShipList.get(1),100);
-
-                        friendlyShipWithTarget(givenShipList.get(1), 579, 510,100);
-                        friendlyShipWithTarget(givenShipList.get(2), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(3), 579, 510,50);
-                        //friendlyShipWithCirclePath(givenShipList.get(5),100,150,300,15,75);
-
-                        friendlyShipsChaseInCircle(givenShipList.get(4),givenShipList.get(5),150,250,200,30,75);
-
-                 }
+                 beFollowed = true;
+                 followShipBtn = shipList.get(0);
         }
          
          if(trialInBlock==block75.get(10)||trialInBlock==block75.get(11)){
-            
-                for(int s=0; s<givenShipList.size(); s++){
-                        friendlyShipWithTarget(givenShipList.get(0), 579, 510,100);
-                        friendlyShipWithTarget(givenShipList.get(1), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(2), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(3), 579, 510,50);
-                        friendlyShipWithCirclePath(givenShipList.get(4),100,150,300,15,75);
-                        friendlyShipWithCirclePath(givenShipList.get(5),100,150,300,15,75);
+                        if(step==1){
+                        setTarget7_75 = setTarget(shipList.get(0));
+                        setTarget8_75 = setTarget(shipList.get(1));
+                        setTarget9_75 = setTarget(shipList.get(2));
+                        setTarget10_75 = setTarget(shipList.get(3));
+                        setCirclePath4_75 = setCirclePath();
+                        setCirclePath5_75 = setCirclePath();
+                        }
+                        friendlyShipWithTarget(shipList.get(0), setTarget7_75[0], setTarget7_75[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(1), setTarget8_75[0], setTarget8_75[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget9_75[0], setTarget9_75[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget10_75[0], setTarget10_75[1],50);
+                        
+                        
+                        friendlyShipWithCirclePath(shipList.get(4),setCirclePath4_75[0],setCirclePath4_75[1],setCirclePath4_75[2],totalSteps,75);
+                        
+                        
+                        friendlyShipWithCirclePath(shipList.get(5),setCirclePath5_75[0],setCirclePath5_75[1],setCirclePath5_75[2],totalSteps,75);
 
-                        //friendlyShipsChaseInCircle(givenShipList.get(4),givenShipList.get(5),150,250,200,30,75);
-
-                 }
-            }
+                      
+                beFollowed = false;
+                followShipBtn = null;
         }
+        
      }
      if(currentBlock==block50){
          if(trialInBlock==block50.get(0)||trialInBlock==block50.get(1)||trialInBlock==block50.get(2)||trialInBlock==block50.get(3)||trialInBlock==block50.get(4)){
-                 for(int s=0; s<givenShipList.size(); s++){
-                        //hostileShipChase(givenShipList.get(1),100);
-
-                        hostileShipFollow(givenShipList.get(0),50);
-
-                        friendlyShipWithTarget(givenShipList.get(1), 579, 510,100);
-                        friendlyShipWithTarget(givenShipList.get(2), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(3), 579, 510,50);
-                        friendlyShipWithCirclePath(givenShipList.get(4),100,150,300,15,75);
-                        friendlyShipWithCirclePath(givenShipList.get(5),100,150,300,15,75);
-                        //friendlyShipsChaseInCircle(givenShipList.get(1),givenShipList.get(1),150,250,200,30,75);
-
-                 }
+                        
+                        
+                        if(step==1){
+                        setTarget1_50 = setTarget(shipList.get(1));
+                        setTarget2_50 = setTarget(shipList.get(2));
+                        setTarget3_50 = setTarget(shipList.get(3));
+                        setCirclePath1_50 = setCirclePath();
+                        setCirclePath2_50 = setCirclePath();
+                        }
+                        hostileShipFollow(shipList.get(0),50);
+                        
+                        friendlyShipWithTarget(shipList.get(1), setTarget1_50[0], setTarget1_50[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget2_50[0], setTarget2_50[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget3_50[0], setTarget3_50[1],50);
+                        
+                        
+                        friendlyShipWithCirclePath(shipList.get(4),setCirclePath1_50[0],setCirclePath1_50[1],setCirclePath1_50[2],totalSteps,75);
+                        
+                        
+                        friendlyShipWithCirclePath(shipList.get(5),setCirclePath2_50[0],setCirclePath2_50[1],setCirclePath2_50[2],totalSteps,75);
+                        
                  
+                 beFollowed = true;
+                 followShipBtn = shipList.get(0);
+         }        
          if(trialInBlock==block50.get(5)||trialInBlock==block50.get(6)||trialInBlock==block50.get(7)||trialInBlock==block50.get(8)||trialInBlock==block50.get(9)){
-                 for(int s=0; s<givenShipList.size(); s++){
-                        hostileShipChase(givenShipList.get(0),50);
+                 
+                        
+                        if(step==1){
+                        setTarget4_50 = setTarget(shipList.get(1));
+                        setTarget5_50 = setTarget(shipList.get(2));
+                        setTarget6_50 = setTarget(shipList.get(3));
+                        setCirclePath3_50 = setCirclePath();
+                        }
+                        hostileShipChase(shipList.get(0),50);
+                        
+                        friendlyShipWithTarget(shipList.get(1), setTarget4_50[0], setTarget4_50[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget5_50[0], setTarget5_50[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget6_50[0], setTarget6_50[1],50);
 
-                        //hostileShipFollow(givenShipList.get(1),100);
+                        
+                        friendlyShipsChaseInCircle(shipList.get(4),shipList.get(5),setCirclePath3_50[0],setCirclePath3_50[1],setCirclePath3_50[2],totalSteps,75);
 
-                        friendlyShipWithTarget(givenShipList.get(1), 579, 510,100);
-                        friendlyShipWithTarget(givenShipList.get(2), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(3), 579, 510,50);
-                        //friendlyShipWithCirclePath(givenShipList.get(5),100,150,300,15,75);
-
-                        friendlyShipsChaseInCircle(givenShipList.get(4),givenShipList.get(5),150,250,200,30,75);
-
-                 }
+                 
+                 beFollowed = true;
+                 followShipBtn = shipList.get(0);
         }
          if(trialInBlock==block50.get(10)||trialInBlock==block50.get(11)){
-            
-                for(int s=0; s<givenShipList.size(); s++){
-                        friendlyShipWithTarget(givenShipList.get(0), 579, 510,100);
-                        friendlyShipWithTarget(givenShipList.get(1), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(2), 579, 510,75);
-                        friendlyShipWithTarget(givenShipList.get(3), 579, 510,50);
-//                        friendlyShipWithCirclePath(givenShipList.get(4),100,150,300,15,75);
-//                        friendlyShipWithCirclePath(givenShipList.get(5),100,150,300,15,75);
+                        if(step==1){
+                        setTarget7_50 = setTarget(shipList.get(0));
+                        setTarget8_50 = setTarget(shipList.get(1));
+                        setTarget9_50 = setTarget(shipList.get(2));
+                        setTarget10_50 = setTarget(shipList.get(3));
+                        setCirclePath4_50 = setCirclePath();
+                        }
+                        friendlyShipWithTarget(shipList.get(0), setTarget7_50[0], setTarget7_50[1],100);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(1), setTarget8_50[0], setTarget8_50[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(2), setTarget9_50[0], setTarget9_50[1],75);
+                        
+                        
+                        friendlyShipWithTarget(shipList.get(3), setTarget10_50[0], setTarget10_50[1],50);
 
-                        friendlyShipsChaseInCircle(givenShipList.get(4),givenShipList.get(5),150,250,200,30,75);
+                        
+                        friendlyShipsChaseInCircle(shipList.get(4),shipList.get(5),setCirclePath4_50[0],setCirclePath4_50[1],setCirclePath4_50[2],totalSteps,75);
 
-                 }
+                
+                beFollowed = false;
+                followShipBtn = null;
             }
         }
+//    System.out.println("followShip: "+followShipBtn);
+//    System.out.println("shipList: "+shipList);
     }
-    }
+    
+    @FXML
+    private void setStartPosition(){
+        
+        //int p1 = 0;
+        int x1 = X_zone1;
+        int x2 = X_zone2+1;
+        int x3 = X_zone3+1;
+        int y1 = Y_zone1;
+        int y2 = Y_zone2+1;
+        int y3 = Y_zone3+1;
+        
+        
+        
+        for (int p1 = 0; p1 < XZoneWidth; p1++) {
+                x1++;
+                zoneX1[p1]=x1;
+                
+        }
 
+        for (int p2 = 0; p2 < XZoneWidth; p2++) {
+                x2++;
+                zoneX2[p2]=x2;
+                    
+        }
+
+        for (int p3 = 0; p3 < XZoneWidth; p3++) {
+                x3++;
+                zoneX3[p3]=x3;
+                
+        }
+
+        for (int p4 = 0; p4 < YZoneWidth; p4++) {
+               y1++;
+               zoneY1[p4]=y1;
+                
+        }
+    
+        for (int p5 = 0; p5 < YZoneWidth; p5++) {
+                y2++;
+                zoneY2[p5]=y2;
+                    
+        }
+
+        for (int p6 = 0; p6 < YZoneWidth; p6++) {
+                y3++;
+                zoneY3[p6]=y3;
+                    
+        }
+        
+        X1List = Arrays.asList(zoneX1);
+        X2List = Arrays.asList(zoneX2);
+        X3List = Arrays.asList(zoneX3);
+        Y1List = Arrays.asList(zoneY1);
+        Y2List = Arrays.asList(zoneY2);
+        Y3List = Arrays.asList(zoneY3);
+        
+//        System.out.println("X1List: "+X1List);
+        
+    
+        randomX1= X1List.get(rand.nextInt(X1List.size()));
+        randomY1= Y1List.get(rand.nextInt(Y1List.size()));
+        shipList.get(0).relocate(randomX1,randomY1);
+        
+        randomX1= X1List.get(rand.nextInt(X1List.size()));
+        randomY3= Y3List.get(rand.nextInt(Y3List.size()));
+        shipList.get(1).relocate(randomX1,randomY3);
+        
+        randomX2= X2List.get(rand.nextInt(X2List.size()));
+        randomY1= Y1List.get(rand.nextInt(Y1List.size()));
+        shipList.get(2).relocate(randomX2,randomY1);
+        
+        randomX2= X2List.get(rand.nextInt(X2List.size()));
+        randomY3= Y3List.get(rand.nextInt(Y3List.size()));
+        shipList.get(3).relocate(randomX2,randomY3);
+        
+        randomX3= X3List.get(rand.nextInt(X3List.size()));
+        randomY1= Y1List.get(rand.nextInt(Y1List.size()));
+        shipList.get(4).relocate(randomX3,randomY1);
+        
+        randomX3= X3List.get(rand.nextInt(X3List.size()));
+        randomY3= Y3List.get(rand.nextInt(Y3List.size()));
+        shipList.get(5).relocate(randomX3,randomY3);
+    }
+    
+    @FXML
+    private int[] setTarget(Button ship){
+        int shipX = (int)ship.getLayoutX();
+        int shipY = (int)ship.getLayoutY();
+        
+        
+        
+        if(shipX <= X_zone2 && shipY <= Y_zone2){
+            
+            targetX = X3List.get(rand.nextInt(X3List.size()));
+            targetY = Y3List.get(rand.nextInt(Y3List.size()));
+        }
+        
+        if(X_zone2 < shipX && shipX <= X_zone3 && shipY <= Y_zone2){
+            
+            targetX = X2List.get(rand.nextInt(X2List.size()));
+            targetY = Y3List.get(rand.nextInt(Y3List.size()));
+        }
+        
+        if(X_zone3 < shipX && shipY <= Y_zone2){
+            
+            targetX = X1List.get(rand.nextInt(X1List.size()));
+            targetY = Y3List.get(rand.nextInt(Y3List.size()));
+        }
+        
+        if(X_zone1 <= shipX && shipX <= X_zone2 && Y_zone2 < shipY && shipY <= Y_zone3){
+            
+            targetX = X3List.get(rand.nextInt(X3List.size()));
+            targetY = Y2List.get(rand.nextInt(Y2List.size()));
+        }
+        
+        if(X_zone3 < shipX && shipX <= X_zone4 && Y_zone2 < shipY && shipY <= Y_zone3){
+            
+            targetX = X1List.get(rand.nextInt(X1List.size()));
+            targetY = Y2List.get(rand.nextInt(Y2List.size()));
+        }
+        
+        if(shipX <= X_zone2 && shipY > Y_zone3){
+            
+            targetX = X3List.get(rand.nextInt(X3List.size()));
+            targetY = Y1List.get(rand.nextInt(Y1List.size()));
+        }
+        
+        if(X_zone2 < shipX && shipX <= X_zone3 && shipY > Y_zone3){
+            
+            targetX = X2List.get(rand.nextInt(X2List.size()));
+            targetY = Y1List.get(rand.nextInt(Y1List.size()));
+        }
+        
+        if(X_zone3 < shipX && shipY > Y_zone3){
+            
+            targetX = X1List.get(rand.nextInt(X1List.size()));
+            targetY = Y1List.get(rand.nextInt(Y1List.size()));
+        }
+        
+        
+        return new int[]{targetX, targetY};
+        
+    }
+    
+    @FXML
+    private int[] setCirclePath(){
+        
+        int randomCircleX = 0;
+        int randomCircleY = 0;
+        int randomCircleR = 0;
+        
+        Integer[]circleX = new Integer[406];
+        Integer[]circleY = new Integer[161];
+        Integer[]circleR = new Integer[50];
+        
+        //int a = 177;
+        //int b = 177;
+        int a = 200;
+        int b = 200;
+        int c = 100;
+        for (int CX = 0; CX < 406; CX++) {
+                a++;
+                circleX[CX]=a;
+                    
+        }
+        
+        for (int CY = 0; CY < 161; CY++) {
+                b++;
+                circleY[CY]=b;
+                
+        }
+        
+        for (int CR = 0; CR <50; CR++) {
+                c++;
+                circleR[CR]=c;
+                
+        }
+        List<Integer> circleXList = Arrays.asList(circleX);
+        List<Integer> circleYList = Arrays.asList(circleY);
+        List<Integer> circleRList = Arrays.asList(circleR);
+        
+        randomCircleX= circleXList.get(rand.nextInt(circleXList.size()));
+        randomCircleY= circleYList.get(rand.nextInt(circleYList.size()));
+        randomCircleR= circleRList.get(rand.nextInt(circleRList.size()));
+        
+        return new int[]{randomCircleR, randomCircleX, randomCircleY};
+    }
+    
     @FXML
     private void displayPosition(MouseEvent event) {
         status.setText("X = " + event.getX() + "    Y = "  + event.getY());
@@ -1424,8 +1994,14 @@ public class MainCanvasController implements Initializable {
     
     @FXML
     private void loadQuestion1(ActionEvent event) throws IOException {
+        
         AnchorPane pane = FXMLLoader.load(getClass().getResource("QuestionCanvas1.fxml"));
-        rootPane.getChildren().setAll(pane);
+        MainCanvas.getChildren().setAll(pane);
+        
+    }
+
+    public void init(WelcomeCanvasController welcomeController) {
+        welcomeController=welcomeController; //To change body of generated methods, choose Tools | Templates.
     }
 
 
