@@ -22,6 +22,7 @@
             <Button id="btnShip4" fx:id="btnShip4" layoutX="579.0" layoutY="421.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="4" />
             <Button id="btnShip5" fx:id="btnShip5" layoutX="662.0" layoutY="178.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="5" />
             <Button id="btnMyShip" fx:id="btnMyShip" layoutX="471.0" layoutY="240.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" styleClass="myShip" translateX="5.0" translateY="5.0" />
+            <Button id="btnShip6" fx:id="btnShip6" layoutX="524.0" layoutY="81.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="6" />
          </children>
       </Pane>
       <Button layoutX="661.0" layoutY="25.0" mnemonicParsing="false" onAction="#loadResult" prefHeight="27.0" prefWidth="119.0" text="Show Answer" />

@@ -21,6 +21,7 @@
             <Button id="btnShip4" fx:id="btnShip4" layoutX="579.0" layoutY="421.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="4" />
             <Button id="btnShip5" fx:id="btnShip5" layoutX="662.0" layoutY="178.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="5" />
             <Button id="btnMyShip" fx:id="btnMyShip" layoutX="471.0" layoutY="240.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" styleClass="myShip" translateX="5.0" translateY="5.0" />
+            <Button id="btnShip6" fx:id="btnShip6" layoutX="535.0" layoutY="90.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="6" />
          </children>
       </Pane>
       <TextField id="question1" fx:id="rightAnswer" editable="false" layoutX="203.0" layoutY="10.0" prefHeight="57.0" prefWidth="127.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="PlaceHolder">
@@ -44,7 +45,22 @@
             <Font size="30.0" />
          </font>
       </TextField>
-      <TextField fx:id="result" layoutX="223.0" layoutY="10.0" style="-fx-background-color: None;">
+      <TextField fx:id="result" layoutX="223.0" layoutY="10.0" prefHeight="57.0" prefWidth="127.0" style="-fx-background-color: None;">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="score" layoutX="515.0" layoutY="10.0" prefHeight="57.0" prefWidth="76.0" style="-fx-background-color: None;">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="totalTrialsLabel" layoutX="569.0" layoutY="10.0" prefHeight="57.0" prefWidth="85.0" style="-fx-background-color: None;" text="/36">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="scoreLabel" layoutX="390.0" layoutY="10.0" prefHeight="57.0" prefWidth="117.0" style="-fx-background-color: None;" text="Score: ">
          <font>
             <Font size="30.0" />
          </font>

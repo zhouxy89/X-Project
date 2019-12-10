@@ -5,7 +5,12 @@
  */
 package hunter_v1.pkg0;
 
+import static hunter_v1.pkg0.MainCanvasController.filepath;
+import static hunter_v1.pkg0.MainCanvasController.trialNum;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collections;
@@ -47,6 +52,12 @@ public class ResultCanvasController implements Initializable {
     private TextField result;
     @FXML
     private TextField resultLabel;
+    @FXML
+    private TextField score;
+    @FXML
+    private TextField totalTrialsLabel;
+    @FXML
+    private TextField scoreLabel;
 //    @FXML
 //    MainCanvasController mainController;
 //    @FXML
@@ -73,6 +84,7 @@ public class ResultCanvasController implements Initializable {
     public static int dateNum = (int)(DT.getTime()/1000);
     public static int realFollower= 0;
     public static int followerAnswer= 0;
+    public static int rightAnswerNum= 0;
     
     public String showRightAnswer = "";
     public String showYourAnswer = "";
@@ -89,6 +101,10 @@ public class ResultCanvasController implements Initializable {
     
     //public List<Integer> blockListAfterShuffle_result = Arrays.asList(1,2,3);
     public static int blockListAfterShuffle_num = 123;
+    
+    FileWriter resultWriter= null;
+    PrintWriter resultPrint = null;
+    String resultRecord="";
    
     //public static int dateNum=1;
     /**
@@ -98,7 +114,7 @@ public class ResultCanvasController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("dateNum: "+dateNum);
+        //System.out.println("dateNum: "+dateNum);
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeCanvas.fxml"));
         try {
@@ -122,7 +138,8 @@ public class ResultCanvasController implements Initializable {
         
         Collections.shuffle(blockListAfterShuffle_result);
         }
-        
+        showRightAnswer = "1";
+        showYourAnswer = "2";
         if(realFollower==0){
             showRightAnswer = "None";
             }
@@ -167,8 +184,12 @@ public class ResultCanvasController implements Initializable {
             showYourAnswer = "Ship6";
         }
         
+        System.out.println("rightAnswerNum: "+rightAnswerNum);
         if(trial<=3){ 
             resultLabel.setVisible(false); 
+            score.setVisible(false); 
+            totalTrialsLabel.setVisible(false); 
+            scoreLabel.setVisible(false); 
             setText();
         }
         else{
@@ -176,20 +197,40 @@ public class ResultCanvasController implements Initializable {
            rightAnswerLabel.setVisible(false); 
            yourAnswer.setVisible(false); 
            yourAnswerLabel.setVisible(false); 
-           System.out.println("rightAnswer: "+showRightAnswer);
-        System.out.println("yourAnswer: "+showYourAnswer);
+           
+           if(welcomeController.trialFromMain()==4&&mainController.count==0){ 
+               showRightAnswer = "Ship5";
+               showYourAnswer = "Ship6";
+           }
+           
+           // System.out.println("mainController.noChange: "+mainController.noChange);
+           //System.out.println("rightAnswer: "+showRightAnswer);
+           //System.out.println("yourAnswer: "+showYourAnswer);
+           //System.out.println("rightGuessFromMain: "+welcomeController.rightGuessFromMain());
+          // welcomeController.setrightGuessFromMainCanvas(welcomeController.rightGuessFromMain());
            if(showRightAnswer==showYourAnswer){
                result.setText("Right");
+               
+               rightAnswerNum+=1;
+               score.setText(Integer.toString(rightAnswerNum));
+           
+               //System.out.println("rightAnswerNum: "+rightAnswerNum);
            }
            else{
                result.setText("Wrong");
+               score.setText(Integer.toString(rightAnswerNum));
            }
            
         }
+        
+        
         System.out.println("block100_result: "+block100_result);
         System.out.println("block75_result: "+block75_result);
         System.out.println("block50_result: "+block50_result);
         System.out.println("blockListAfterShuffle_result: "+blockListAfterShuffle_result);
+        
+        System.out.println("filePath: "+mainController.filepath);
+        
         
     }   
     @FXML
@@ -204,6 +245,8 @@ public class ResultCanvasController implements Initializable {
 
         
         yourAnswer.setText(showYourAnswer);
+        
+        
     }
     
     @FXML
@@ -219,16 +262,46 @@ public class ResultCanvasController implements Initializable {
         }
         
         WelcomeCanvasController welcomeController = loader.getController();
-        
+       
         welcomeController.setblockListFromMainCanvas(welcomeController.blockListAfterShuffleFromMainCanvas());
+        
         //blockListAfterShuffle_result=welcomeController.blockListAfterShuffleFromMainCanvas();
 //        
+    }
+    
+    @FXML
+    public void recordResults(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeCanvas.fxml"));
+        try {
+            Parent root = (Parent)loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        WelcomeCanvasController welcomeController = loader.getController();
+        if(welcomeController.trialFromMain()>=4&&mainController.count>5){
+        try {
+            resultWriter = new FileWriter(mainController.filepath, true);
+        } catch (IOException ex) {
+            Logger.getLogger(ResultCanvasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        BufferedWriter data = new BufferedWriter(resultWriter);
+        resultPrint = new PrintWriter(data);
+        
+        
+        resultRecord = trial-3 + " "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+showYourAnswer+","+showRightAnswer;
+        
+        
+        resultPrint.println(resultRecord);
+        resultPrint.flush();
+        resultPrint.close();
+        }
     }
 //    
     @FXML
     private void loadMain(ActionEvent event) throws IOException {
         randomBlock();
-        
+        recordResults();
         if(trial<totalTrial){
         AnchorPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
         //System.out.println("trial2: "+trial);

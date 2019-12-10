@@ -6,6 +6,7 @@
 package hunter_v1.pkg0;
 
 
+import static hunter_v1.pkg0.ResultCanvasController.rightAnswerNum;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -209,4 +210,17 @@ public class WelcomeCanvasController implements Initializable {
           mainController.blockListAfterShuffle = BLFromResult;
         
     }
+    
+    
+    public int rightGuessFromResult(){
+     
+        return resultController.rightAnswerNum;
+    }
+    
+    public void setrightGuessFromResultCanvas(int Number) {
+        mainController.rightGuess = Number;
+        
+    }
+    
+    
 }

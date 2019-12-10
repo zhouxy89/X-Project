@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Thread.sleep;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.time.LocalDate;
@@ -126,13 +127,14 @@ public class MainCanvasController implements Initializable {
     int totalSteps=25;
     
     public static int noChange=0;
+    public static int count=0;
     //int totalTrials=38;
     public static int trialNum=0;
     Button[] allShips= new Button[7];
     
     public static int dateTime=0;
-    public String filePath = "";
-    
+    public static String filepath = "";
+    public static String home = "";
     public File file = null;    
     FileWriter writer= null;
     PrintWriter move = null;
@@ -238,6 +240,15 @@ public class MainCanvasController implements Initializable {
     int[]setTarget10_50 = null;
     int[]setCirclePath4_50 = null;
     
+    public static int rightGuess=0;
+    
+    String ship1active = "";
+    String ship2active = "";
+    String ship3active = "";
+    String ship4active = "";
+    String ship5active = "";
+    String ship6active = "";
+    String active = "";
     
     
     /**
@@ -258,20 +269,29 @@ public class MainCanvasController implements Initializable {
         WelcomeCanvasController welcomeController = loader.getController();
         
         welcomeController.setTrialFromResultCanvas(welcomeController.trialFromResult());
+        
 
         trialNum+=1;
-        trialText.setText("Trial: "+String.valueOf(trialNum));
+        if(trialNum<=3){
+            trialText.setText("Practic Trial");
+        }
+        else{
+        trialText.setText("Trial: "+String.valueOf(trialNum-3));
         System.out.println("Current trial: "+trialNum);
-        
+        }
         welcomeController.setFileNameFromResultCanvas(welcomeController.fileNameFromResultCanvas());
-        filePath = "/Users/zhouxiaoyan/Downloads/"+ "ShadowHunt_"+dateTime+ ".csv";
-        file = new File(filePath);
-        System.out.println("file: "+file);
+        welcomeController.setblockListFromResultCanvas(welcomeController.blockListAfterShuffleFromResultCanvas());
+        String home = System.getProperty("user.home");
+        filepath = home+"/Downloads/"+ "ShadowHunt_"+dateTime+ ".csv";
+        //filepath = "/Users/zhouxiaoyan/Downloads/"+ "ShadowHunt_"+dateTime+ ".csv";
+        file = new File(filepath);
+        //System.out.println("file: "+file);
+        welcomeController.setrightGuessFromResultCanvas(welcomeController.rightGuessFromResult());
+        System.out.println("welcomeController.rightGuessFromResult(): "+welcomeController.rightGuessFromResult());
         
         
         assignTrialInBlock();
         //System.out.println("welcomeController.blockListAfterShuffleFromResultCanvas()"+welcomeController.blockListAfterShuffleFromResultCanvas());
-        welcomeController.setblockListFromResultCanvas(welcomeController.blockListAfterShuffleFromResultCanvas());
  
         randomAssignBlock();
 
@@ -280,6 +300,7 @@ public class MainCanvasController implements Initializable {
         System.out.println("shipList1: "+shipList);
         setStartPosition();
         System.out.println("welcomeController.fileNameFromResultCanvas(): "+welcomeController.fileNameFromResultCanvas());
+        
         
     }
     
@@ -1013,7 +1034,20 @@ public class MainCanvasController implements Initializable {
     
     @FXML
     private void moveMyshipOnKeyPress(KeyEvent event) throws IOException{
-           
+            if(step==1){ 
+        try { 
+            sleep(1500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+            else{
+        try { 
+            sleep(300);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
         
             MyShipY = (int)btnMyShip.getLayoutY();
             MyShipX = (int)btnMyShip.getLayoutX();
@@ -1035,7 +1069,9 @@ public class MainCanvasController implements Initializable {
 //            setShipOnCanvas(btnShip3);
 //            setShipOnCanvas(btnShip4);
 //            setShipOnCanvas(btnShip5);
-            
+            if(trialNum==4){
+            count+=1;
+            }
             noChange+=1;
             step+=1;
             System.out.println("step: "+step);
@@ -1121,12 +1157,15 @@ public class MainCanvasController implements Initializable {
 //            System.out.println("myupXX: "+((int)btnMyShip.getLayoutX())+"myupY: "+((int)btnMyShip.getLayoutY()-shipHeight/2));    
 //            System.out.println("followShip1: "+followShipBtn);
 //            System.out.println("shipList1: "+shipList);
+         
             if(trialNum<=3){
                 System.out.println("Practic shipList: "+shipList);
             practicTrials();
+               
             }
             else{
             randomAssignShips();
+               
             }
             System.out.println("followShip: "+followShipBtn);
             System.out.println("shipList2: "+shipList);
@@ -1260,9 +1299,28 @@ public class MainCanvasController implements Initializable {
         String record = "";
         
         for (int s=0; s<allShips.length; s++){
+            if(allShips[s]==shipList.get(0)){
+                active = ship1active;
+            }
+            else if(allShips[s]==shipList.get(1)){
+                active = ship2active;
+            }
+            else if(allShips[s]==shipList.get(2)){
+                active = ship3active;
+            }
+            else if(allShips[s]==shipList.get(3)){
+                active = ship4active;
+            }
+            else if(allShips[s]==shipList.get(4)){
+                active = ship5active;
+            }
+            else if(allShips[s]==shipList.get(5)){
+                active = ship6active;
+            }
             X = (int)allShips[s].getLayoutX();
             Y = (int)allShips[s].getLayoutY();
-            coordinate = "("+ X + " " + Y+")";
+            
+            coordinate = "("+ X + " " + Y+")"+" "+active;
             
             record+=","+coordinate;
             
@@ -1278,7 +1336,7 @@ public class MainCanvasController implements Initializable {
                 writer = new FileWriter(file, true);
             }else{
 
-                writer = new FileWriter(filePath, true);
+                writer = new FileWriter(filepath, true);
             }
         } catch (IOException ex) {
             Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
@@ -1289,18 +1347,22 @@ public class MainCanvasController implements Initializable {
 //            System.out.println(step);
 //            System.out.println(trialNum);
                 try {
-                    writer.write("Trial"+","+"Step"+","+"Ship1"+","+"Ship2"+","+"Ship3"+","+"Ship4"+","+"Ship5"+","+"Ship6"+","+"MyShip"+'\n');
+                    writer.write("Trial"+","+"Step"+","+"Ship1"+","+"Ship2"+","+"Ship3"+","+"Ship4"+","+"Ship5"+","+"Ship6"+","+"MyShip"+","+"ParticipantAnswer"+","+"RightAnswer"+'\n');
                 } catch (IOException ex) {
                     Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
         }
+        
+        
+        
+        
         BufferedWriter data = new BufferedWriter(writer);
         move = new PrintWriter(data);
         
         try {
-            recordLine = trialNum+","+step+recordData();
+            recordLine = trialNum-3 +","+step+recordData();
         } catch (IOException ex) {
             Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1527,6 +1589,8 @@ public class MainCanvasController implements Initializable {
                       
                 beFollowed = false;
                 followShipBtn = null;
+                
+           
         }
     }
     @FXML
@@ -1567,6 +1631,13 @@ public class MainCanvasController implements Initializable {
                       
                  beFollowed = true;
                  followShipBtn = shipList.get(0);
+                 ship1active = "100Shadowing";
+                 ship2active = "100Targeting";
+                 ship3active = "75Targeting";
+                 ship4active = "50Targeting";
+                 ship5active = "75Circling Alone";
+                 ship6active = "75Circling Alone";
+                 
          }        
          if(trialInBlock==block100.get(5)||trialInBlock==block100.get(6)||trialInBlock==block100.get(7)||trialInBlock==block100.get(8)||trialInBlock==block100.get(9)){
                 
@@ -1593,6 +1664,12 @@ public class MainCanvasController implements Initializable {
                         
                  beFollowed = true;
                  followShipBtn = shipList.get(0);
+                 ship1active = "100Hunting";
+                 ship2active = "100Targeting";
+                 ship3active = "75Targeting";
+                 ship4active = "50Targeting";
+                 ship5active = "75Circling and Chasing";
+                 ship6active = "75Circling and Chasing";
             }
          
             if(trialInBlock==block100.get(10)||trialInBlock==block100.get(11)){
@@ -1619,6 +1696,12 @@ public class MainCanvasController implements Initializable {
                       
                 beFollowed = false;
                 followShipBtn = null;
+                 ship1active = "100Targeting";
+                 ship2active = "75Targeting";
+                 ship3active = "75Targeting";
+                 ship4active = "50Targeting";
+                 ship5active = "75Circling and Chasing";
+                 ship6active = "75Circling and Chasing";
             }
         
      }
@@ -1652,6 +1735,12 @@ public class MainCanvasController implements Initializable {
                         
                  beFollowed = true;
                  followShipBtn = shipList.get(0);
+                 ship1active = "75Shadowing";
+                 ship2active = "100Targeting";
+                 ship3active = "75Targeting";
+                 ship4active = "50Targeting";
+                 ship5active = "75Circling Alone";
+                 ship6active = "75Circling Alone";
          }     
          if(trialInBlock==block75.get(5)||trialInBlock==block75.get(6)||trialInBlock==block75.get(7)||trialInBlock==block75.get(8)||trialInBlock==block75.get(9)){
                  
@@ -1677,6 +1766,12 @@ public class MainCanvasController implements Initializable {
 
                  beFollowed = true;
                  followShipBtn = shipList.get(0);
+                 ship1active = "75Hunting";
+                 ship2active = "100Targeting";
+                 ship3active = "75Targeting";
+                 ship4active = "50Targeting";
+                 ship5active = "75Circling and Chasing";
+                 ship6active = "75Circling and Chasing";
         }
          
          if(trialInBlock==block75.get(10)||trialInBlock==block75.get(11)){
@@ -1708,6 +1803,12 @@ public class MainCanvasController implements Initializable {
                       
                 beFollowed = false;
                 followShipBtn = null;
+                ship1active = "100Targeting";
+                 ship2active = "75Targeting";
+                 ship3active = "75Targeting";
+                 ship4active = "50Targeting";
+                 ship5active = "75Circling Alone";
+                 ship6active = "75Circling Alone";
         }
         
      }
@@ -1741,6 +1842,12 @@ public class MainCanvasController implements Initializable {
                  
                  beFollowed = true;
                  followShipBtn = shipList.get(0);
+                 ship1active = "50Shadowing";
+                 ship2active = "100Targeting";
+                 ship3active = "75Targeting";
+                 ship4active = "50Targeting";
+                 ship5active = "75Circling Alone";
+                 ship6active = "75Circling Alone";
          }        
          if(trialInBlock==block50.get(5)||trialInBlock==block50.get(6)||trialInBlock==block50.get(7)||trialInBlock==block50.get(8)||trialInBlock==block50.get(9)){
                  
@@ -1767,6 +1874,12 @@ public class MainCanvasController implements Initializable {
                  
                  beFollowed = true;
                  followShipBtn = shipList.get(0);
+                 ship1active = "50Hunting";
+                 ship2active = "100Targeting";
+                 ship3active = "75Targeting";
+                 ship4active = "50Targeting";
+                 ship5active = "75Circling and Chasing";
+                 ship6active = "75Circling and Chasing";
         }
          if(trialInBlock==block50.get(10)||trialInBlock==block50.get(11)){
                         if(step==1){
@@ -1793,6 +1906,12 @@ public class MainCanvasController implements Initializable {
                 
                 beFollowed = false;
                 followShipBtn = null;
+                ship1active = "100Targeting";
+                 ship2active = "75Targeting";
+                 ship3active = "75Targeting";
+                 ship4active = "50Targeting";
+                 ship5active = "75Circling and Chasing";
+                 ship6active = "75Circling and Chasing";
             }
         }
 //    System.out.println("followShip: "+followShipBtn);
