@@ -15,13 +15,13 @@
       </TextField>
       <Pane fx:id="scene" layoutX="20.0" layoutY="71.0" prefHeight="515.0" prefWidth="760.0" style="-fx-background-color: #66ccff;">
          <children>
-            <Button id="btnShip1" fx:id="btnShip1" layoutX="63.0" layoutY="97.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="1" />
-            <Button id="btnShip2" fx:id="btnShip2" layoutX="245.0" layoutY="165.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="2" />
-            <Button id="btnShip3" fx:id="btnShip3" layoutX="134.0" layoutY="311.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="3" />
-            <Button id="btnShip4" fx:id="btnShip4" layoutX="579.0" layoutY="421.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="4" />
-            <Button id="btnShip5" fx:id="btnShip5" layoutX="662.0" layoutY="178.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="5" />
-            <Button id="btnMyShip" fx:id="btnMyShip" layoutX="471.0" layoutY="240.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" styleClass="myShip" translateX="5.0" translateY="5.0" />
-            <Button id="btnShip6" fx:id="btnShip6" layoutX="535.0" layoutY="90.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="6" />
+            <Button id="btnShip1" fx:id="resultShip1" layoutX="63.0" layoutY="97.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="1" />
+            <Button id="btnShip2" fx:id="resultShip2" layoutX="245.0" layoutY="165.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="2" />
+            <Button id="btnShip3" fx:id="resultShip3" layoutX="134.0" layoutY="311.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="3" />
+            <Button id="btnShip4" fx:id="resultShip4" layoutX="579.0" layoutY="421.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="4" />
+            <Button id="btnShip5" fx:id="resultShip5" layoutX="662.0" layoutY="178.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="5" />
+            <Button id="btnMyShip" fx:id="resultMyShip" layoutX="471.0" layoutY="240.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" styleClass="myShip" translateX="5.0" translateY="5.0" />
+            <Button id="btnShip6" fx:id="resultShip6" layoutX="535.0" layoutY="90.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="6" />
          </children>
       </Pane>
       <TextField id="question1" fx:id="rightAnswer" editable="false" layoutX="203.0" layoutY="10.0" prefHeight="57.0" prefWidth="127.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="PlaceHolder">

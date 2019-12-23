@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="question1Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.QuestionCanvas1Controller">
    <children>
-      <TextField id="question1" alignment="CENTER" editable="false" layoutX="100.0" layoutY="174.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Are you being followed?" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="174.0">
+      <TextField id="question1" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="57.0" prefWidth="464.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Are you being shadowed/hunted?" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="322.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font size="30.0" />
          </font>
       </TextField>
-      <RadioButton id="rdBtnYes" layoutX="233.0" layoutY="326.0" mnemonicParsing="false" onAction="#loadQuestion2" style="-fx-background-color: none;" text="YES" AnchorPane.topAnchor="326.0">
+      <RadioButton id="rdBtnYes" fx:id="shadowed" layoutX="478.0" layoutY="31.0" mnemonicParsing="false" onAction="#loadQuestion2" style="-fx-background-color: none;" text="Shadowed" AnchorPane.topAnchor="31.0">
          <font>
             <Font size="17.0" />
          </font>
       </RadioButton>
-      <RadioButton id="rdBtnNo" layoutX="508.0" layoutY="326.0" mnemonicParsing="false" onAction="#loadResult" style="-fx-background-color: none;" text="NO" AnchorPane.leftAnchor="508.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="326.0">
+      <RadioButton id="rdBtnNo" fx:id="neither" layoutX="700.0" layoutY="31.0" mnemonicParsing="false" onAction="#loadResult" prefHeight="23.0" prefWidth="94.0" style="-fx-background-color: none;" text="Neither" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="31.0">
          <font>
             <Font size="17.0" />
          </font>
       </RadioButton>
+      <RadioButton fx:id="hunted" layoutX="599.0" layoutY="31.0" mnemonicParsing="false" onAction="#loadQuestion2" text="Hunted">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </RadioButton>
+      <Pane fx:id="scene2" layoutX="20.0" layoutY="71.0" prefHeight="515.0" prefWidth="760.0" style="-fx-background-color: #66ccff;">
+         <children>
+            <Button id="btnShip1" fx:id="Q1Ship1" layoutX="63.0" layoutY="97.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="1" />
+            <Button id="btnShip2" fx:id="Q1Ship2" layoutX="245.0" layoutY="165.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="2" />
+            <Button id="btnShip3" fx:id="Q1Ship3" layoutX="134.0" layoutY="311.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="3" />
+            <Button id="btnShip4" fx:id="Q1Ship4" layoutX="579.0" layoutY="421.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="4" />
+            <Button id="btnShip5" fx:id="Q1Ship5" layoutX="662.0" layoutY="178.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="5" />
+            <Button id="btnMyShip" fx:id="Q1MyShip" layoutX="471.0" layoutY="240.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" styleClass="myShip" translateX="5.0" translateY="5.0" />
+            <Button id="btnShip6" fx:id="Q1Ship6" layoutX="524.0" layoutY="81.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="6" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

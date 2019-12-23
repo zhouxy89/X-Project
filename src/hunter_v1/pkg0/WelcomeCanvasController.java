@@ -6,6 +6,10 @@
 package hunter_v1.pkg0;
 
 
+import static hunter_v1.pkg0.MainCanvasController.lastStepPracticX;
+import static hunter_v1.pkg0.QuestionCanvas1Controller.pickFirstAnswerTime;
+import static hunter_v1.pkg0.QuestionCanvas2Controller.practicAllY;
+import static hunter_v1.pkg0.ResultCanvasController.practicPositionX;
 import static hunter_v1.pkg0.ResultCanvasController.rightAnswerNum;
 import java.io.File;
 import java.io.IOException;
@@ -63,6 +67,9 @@ public class WelcomeCanvasController implements Initializable {
     
     @FXML
     private QuestionCanvas2Controller question2Controller;
+    
+    @FXML
+    private QuestionCanvas1Controller question1Controller;
     
     
     
@@ -132,6 +139,7 @@ public class WelcomeCanvasController implements Initializable {
     public void setTrialFromMainCanvas(int trialNumber) {
         resultController.trial = trialNumber;
         
+        
     }
     
     public int fileNameFromResultCanvas(){
@@ -171,6 +179,34 @@ public class WelcomeCanvasController implements Initializable {
         question2Controller.followedShipAnswer = 0;
     }
     
+//    public int lastPositionXFromMainCanvas(){
+//        return mainController.lastStepX;
+//    }
+    
+    public void setlastPositionFromMainCanvas() {
+        question1Controller.practiclastX = mainController.lastStepPracticX;
+        question1Controller.practiclastY = mainController.lastStepPracticY;
+        question2Controller.practicAllX = mainController.lastStepPracticX;
+        question2Controller.practicAllY = mainController.lastStepPracticY;
+        resultController.practicPositionX = mainController.lastStepPracticX;
+        resultController.practicPositionY = mainController.lastStepPracticY;
+        
+        question1Controller.lastX = mainController.lastStepX;
+        question1Controller.lastY = mainController.lastStepY;
+        question2Controller.allX = mainController.lastStepX;
+        question2Controller.allY = mainController.lastStepY;
+        resultController.positionX = mainController.lastStepX;
+        resultController.positionY = mainController.lastStepY;
+        
+    }
+    
+    public void setEndGameTimeFromMainCanvas(){
+        resultController.endGameTime = mainController.endTime;
+        resultController.firstAnswer = question1Controller.answer1;
+        resultController.firstAnswerPickTime = question1Controller.pickFirstAnswerTime;
+        resultController.secondAnswerPickTime = question2Controller.pickSecondAnswerTime;
+        resultController.gameStartTime = mainController.startGameTime;
+    }
     
     public List blockListAfterShuffleFromMainCanvas(){
         

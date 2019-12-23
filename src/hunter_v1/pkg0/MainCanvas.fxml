@@ -20,14 +20,24 @@
          </children></Pane>
       <Button fx:id="endGame" layoutX="271.0" layoutY="345.0" maxHeight="27.0" maxWidth="59.0" minHeight="27.0" minWidth="59.0" mnemonicParsing="false" onAction="#loadQuestion1" prefHeight="27.0" prefWidth="59.0" text="End" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="20.0" />
       <Text id="status" fx:id="status" layoutX="20.0" layoutY="563.0" onMouseDragOver="#displayPosition" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="249.0" />
-      <Text id="timeup" fx:id="timeup" layoutX="330.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="167.00000095367432">
+      <Text id="timeup" fx:id="timeup" layoutX="269.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="216.00000095367432">
          <font>
-            <Font size="20.0" />
+            <Font size="25.0" />
          </font>
       </Text>
       <Text fx:id="trialText" layoutX="536.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.22900390625">
          <font>
             <Font size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="566.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Step: " wrappingWidth="73.22900390625">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text fx:id="stepCounter" layoutX="105.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="103.9130859375">
+         <font>
+            <Font size="30.0" />
          </font>
       </Text>
    </children>

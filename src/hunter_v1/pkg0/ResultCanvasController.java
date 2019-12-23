@@ -7,11 +7,14 @@ package hunter_v1.pkg0;
 
 import static hunter_v1.pkg0.MainCanvasController.filepath;
 import static hunter_v1.pkg0.MainCanvasController.trialNum;
+import static hunter_v1.pkg0.QuestionCanvas1Controller.lastX;
+import static hunter_v1.pkg0.QuestionCanvas1Controller.lastY;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
@@ -39,7 +42,7 @@ public class ResultCanvasController implements Initializable {
     @FXML
     private AnchorPane ResultCanvas;
     @FXML
-    private Pane scene;
+    private Pane sceneResult;
     @FXML
     private TextField rightAnswer;
     @FXML
@@ -63,23 +66,25 @@ public class ResultCanvasController implements Initializable {
 //    @FXML
 //    QuestionCanvas2Controller question2Controller;
     @FXML
-    private Button btnShip1;
+    private Button resultShip1;
     @FXML
-    private Button btnShip2;
+    private Button resultShip2;
     @FXML
-    private Button btnShip3;
+    private Button resultShip3;
     @FXML
-    private Button btnShip4;
+    private Button resultShip4;
     @FXML
-    private Button btnShip5;
+    private Button resultShip5;
     @FXML
-    private Button btnShip6;
+    private Button resultShip6;
+    @FXML
+    private Button resultMyShip;
     
     @FXML
     private MainCanvasController mainController;
     
     public static int trial=0;
-    int totalTrial = 38;
+    int totalTrial = 32;
     public static Date DT = new Date();
     public static int dateNum = (int)(DT.getTime()/1000);
     public static int realFollower= 0;
@@ -89,18 +94,32 @@ public class ResultCanvasController implements Initializable {
     public String showRightAnswer = "";
     public String showYourAnswer = "";
     
-    public static List<Integer> block50_result=Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
+    public static List<Integer> block50_result=Arrays.asList(1,2,3,4,5,6,7,8,9,10);
     
-    public static List<Integer> block75_result=Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
-    public static List<Integer> block100_result=Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
+    public static List<Integer> block75_result=Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+    public static List<Integer> block100_result=Arrays.asList(1,2,3,4,5,6,7,8,9,10);
     
+    public static List<Integer> positionX = Arrays.asList(1,2,3,4,5,6,7);
+    public static List<Integer> positionY = Arrays.asList(1,2,3,4,5,6,7);
+    public static List<Integer> practicPositionX = Arrays.asList(1,2,3,4,5,6,7);
+    public static List<Integer> practicPositionY = Arrays.asList(1,2,3,4,5,6,7);
+    
+    public static String endGameTime = "";
+    
+    public static String firstAnswer = "";
+    
+    public static String firstAnswerPickTime = "";
+    
+    public static String secondAnswerPickTime = "";
+    
+    public static String gameStartTime = "";
     /**
      *
      */
     @FXML public static List<List> blockListAfterShuffle_result = Arrays.asList(block50_result,block75_result,block100_result);
     
     //public List<Integer> blockListAfterShuffle_result = Arrays.asList(1,2,3);
-    public static int blockListAfterShuffle_num = 123;
+    //public static int blockListAfterShuffle_num = 123;
     
     FileWriter resultWriter= null;
     PrintWriter resultPrint = null;
@@ -185,7 +204,7 @@ public class ResultCanvasController implements Initializable {
         }
         
         System.out.println("rightAnswerNum: "+rightAnswerNum);
-        if(trial<=3){ 
+        if(trial<3){ 
             resultLabel.setVisible(false); 
             score.setVisible(false); 
             totalTrialsLabel.setVisible(false); 
@@ -198,7 +217,7 @@ public class ResultCanvasController implements Initializable {
            yourAnswer.setVisible(false); 
            yourAnswerLabel.setVisible(false); 
            
-           if(welcomeController.trialFromMain()==4&&mainController.count==0){ 
+           if(welcomeController.trialFromMain()==3&&mainController.count==0){ 
                showRightAnswer = "Ship5";
                showYourAnswer = "Ship6";
            }
@@ -231,7 +250,25 @@ public class ResultCanvasController implements Initializable {
         
         System.out.println("filePath: "+mainController.filepath);
         
-        
+        if(welcomeController.trialFromMain()>=3){
+            
+            resultShip1.relocate(positionX.get(0),positionY.get(0));
+            resultShip2.relocate(positionX.get(1),positionY.get(1));
+            resultShip3.relocate(positionX.get(2),positionY.get(2));
+            resultShip4.relocate(positionX.get(3),positionY.get(3));
+            resultShip5.relocate(positionX.get(4),positionY.get(4));
+            resultShip6.relocate(positionX.get(5),positionY.get(5));
+            resultMyShip.relocate(positionX.get(6),positionY.get(6));
+        }
+        else{
+            resultShip1.relocate(practicPositionX.get(0),practicPositionY.get(0));
+            resultShip2.relocate(practicPositionX.get(1),practicPositionY.get(1));
+            resultShip3.relocate(practicPositionX.get(2),practicPositionY.get(2));
+            resultShip4.relocate(practicPositionX.get(3),practicPositionY.get(3));
+            resultShip5.relocate(practicPositionX.get(4),practicPositionY.get(4));
+            resultShip6.relocate(practicPositionX.get(5),practicPositionY.get(5));
+            resultMyShip.relocate(practicPositionX.get(6),practicPositionY.get(6));
+        }
     }   
     @FXML
     private void setText(){
@@ -278,7 +315,8 @@ public class ResultCanvasController implements Initializable {
             Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
         }
         WelcomeCanvasController welcomeController = loader.getController();
-        if(welcomeController.trialFromMain()>=4&&mainController.count>5){
+        
+        if(welcomeController.trialFromMain()>=3&&mainController.count>5){
         try {
             resultWriter = new FileWriter(mainController.filepath, true);
         } catch (IOException ex) {
@@ -288,8 +326,10 @@ public class ResultCanvasController implements Initializable {
         BufferedWriter data = new BufferedWriter(resultWriter);
         resultPrint = new PrintWriter(data);
         
-        
-        resultRecord = trial-3 + " "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+showYourAnswer+","+showRightAnswer;
+        if(showYourAnswer=="None"){
+           secondAnswerPickTime = " "; 
+        }
+        resultRecord = trial-2 +" "+","+" "+","+ " "+","+" "+","+" "+","+ " "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+ " "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+gameStartTime+","+endGameTime+","+firstAnswer+","+firstAnswerPickTime+","+showYourAnswer+","+secondAnswerPickTime+","+showRightAnswer;
         
         
         resultPrint.println(resultRecord);
@@ -301,6 +341,15 @@ public class ResultCanvasController implements Initializable {
     @FXML
     private void loadMain(ActionEvent event) throws IOException {
         randomBlock();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeCanvas.fxml"));
+        try {
+            Parent root = (Parent)loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        WelcomeCanvasController welcomeController = loader.getController();
+        
+        welcomeController.setEndGameTimeFromMainCanvas();
         recordResults();
         if(trial<totalTrial){
         AnchorPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
