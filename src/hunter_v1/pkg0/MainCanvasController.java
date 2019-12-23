@@ -136,8 +136,12 @@ public class MainCanvasController implements Initializable {
     int moveY=0;
     int randomMoveX=0;
     int randomMoveY=0;
+    int randomNum1=0;
+    int randomNum2=0;
     int ShipX= 0;
     int ShipY= 0;
+    int targetStartX= 0;
+    int targetStartY= 0;
     int hostileShipX=0;
     int hostileShipY=0;
     int moveDirect=0;
@@ -397,7 +401,8 @@ public class MainCanvasController implements Initializable {
             clearShipsOnCanvas();
             setAllShipsOnCanvas(friendlyShip);
             if(step==1){
-                
+                targetStartX = (int)friendlyShip.getLayoutX();
+                targetStartY = (int)friendlyShip.getLayoutY();
             }
             ShipX= (int)friendlyShip.getLayoutX();
             ShipY= (int)friendlyShip.getLayoutY();
@@ -407,8 +412,8 @@ public class MainCanvasController implements Initializable {
             if(step<totalSteps){
             //moveX=Math.round((towardTargetX-ShipX)/(totalSteps-step));
             //moveY=Math.round((towardTargetY-ShipY)/(totalSteps-step));
-            moveX=Math.round((towardTargetX-ShipX)/totalSteps);
-            moveY=Math.round((towardTargetY-ShipY)/totalSteps);
+            moveX=Math.round((towardTargetX-targetStartX)/totalSteps);
+            moveY=Math.round((towardTargetY-targetStartY)/totalSteps);
             }
             else{
              moveX = moveX;
@@ -421,6 +426,8 @@ public class MainCanvasController implements Initializable {
             randomMoveX = (int)givenList_shouldReturnARandomElement()+moveX;
             randomMoveY = (int)givenList_shouldReturnARandomElement()+moveY;
             
+            randomNum1 = (int)givenList_shouldReturnARandomElement()+ ShipX;
+            randomNum2 = (int)givenList_shouldReturnARandomElement()+ ShipY;
   
             
             if(ShipX-shipWidth/2+randomMoveX<0){
@@ -490,7 +497,12 @@ public class MainCanvasController implements Initializable {
             switch (matchPercentage) {
             
                 case 100:
-                friendlyShip.relocate(ShipX +randomMoveX, ShipY +randomMoveY);
+                    if(canvas[ShipX +randomMoveX][ShipY +randomMoveY+shipHeight/2]!=1 && canvas[ShipX +randomMoveX][ShipY +randomMoveY-shipHeight/2]!=1 && canvas[ShipX +randomMoveX-shipWidth/2][ShipY +randomMoveY]!=1 &&canvas[ShipX +randomMoveX+shipWidth/2][ShipY +randomMoveY]!=1){
+                        friendlyShip.relocate(ShipX +randomMoveX, ShipY +randomMoveY);
+                    }
+                    else{
+                        friendlyShip.relocate(ShipX,ShipY);
+                    }
                     break;
                 
                 case 75:
@@ -502,11 +514,21 @@ public class MainCanvasController implements Initializable {
                         case 15:
                         case 17:
                         case 22:
-                            friendlyShip.relocate(ShipX +givenList_shouldReturnARandomElement(), ShipY +givenList_shouldReturnARandomElement());
+                            if(canvas[randomNum1][randomNum2+shipHeight/2]!=1 && canvas[randomNum1][randomNum2-shipHeight/2]!=1 && canvas[randomNum1-shipWidth/2][randomNum2]!=1 &&canvas[randomNum1+shipWidth/2][randomNum2]!=1){
+                                friendlyShip.relocate(randomNum1, randomNum2);
+                            }
+                            else{
+                                friendlyShip.relocate(ShipX,ShipY);
+                            }
                             break;
                 
                         default:
-                            friendlyShip.relocate(ShipX +randomMoveX, ShipY +randomMoveY);
+                            if(canvas[ShipX +randomMoveX][ShipY +randomMoveY+shipHeight/2]!=1 && canvas[ShipX +randomMoveX][ShipY +randomMoveY-shipHeight/2]!=1 && canvas[ShipX +randomMoveX-shipWidth/2][ShipY +randomMoveY]!=1 &&canvas[ShipX +randomMoveX+shipWidth/2][ShipY +randomMoveY]!=1){
+                                friendlyShip.relocate(ShipX+randomMoveX, ShipY+randomMoveY);
+                            }
+                            else{
+                                friendlyShip.relocate(ShipX,ShipY);
+                            }
                             break;
                     }
                     break;
@@ -526,12 +548,21 @@ public class MainCanvasController implements Initializable {
                         case 21:
                         case 22:
                         case 23:
-                            friendlyShip.relocate(ShipX + givenList_shouldReturnARandomElement(), ShipY + givenList_shouldReturnARandomElement());
-                            
+                            if(canvas[randomNum1][randomNum2+shipHeight/2]!=1 && canvas[randomNum1][randomNum2-shipHeight/2]!=1 && canvas[randomNum1-shipWidth/2][randomNum2]!=1 &&canvas[randomNum1+shipWidth/2][randomNum2]!=1){
+                                friendlyShip.relocate(randomNum1, randomNum2);
+                            }
+                            else{
+                                friendlyShip.relocate(ShipX,ShipY);
+                            }
                             break;
                 
                         default:
-                            friendlyShip.relocate(ShipX +randomMoveX, ShipY +randomMoveY);
+                            if(canvas[ShipX +randomMoveX][ShipY +randomMoveY+shipHeight/2]!=1 && canvas[ShipX +randomMoveX][ShipY +randomMoveY-shipHeight/2]!=1 && canvas[ShipX +randomMoveX-shipWidth/2][ShipY +randomMoveY]!=1 &&canvas[ShipX +randomMoveX+shipWidth/2][ShipY +randomMoveY]!=1){
+                                friendlyShip.relocate(ShipX +randomMoveX, ShipY +randomMoveY);
+                            }
+                            else{
+                                friendlyShip.relocate(ShipX,ShipY);
+                            }
                             break;
                     }
                     break;
@@ -1914,7 +1945,7 @@ public class MainCanvasController implements Initializable {
                 }
             };
             
-        timer.scheduleAtFixedRate(getKeyEvent,1500,1500);
+        timer.scheduleAtFixedRate(getKeyEvent,0,1500);
         
             
         
@@ -1955,13 +1986,13 @@ public class MainCanvasController implements Initializable {
     
     @FXML
     public void setAllShipsOnCanvas(Button Ship){
-        allShips[0]= btnMyShip;
-        allShips[1]= btnShip1;
-        allShips[2]= btnShip2;
-        allShips[3]= btnShip3;
-        allShips[4]= btnShip4;
-        allShips[5]= btnShip5;
-        allShips[6]= btnShip6;
+        allShips[0]= btnShip1;
+        allShips[1]= btnShip2;
+        allShips[2]= btnShip3;
+        allShips[3]= btnShip4;
+        allShips[4]= btnShip5;
+        allShips[5]= btnShip6;
+        allShips[6]= btnMyShip;;
         
         for (int s=0; s<allShips.length; s++){
 //            System.out.println(allShips[0]);
@@ -1998,7 +2029,7 @@ public class MainCanvasController implements Initializable {
     
     
     public double givenList_shouldReturnARandomElement() {
-    List<Integer> givenList = Arrays.asList(0,10,-10);
+    List<Integer> givenList = Arrays.asList(0,20,-20);
     Random rand = new Random();
     return randomElement = givenList.get(rand.nextInt(givenList.size()));
     }
@@ -2014,22 +2045,22 @@ public class MainCanvasController implements Initializable {
         lastStepY=new ArrayList<Integer>(7);
         
         for (int s=0; s<allShips.length; s++){
-            if(allShips[s]==shipList.get(0)){
+            if(allShips[s]==newShipList.get(0)){
                 active = ship1active;
             }
-            else if(allShips[s]==shipList.get(1)){
+            else if(allShips[s]==newShipList.get(1)){
                 active = ship2active;
             }
-            else if(allShips[s]==shipList.get(2)){
+            else if(allShips[s]==newShipList.get(2)){
                 active = ship3active;
             }
-            else if(allShips[s]==shipList.get(3)){
+            else if(allShips[s]==newShipList.get(3)){
                 active = ship4active;
             }
-            else if(allShips[s]==shipList.get(4)){
+            else if(allShips[s]==newShipList.get(4)){
                 active = ship5active;
             }
-            else if(allShips[s]==shipList.get(5)){
+            else if(allShips[s]==newShipList.get(5)){
                 active = ship6active;
             }
             else{
@@ -2301,8 +2332,8 @@ public class MainCanvasController implements Initializable {
                         friendlyShipWithTarget(newShipList.get(3), setTarget3_75[0], setTarget3_75[1],50);
                         
                         
-                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],12,75);
-                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],12,100);
+                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],20,75);
+                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],20,100);
                         //friendlyShipWithPatrolBehavior(shipList.get(5),300,100,25,100);
                         //friendlyShipWithCirclePath(shipList.get(4),setCirclePath1_75[0],setCirclePath1_75[1],setCirclePath1_75[2],totalSteps,75);
                         
@@ -2361,8 +2392,8 @@ public class MainCanvasController implements Initializable {
                         
                         friendlyShipWithTarget(newShipList.get(3), setTarget6_75[0], setTarget6_75[1],50);
                         
-                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],12,75);
-                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],12,100);
+                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],20,75);
+                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],20,100);
                         //friendlyShipsChaseInCircle(shipList.get(4),shipList.get(5),setCirclePath3_75[0],setCirclePath3_75[1],setCirclePath3_75[2],totalSteps,75);
 
                  beFollowed = true;
@@ -2431,8 +2462,8 @@ public class MainCanvasController implements Initializable {
                         
                         friendlyShipWithTarget(newShipList.get(3), setTarget3_100[0], setTarget3_100[1],50);
                         
-                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],25,75);
-                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],25,100);
+                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],20,75);
+                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],20,100);
                         //friendlyShipWithCirclePath(newShipList.get(4),setCirclePath1_100[0],setCirclePath1_100[1],setCirclePath1_100[2],totalSteps,75);
                         
                         
@@ -2472,8 +2503,8 @@ public class MainCanvasController implements Initializable {
                         
                         friendlyShipWithTarget(newShipList.get(3), setTarget6_100[0], setTarget6_100[1],50);
                         
-                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],25,75);
-                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],25,100);
+                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],20,75);
+                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],20,100);
                         //friendlyShipsChaseInCircle(shipList.get(4),shipList.get(5),setCirclePath3_100[0],setCirclePath3_100[1],setCirclePath3_100[2],totalSteps,75);
                         
                  beFollowed = true;
@@ -2545,8 +2576,8 @@ public class MainCanvasController implements Initializable {
                         friendlyShipWithTarget(newShipList.get(3), setTarget3_75[0], setTarget3_75[1],50);
                         
                         
-                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],25,75);
-                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],25,100);
+                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],20,75);
+                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],20,100);
                         //friendlyShipWithCirclePath(shipList.get(4),setCirclePath1_75[0],setCirclePath1_75[1],setCirclePath1_75[2],totalSteps,75);
                         
                         
@@ -2584,8 +2615,8 @@ public class MainCanvasController implements Initializable {
                         
                         friendlyShipWithTarget(newShipList.get(3), setTarget6_75[0], setTarget6_75[1],50);
                         
-                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],25,75);
-                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],25,100);
+                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],20,75);
+                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],20,100);
                         //friendlyShipsChaseInCircle(newShipList.get(4),shipList.get(5),setCirclePath3_75[0],setCirclePath3_75[1],setCirclePath3_75[2],totalSteps,75);
 
                  beFollowed = true;
@@ -2661,8 +2692,8 @@ public class MainCanvasController implements Initializable {
                         
                         friendlyShipWithTarget(newShipList.get(3), setTarget3_50[0], setTarget3_50[1],50);
                         
-                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],25,75);
-                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],25,100);
+                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],20,75);
+                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],20,100);
                         //friendlyShipWithCirclePath(shipList.get(4),setCirclePath1_50[0],setCirclePath1_50[1],setCirclePath1_50[2],totalSteps,75);
                         
                         
@@ -2701,8 +2732,8 @@ public class MainCanvasController implements Initializable {
                         
                         friendlyShipWithTarget(newShipList.get(3), setTarget6_50[0], setTarget6_50[1],50);
 
-                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],25,75);
-                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],25,100);
+                        friendlyShipWithPatrolBehavior(newShipList.get(4),setPatrolTarget1[0],setPatrolTarget1[1],20,75);
+                        friendlyShipWithPatrolBehavior(newShipList.get(5),setPatrolTarget2[0],setPatrolTarget2[1],20,100);
                         //friendlyShipsChaseInCircle(shipList.get(4),shipList.get(5),setCirclePath3_50[0],setCirclePath3_50[1],setCirclePath3_50[2],totalSteps,75);
 
                  
