@@ -363,8 +363,8 @@ public class ResultCanvasController implements Initializable {
         
     }
 
-    void init(WelcomeCanvasController welcomeController) {
-        welcomeController=welcomeController; //To change body of generated methods, choose Tools | Templates.
-    }
+//    void init(WelcomeCanvasController welcomeController) {
+//        welcomeController=welcomeController; //To change body of generated methods, choose Tools | Templates.
+//    }
 
 }

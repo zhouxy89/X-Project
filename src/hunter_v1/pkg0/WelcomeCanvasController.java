@@ -26,6 +26,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -41,20 +44,28 @@ public class WelcomeCanvasController implements Initializable {
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private Button btnShip1;
+    private ScrollPane scrollCanvas;
     @FXML
-    private Button btnShip2;
+    private AnchorPane scrollAnchor;
     @FXML
-    private Button btnShip3;
+    private CheckBox consent;
     @FXML
-    private Button btnShip4;
+    private Text secondScreen1;
     @FXML
-    private Button btnShip5;
+    private Text secondScreen2;
+    @FXML
+    private Text secondScreen3;
+    @FXML
+    private Text secondScreen4;
+    @FXML
+    private ImageView secondScreen5;
+    @FXML
+    private Text secondScreen6;
+    @FXML
+    private Text secondScreen7;
     
-    @FXML
-    private Button btnMyShip;
-    @FXML
-    private Text status;
+    
+    
     
     @FXML
     private AnchorPane WelcomeCanvas;
@@ -71,8 +82,8 @@ public class WelcomeCanvasController implements Initializable {
     @FXML
     private QuestionCanvas1Controller question1Controller;
     
-    
-    
+    @FXML
+    private Text firstScreen;
     @FXML
     private Text welcomeText;
     
@@ -82,11 +93,11 @@ public class WelcomeCanvasController implements Initializable {
      * Initializes the controller class.
      */
     
-    @FXML
-    public void init(){
-        mainController.init(this);
-            resultController.init(this);
-    }
+//    @FXML
+//    public void init(){
+//        mainController.init(this);
+//            resultController.init(this);
+//    }
     
     
     @Override
@@ -109,9 +120,48 @@ public class WelcomeCanvasController implements Initializable {
 //            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        MainCanvasController mainController = loader1.getController();
-            
-          
+              
+              scrollCanvas.setVisible(false);
+              scrollAnchor.setVisible(false);
+              secondScreen1.setVisible(false);
+              secondScreen2.setVisible(false);
+              secondScreen3.setVisible(false);
+              secondScreen4.setVisible(false);
+              secondScreen5.setVisible(false);
+              secondScreen6.setVisible(false);
+              secondScreen7.setVisible(false);
+              btnContinue.setVisible(false);
+              
+
+
+
+
     } 
+    
+    @FXML
+    private void loadSecondScreen(ActionEvent event) throws IOException {
+        if(consent.isSelected()){
+              
+              scrollCanvas.setVisible(true);
+              scrollAnchor.setVisible(true);
+              
+              secondScreen1.setVisible(true);
+              secondScreen2.setVisible(true);
+              secondScreen3.setVisible(true);
+              secondScreen4.setVisible(true);
+              secondScreen5.setVisible(true);
+              secondScreen6.setVisible(true);
+              secondScreen7.setVisible(true);
+              btnContinue.setVisible(true);
+              scene.applyCss();
+              scene.layout();
+              scrollCanvas.setVvalue(0);
+              firstScreen.setVisible(false);
+              welcomeText.setVisible(false);
+              consent.setVisible(false);
+              
+          }
+    }
     
     @FXML
     private void loadGame(ActionEvent event) throws IOException {

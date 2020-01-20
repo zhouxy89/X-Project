@@ -44,6 +44,7 @@ import javafx.scene.text.Text;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -74,6 +75,15 @@ public class MainCanvasController implements Initializable {
     private AnchorPane MainCanvas;
     
     @FXML
+    private ScrollPane parameters;
+    
+    @FXML
+    private Pane gamePane;
+    
+    @FXML
+    private Pane begin;
+    
+    @FXML
     private WelcomeCanvasController welcomeController;
     
     @FXML
@@ -101,6 +111,12 @@ public class MainCanvasController implements Initializable {
     
     @FXML
     private Button endGame;
+    
+    @FXML
+    private Button nextPractice;
+    
+    @FXML
+    private Button btnParameters;
     
     @FXML
     public Text stepCounter;
@@ -342,9 +358,11 @@ public class MainCanvasController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        begin.setVisible(false);
+        parameters.setVisible(false);
         endGame.setDisable(true);
         endGame.setFocusTraversable(false);
+        nextPractice.setFocusTraversable(false);
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeCanvas.fxml"));
         try {
@@ -359,9 +377,12 @@ public class MainCanvasController implements Initializable {
 
         trialNum+=1;
         if(trialNum<3){
-            trialText.setText("Practic Trial");
+            trialText.setText("Practice Trial");
+            endGame.setVisible(false);
         }
         else{
+        endGame.setVisible(true);
+        nextPractice.setVisible(false);
         trialText.setText("Trial: "+String.valueOf(trialNum-2));
         System.out.println("Current trial: "+trialNum);
         }
@@ -3193,6 +3214,36 @@ public class MainCanvasController implements Initializable {
         MainCanvas.getChildren().setAll(pane);
         
     }
+    
+    @FXML
+    private void loadMainPractice(ActionEvent event) throws IOException {
+        if(trialNum==2){  
+            parameters.setVisible(true);
+            gamePane.setVisible(false);
+        }
+        else{
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
+        MainCanvas.getChildren().setAll(pane);
+        }
+    }
+    
+    @FXML
+    private void loadBegin(ActionEvent event) throws IOException {
+            parameters.setVisible(false);
+            gamePane.setVisible(false);
+            begin.setVisible(true);
+        
+    }
+    
+    @FXML
+    private void loadRealGame(ActionEvent event) throws IOException {
+        
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
+        MainCanvas.getChildren().setAll(pane);
+        
+    }
+    
+    
 
     public void init(WelcomeCanvasController welcomeController) {
         welcomeController=welcomeController; //To change body of generated methods, choose Tools | Templates.
