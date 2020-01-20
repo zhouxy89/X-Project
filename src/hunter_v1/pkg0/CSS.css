@@ -13,6 +13,10 @@ and open the template in the editor.
     -fx-background-color:yellow;
 }
 
+.directionButton{
+    -fx-shape:"M150 0 L75 200 L225 200 Z";
+}
+
 .question{
     -fx-text-fill: black;
 }

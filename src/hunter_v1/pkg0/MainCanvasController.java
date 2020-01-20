@@ -101,6 +101,16 @@ public class MainCanvasController implements Initializable {
     
     @FXML
     private Button btnMyShip;
+    
+    @FXML
+    private Button btnUp;
+    @FXML
+    private Button btnDown;
+    @FXML
+    private Button btnLeft;
+    @FXML
+    private Button btnRight;
+    
     @FXML
     private Text status;
     @FXML
@@ -363,6 +373,7 @@ public class MainCanvasController implements Initializable {
         endGame.setDisable(true);
         endGame.setFocusTraversable(false);
         nextPractice.setFocusTraversable(false);
+        gamePane.setVisible(true);
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeCanvas.fxml"));
         try {
@@ -1636,9 +1647,17 @@ public class MainCanvasController implements Initializable {
         }
         
     }
+    @FXML
+    private void myShipChangeColor(){
+        btnMyShip.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+    }
+    @FXML
+    private void myShipChangeColorBack(){
+    btnMyShip.setBackground(new Background(new BackgroundFill(Color.YELLOW, null, null)));
+    }
     
     @FXML
-    private void moveMyshipOnKeyPress() throws IOException{
+    private void moveMyshipOnKeyPress(ActionEvent event) throws IOException{
 //    @FXML
 //    private void moveMyshipOnKeyPress(){
         
@@ -1687,18 +1706,12 @@ public class MainCanvasController implements Initializable {
 //            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        }
-    Timer timer = new Timer();
-            TimerTask getKeyEvent;
-            getKeyEvent = new TimerTask()
-            {
-                public void run()
-                {
-    scene.setOnKeyPressed(new EventHandler<KeyEvent>() { 
+    
+//    
+    //scene.setOnKeyPressed(new EventHandler<KeyEvent>() { 
         
-            
-        
-       @Override 
-       public void handle(KeyEvent event) { 
+       //@Override 
+       //public void handle(KeyEvent event) { 
            
            
             LocalTime time = LocalTime.now();
@@ -1753,11 +1766,14 @@ public class MainCanvasController implements Initializable {
 //                {
                     
                     if(step<=totalSteps){
-                    btnMyShip.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+                    
                     clearShipsOnCanvas();
                     setAllShipsOnCanvas(btnMyShip);    
-                    switch (event.getCode()) {
-                      case UP: 
+                    //switch (event.getCode()) {
+                    Button btn =(Button)event.getSource(); 
+                    String id = btn.getId();
+                    switch (id) {
+                      case "btnUp": 
                           myShipDirection = "UP";
                           moveDirect=1;
                           if(btnMyShip.getLayoutY()>15){
@@ -1774,7 +1790,7 @@ public class MainCanvasController implements Initializable {
                           btnMyShip.setLayoutY(btnMyShip.getLayoutY());
                           }
                           break;
-                      case RIGHT:
+                      case "btnRight":
                           myShipDirection = "RIGHT";
                           moveDirect=2;
                           if(btnMyShip.getLayoutX()<scene.getPrefWidth()- btnMyShip.getPrefWidth()){
@@ -1789,7 +1805,7 @@ public class MainCanvasController implements Initializable {
                           btnMyShip.setLayoutX(btnMyShip.getLayoutX());    
                           }
                           break;
-                      case DOWN:
+                      case "btnDown":
                           myShipDirection = "DOWN";
                           moveDirect=3;
                           if(btnMyShip.getLayoutY()<scene.getPrefHeight()-btnMyShip.getPrefHeight()){
@@ -1804,7 +1820,7 @@ public class MainCanvasController implements Initializable {
                           btnMyShip.setLayoutY(btnMyShip.getLayoutY());   
                           }
                           break;
-                      case LEFT: 
+                      case "btnLeft": 
                           myShipDirection = "LEFT";
                           moveDirect=4;
                           if(btnMyShip.getLayoutX()>15){
@@ -1956,20 +1972,36 @@ public class MainCanvasController implements Initializable {
 
             
                
-         } 
-        });   
+         //} 
+        
+        //});   
             btnMyShip.setBackground(new Background(new BackgroundFill(Color.YELLOW, null, null)));
             if(step>25){
                 step=25;
             }
             stepCounter.setText(step + "/25");
+            btnUp.setDisable(true);
+            btnDown.setDisable(true);
+            btnLeft.setDisable(true);
+            btnRight.setDisable(true);
+            
+            Timer timer = new Timer();
+            TimerTask getKeyEvent;
+            
+            getKeyEvent = new TimerTask()
+            {
+                public void run()
+                {
+                    btnUp.setDisable(false);
+                    btnDown.setDisable(false);
+                    btnLeft.setDisable(false);
+                    btnRight.setDisable(false);
                 }
             };
             
-        timer.scheduleAtFixedRate(getKeyEvent,0,1500);
-        
+            timer.schedule(getKeyEvent,1000);
             
-        
+
      }
     
 
@@ -2123,7 +2155,7 @@ public class MainCanvasController implements Initializable {
 //            System.out.println(step);
 //            System.out.println(trialNum);
                 try {
-                    writer.write("Trial"+","+"Step"+","+"keyPressTime"+","+"MyShipAction"+","+"MyShipX"+","+"MyShipY"+","+"Ship1Action"+","+"Ship1X"+","+"Ship1Y"+","+"Ship2Action"+","+"Ship2X"+","+"Ship2Y"+","+"Ship3Action"+","+"Ship3X"+","+"Ship3Y"+","+"Ship4Action"+","+"Ship4X"+","+"Ship4Y"+","+"Ship5Action"+","+"Ship5X"+","+"Ship5Y"+","+"Ship6Action"+","+"Ship6X"+","+"Ship6Y"+","+"StartGameTime"+","+"EndGameTime"+","+"Hunted or Shadowed"+","+"FirstAnswerPickTime"+","+"ParticipantAnswer"+","+"SecondAnswerPickTime"+","+"RightAnswer"+'\n');
+                    writer.write("Trial"+","+"Step"+","+"keyPressTime"+","+"Ship1Action"+","+"Ship1X"+","+"Ship1Y"+","+"Ship2Action"+","+"Ship2X"+","+"Ship2Y"+","+"Ship3Action"+","+"Ship3X"+","+"Ship3Y"+","+"Ship4Action"+","+"Ship4X"+","+"Ship4Y"+","+"Ship5Action"+","+"Ship5X"+","+"Ship5Y"+","+"Ship6Action"+","+"Ship6X"+","+"Ship6Y"+","+"MyShipAction"+","+"MyShipX"+","+"MyShipY"+","+"StartGameTime"+","+"EndGameTime"+","+"Hunted or Shadowed"+","+"FirstAnswerPickTime"+","+"ParticipantAnswer"+","+"SecondAnswerPickTime"+","+"RightAnswer"+'\n');
                 } catch (IOException ex) {
                     Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
                 }

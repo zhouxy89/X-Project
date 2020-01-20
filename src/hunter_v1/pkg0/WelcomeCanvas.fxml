@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="WelcomeCanvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" styleClass="question" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.WelcomeCanvasController">
+<AnchorPane fx:id="WelcomeCanvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" styleClass="question" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.WelcomeCanvasController">
    <children>
-      <Pane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="700.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text fx:id="firstScreen" layoutX="350.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONSENT" textAlignment="CENTER">
                <font>
@@ -27,7 +27,7 @@
             <CheckBox fx:id="consent" layoutX="360.0" layoutY="462.0" mnemonicParsing="false" onAction="#loadSecondScreen" />
          </children>
       </Pane>
-      <ScrollPane fx:id="scrollCanvas" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" styleClass="CSS.css">
+      <ScrollPane fx:id="scrollCanvas" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" styleClass="CSS.css">
         <content>
           <AnchorPane fx:id="scrollAnchor" minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="799.0" style="-fx-background-color: #ffdab3;">
                <children>
@@ -46,7 +46,7 @@
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Text>
-                  <Text fx:id="secondScreen4" layoutX="28.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This will be your display console. Your ship is the yellow cross and the numbered circles are the other ships. You can control your ship using the arrow buttons on the screen. Each press of an arrow button will move your ship one step in the indicated direction. You may move in any direction you choose at any time, however may only choose a direction every 300ms (the arrows will appear brighter when you can use them). The other ships will move when you do." wrappingWidth="735.3798828125" AnchorPane.leftAnchor="28.0">
+                  <Text fx:id="secondScreen4" layoutX="28.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This will be your display console. Your ship is the yellow cross and the numbered circles are the other ships. You can control your ship using the arrow buttons on the screen. Each press of an arrow button will move your ship one step in the indicated direction. You may move in any direction you choose at any time, however may only choose a direction every 1s (the arrows will appear brighter when you can use them). The other ships will move when you do." wrappingWidth="735.3798828125" AnchorPane.leftAnchor="28.0">
                      <font>
                         <Font size="15.0" />
                      </font>

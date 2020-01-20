@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="MainCanvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.MainCanvasController">
+<AnchorPane fx:id="MainCanvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.MainCanvasController">
    <children>
-      <Pane fx:id="begin" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;">
+      <Pane fx:id="begin" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;">
          <children>
             <Text layoutX="41.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LET’S BEGIN!">
                <font>
@@ -26,7 +26,7 @@
             <Button fx:id="btnBegin" layoutX="365.0" layoutY="200.0" mnemonicParsing="false" onAction="#loadRealGame" prefHeight="27.0" prefWidth="73.0" text="Begin" />
          </children>
       </Pane>
-      <Pane fx:id="gamePane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;">
+      <Pane fx:id="gamePane" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;">
          <children>
             <Text id="timeup" fx:id="timeup" layoutX="250.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="216.00000095367432">
                <font>
@@ -51,7 +51,11 @@
             </Text>
             <Button fx:id="nextPractice" layoutX="720.0" layoutY="550.0" mnemonicParsing="false" onAction="#loadMainPractice" prefHeight="27.0" prefWidth="59.0" text="Next" />
             <Button fx:id="endGame" layoutX="720.0" layoutY="550.0" maxHeight="27.0" maxWidth="59.0" minHeight="27.0" minWidth="59.0" mnemonicParsing="false" onAction="#loadQuestion1" prefHeight="27.0" prefWidth="59.0" text="End" />
-            <Pane fx:id="scene" layoutX="20.0" layoutY="10.0" onKeyPressed="#moveMyshipOnKeyPress" onMouseMoved="#displayPosition" prefHeight="515.0" prefWidth="760.0" style="-fx-background-color: #66ccff;">
+            <Button id="btnUp" fx:id="btnUp" layoutX="374.0" layoutY="598.0" mnemonicParsing="false" onAction="#moveMyshipOnKeyPress" onMousePressed="#myShipChangeColor" onMouseReleased="#myShipChangeColorBack" prefHeight="27.0" prefWidth="40.0" style="-fx-background-color: #21610B;" styleClass="directionButton" />
+            <Button id="btnRight" fx:id="btnRight" layoutX="412.0" layoutY="633.0" mnemonicParsing="false" onAction="#moveMyshipOnKeyPress" onMousePressed="#myShipChangeColor" onMouseReleased="#myShipChangeColorBack" prefHeight="0.0" prefWidth="40.0" rotate="90.0" style="-fx-background-color: #21610B;" styleClass="directionButton" />
+            <Button id="btnDown" fx:id="btnDown" layoutX="375.0" layoutY="670.0" mnemonicParsing="false" onAction="#moveMyshipOnKeyPress" onMousePressed="#myShipChangeColor" onMouseReleased="#myShipChangeColorBack" prefHeight="0.0" prefWidth="40.0" rotate="180.0" style="-fx-background-color: #21610B;" styleClass="directionButton" />
+            <Button id="btnLeft" fx:id="btnLeft" layoutX="337.0" layoutY="633.0" mnemonicParsing="false" onAction="#moveMyshipOnKeyPress" onMousePressed="#myShipChangeColor" onMouseReleased="#myShipChangeColorBack" prefHeight="0.0" prefWidth="40.0" rotate="-90.0" style="-fx-background-color: #21610B;" styleClass="directionButton" />
+            <Pane fx:id="scene" layoutX="20.0" layoutY="10.0" onMouseMoved="#displayPosition" prefHeight="515.0" prefWidth="760.0" style="-fx-background-color: #66ccff;">
                <children>
                   <Button id="btnShip1" fx:id="btnShip1" layoutX="63.0" layoutY="97.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="1" />
                   <Button id="btnShip2" fx:id="btnShip2" layoutX="245.0" layoutY="165.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="2" />
@@ -64,9 +68,9 @@
             </Pane>
          </children>
       </Pane>
-      <ScrollPane fx:id="parameters" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;">
+      <ScrollPane fx:id="parameters" hbarPolicy="NEVER" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;">
+          <AnchorPane layoutX="380.0" layoutY="663.0" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;">
                <children>
                   <Text layoutX="41.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PARAMETERS">
                      <font>
