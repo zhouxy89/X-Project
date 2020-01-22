@@ -51,6 +51,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javax.sound.sampled.AudioInputStream;
@@ -3283,17 +3284,13 @@ public class MainCanvasController implements Initializable {
 
     @FXML
     private void buttonClick() throws IOException {
-        try {
-            String soundName = "Click.wav";
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        URL soundName = this.getClass().getResource("Click.wav");
+        //AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName.getFile()));
+        //Clip clip = AudioSystem.getClip();
+        //clip.open(audioInputStream);
+        //clip.start();
+        AudioClip note = new AudioClip(soundName.toString());
+        note.play();
     }
  
 }
