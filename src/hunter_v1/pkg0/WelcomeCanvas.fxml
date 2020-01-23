@@ -19,17 +19,12 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="welcomeText" layoutX="28.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Participation will take approximately 60 minutes. Your participation in this research is voluntary. If you decide to participate in the study, you may withdraw your consent and stop participation at any time without penalty. Your name and any other identifying information will not be collected and your answers will remain completely confidential. Your data will added to that from other participants, and will be stored in a form such that it is entirely anonymous. Only then may it be shared within our research team. Findings may be reported to others on the aggregate data. While there are no direct benefits to you, we hope to gain more knowledge on how individuals make decisions. There are no risks associated with this study. It is not possible to identify all potential risks in research procedures, but the researcher(s) have taken reasonable safeguards to minimize any known and potential, but unknown, risks. If you have any questions, you may contact Colleen Patton at colleen.patton@colostate.edu. &#10;&#10;If you wish to participate in this research, please click the box below. Otherwise please exit the survey.&#10;&#10;" wrappingWidth="725.54296875">
+            <Text fx:id="welcomeText" layoutX="28.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Participation will take approximately 60 minutes. Your participation in this research is voluntary. If you decide to participate in the study, you may withdraw your consent and stop participation at any time without penalty. Your name and any other identifying information will not be collected and your answers will remain completely confidential. Your data will added to that from other participants, and will be stored in a form such that it is entirely anonymous. Only then may it be shared within our research team. Findings may be reported to others on the aggregate data. While there are no direct benefits to you, we hope to gain more knowledge on how individuals make decisions. There are no risks associated with this study. It is not possible to identify all potential risks in research procedures, but the researcher(s) have taken reasonable safeguards to minimize any known and potential, but unknown, risks. If you have any questions, you may contact Colleen Patton at colleen.patton@colostate.edu. &#10;&#10;If you wish to participate in this research, please click the box below. Otherwise please exit the survey.&#10;&#10;I understand and wish to participate" wrappingWidth="725.54296875">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text layoutX="28.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I understand and wish to participate">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <CheckBox fx:id="consent" layoutX="360.0" layoutY="505.0" mnemonicParsing="false" onAction="#loadSecondScreen" />
+            <CheckBox fx:id="consent" layoutX="360.0" layoutY="537.0" mnemonicParsing="false" onAction="#loadSecondScreen" />
          </children>
       </Pane>
       <ScrollPane fx:id="scrollCanvas" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" styleClass="CSS.css">

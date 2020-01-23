@@ -89,6 +89,8 @@ public class WelcomeCanvasController implements Initializable {
     
     @FXML
     private Button btnContinue;
+    
+    static int participantID =0;
     /**
      * Initializes the controller class.
      */
@@ -120,6 +122,8 @@ public class WelcomeCanvasController implements Initializable {
 //            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        MainCanvasController mainController = loader1.getController();
+
+        
               
               scrollCanvas.setVisible(false);
               scrollAnchor.setVisible(false);
@@ -132,7 +136,9 @@ public class WelcomeCanvasController implements Initializable {
               secondScreen7.setVisible(false);
               btnContinue.setVisible(false);
               
-
+              
+              participantID=(int)((Math.random()*9+1)*1000000000);
+              
 
 
 

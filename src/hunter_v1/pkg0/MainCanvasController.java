@@ -364,6 +364,8 @@ public class MainCanvasController implements Initializable {
     public static String endTime = "";
     public static String myShipDirection = "";
     public static String startGameTime = "";
+    
+    static int PID = 0;
     /**
      * Initializes the controller class.
      */
@@ -1742,7 +1744,8 @@ public class MainCanvasController implements Initializable {
 //            setShipOnCanvas(btnShip4);
 //            setShipOnCanvas(btnShip5);
             if(trialNum==3){
-            count+=1;
+                PID = WelcomeCanvasController.participantID;
+                count+=1;
             }
             noChange+=1;
             step+=1;
@@ -2156,7 +2159,7 @@ public class MainCanvasController implements Initializable {
 //            System.out.println(step);
 //            System.out.println(trialNum);
                 try {
-                    writer.write("Trial"+","+"Step"+","+"keyPressTime"+","+"Ship1Action"+","+"Ship1X"+","+"Ship1Y"+","+"Ship2Action"+","+"Ship2X"+","+"Ship2Y"+","+"Ship3Action"+","+"Ship3X"+","+"Ship3Y"+","+"Ship4Action"+","+"Ship4X"+","+"Ship4Y"+","+"Ship5Action"+","+"Ship5X"+","+"Ship5Y"+","+"Ship6Action"+","+"Ship6X"+","+"Ship6Y"+","+"MyShipAction"+","+"MyShipX"+","+"MyShipY"+","+"StartGameTime"+","+"EndGameTime"+","+"Hunted or Shadowed"+","+"FirstAnswerPickTime"+","+"ParticipantAnswer"+","+"SecondAnswerPickTime"+","+"RightAnswer"+'\n');
+                    writer.write("ParticipantID"+","+"Trial"+","+"Step"+","+"keyPressTime"+","+"Ship1Action"+","+"Ship1X"+","+"Ship1Y"+","+"Ship2Action"+","+"Ship2X"+","+"Ship2Y"+","+"Ship3Action"+","+"Ship3X"+","+"Ship3Y"+","+"Ship4Action"+","+"Ship4X"+","+"Ship4Y"+","+"Ship5Action"+","+"Ship5X"+","+"Ship5Y"+","+"Ship6Action"+","+"Ship6X"+","+"Ship6Y"+","+"MyShipAction"+","+"MyShipX"+","+"MyShipY"+","+"StartGameTime"+","+"EndGameTime"+","+"Hunted or Shadowed"+","+"FirstAnswerPickTime"+","+"ParticipantAnswer"+","+"SecondAnswerPickTime"+","+"RightAnswer"+'\n');
                 } catch (IOException ex) {
                     Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -2172,7 +2175,7 @@ public class MainCanvasController implements Initializable {
         
         try {
             recordData();
-            recordLine = trialNum-2 +","+step+","+keyPressTime+record;
+            recordLine = PID+","+(trialNum-2) +","+step+","+keyPressTime+record;
         } catch (IOException ex) {
             Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -329,7 +329,7 @@ public class ResultCanvasController implements Initializable {
         if(showYourAnswer=="None"){
            secondAnswerPickTime = " "; 
         }
-        resultRecord = trial-2 +" "+","+" "+","+ " "+","+" "+","+" "+","+ " "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+ " "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+gameStartTime+","+endGameTime+","+firstAnswer+","+firstAnswerPickTime+","+showYourAnswer+","+secondAnswerPickTime+","+showRightAnswer;
+        resultRecord = MainCanvasController.PID+","+(trial-2) +" "+","+" "+","+ " "+","+" "+","+" "+","+ " "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+ " "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+gameStartTime+","+endGameTime+","+firstAnswer+","+firstAnswerPickTime+","+showYourAnswer+","+secondAnswerPickTime+","+showRightAnswer;
         
         
         resultPrint.println(resultRecord);
