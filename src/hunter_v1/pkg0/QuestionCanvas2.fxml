@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="question2Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.QuestionCanvas2Controller">
+<AnchorPane fx:id="question2Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.QuestionCanvas2Controller">
    <children>
       <TextField id="question1" editable="false" layoutX="20.0" layoutY="10.0" prefHeight="57.0" prefWidth="211.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Which one?">
          <font>
-            <Font size="30.0" />
+            <Font size="25.0" />
          </font>
       </TextField>
       <Pane fx:id="scene3" layoutX="20.0" layoutY="71.0" prefHeight="515.0" prefWidth="760.0" style="-fx-background-color: #66ccff;">

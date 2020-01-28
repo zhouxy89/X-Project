@@ -30,7 +30,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -93,6 +95,7 @@ public class ResultCanvasController implements Initializable {
     
     public String showRightAnswer = "";
     public String showYourAnswer = "";
+    public static String huntingActive="";
     
     public static List<Integer> block50_result=Arrays.asList(1,2,3,4,5,6,7,8,9,10);
     
@@ -113,6 +116,8 @@ public class ResultCanvasController implements Initializable {
     public static String secondAnswerPickTime = "";
     
     public static String gameStartTime = "";
+    
+    String answerResult="";
     /**
      *
      */
@@ -149,7 +154,10 @@ public class ResultCanvasController implements Initializable {
         
         welcomeController.setrealFollowerFromMainCanvas(welcomeController.realFollowerFromMainCanvas());
         
+        System.out.println("welcomeController.followerAnswerFromQuestion2Canvas(): "+welcomeController.followerAnswerFromQuestion2Canvas());
+        
         welcomeController.setfollowerAnswerFromQuestion2Canvas(welcomeController.followerAnswerFromQuestion2Canvas());
+        welcomeController.setrealFollowerActionFromMainCanvas(welcomeController.realFollowerActionFromMainCanvas());
         if(welcomeController.trialFromMain()==1&&mainController.noChange==0){
         Collections.shuffle(block50_result);
         Collections.shuffle(block75_result);
@@ -180,7 +188,7 @@ public class ResultCanvasController implements Initializable {
         if(realFollower==6){
             showRightAnswer = "Ship6";
         }
-        
+        System.out.println("followerAnswer: "+followerAnswer);
         if(followerAnswer==0){
             showYourAnswer = "None";
             }
@@ -203,7 +211,7 @@ public class ResultCanvasController implements Initializable {
             showYourAnswer = "Ship6";
         }
         
-        System.out.println("rightAnswerNum: "+rightAnswerNum);
+        
         if(trial<3){ 
             resultLabel.setVisible(false); 
             score.setVisible(false); 
@@ -227,22 +235,31 @@ public class ResultCanvasController implements Initializable {
            //System.out.println("yourAnswer: "+showYourAnswer);
            //System.out.println("rightGuessFromMain: "+welcomeController.rightGuessFromMain());
           // welcomeController.setrightGuessFromMainCanvas(welcomeController.rightGuessFromMain());
-           if(showRightAnswer==showYourAnswer){
-               result.setText("Right");
+          System.out.println("showRightAnswer: "+showRightAnswer);
+          System.out.println("showYourAnswer: "+showYourAnswer);
+           if(showRightAnswer==showYourAnswer&&huntingActive.equals(firstAnswer)){
+               System.out.println("huntingActive: "+ huntingActive);
+               System.out.println("firstAnswer: "+firstAnswer);
                
+               System.out.println("showRightAnswer==showYourAnswer: "+ (showRightAnswer==showYourAnswer));
+               System.out.println("huntingActive==firstAnswer: "+ (huntingActive==firstAnswer));
+               
+               result.setText("Right");
+               answerResult = "Right";
                rightAnswerNum+=1;
                score.setText(Integer.toString(rightAnswerNum));
-           
+               
                //System.out.println("rightAnswerNum: "+rightAnswerNum);
            }
            else{
                result.setText("Wrong");
+               answerResult = "Wrong";
                score.setText(Integer.toString(rightAnswerNum));
            }
            
         }
         
-        
+        System.out.println("rightAnswerNum: "+rightAnswerNum);
         System.out.println("block100_result: "+block100_result);
         System.out.println("block75_result: "+block75_result);
         System.out.println("block50_result: "+block50_result);
@@ -329,7 +346,7 @@ public class ResultCanvasController implements Initializable {
         if(showYourAnswer=="None"){
            secondAnswerPickTime = " "; 
         }
-        resultRecord = MainCanvasController.PID+","+(trial-2) +" "+","+" "+","+ " "+","+" "+","+" "+","+ " "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+ " "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+" "+","+gameStartTime+","+endGameTime+","+firstAnswer+","+firstAnswerPickTime+","+showYourAnswer+","+secondAnswerPickTime+","+showRightAnswer;
+        resultRecord = MainCanvasController.PID+","+"S"+","+(trial-2) +","+MainCanvasController.lastStep+","+ MainCanvasController.keyPressTime+MainCanvasController.record+","+gameStartTime+","+endGameTime+","+firstAnswer+","+firstAnswerPickTime+","+showYourAnswer+","+secondAnswerPickTime+","+MainCanvasController.hunterActive+","+showRightAnswer+","+answerResult;
         
         
         resultPrint.println(resultRecord);
@@ -352,12 +369,12 @@ public class ResultCanvasController implements Initializable {
         welcomeController.setEndGameTimeFromMainCanvas();
         recordResults();
         if(trial<totalTrial){
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
+        StackPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
         //System.out.println("trial2: "+trial);
         ResultCanvas.getChildren().setAll(pane);
         }
         else{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("EndCanvas.fxml"));
+        BorderPane pane = FXMLLoader.load(getClass().getResource("EndCanvas.fxml"));
         ResultCanvas.getChildren().setAll(pane);    
         }
         
