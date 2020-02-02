@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,17 +43,17 @@ public class QuestionCanvas2Controller implements Initializable {
     @FXML
     private Pane scene3;
     @FXML
-    private CheckBox ship1;
+    private RadioButton ship1;
     @FXML
-    private CheckBox ship2;
+    private RadioButton ship2;
     @FXML
-    private CheckBox ship3;
+    private RadioButton ship3;
     @FXML
-    private CheckBox ship4;
+    private RadioButton ship4;
     @FXML
-    private CheckBox ship5;
+    private RadioButton ship5;
     @FXML
-    private CheckBox ship6;
+    private RadioButton ship6;
     
     @FXML
     private Button Q2Ship1;

@@ -10,7 +10,7 @@
    <children>
       <TextField id="question1" fx:id="rightAnswerLabel" editable="false" layoutY="10.0" prefHeight="57.0" prefWidth="211.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Right Answer: ">
          <font>
-            <Font size="30.0" />
+            <Font size="25.0" />
          </font>
       </TextField>
       <Pane fx:id="scene" layoutX="20.0" layoutY="71.0" prefHeight="515.0" prefWidth="760.0" style="-fx-background-color: #66ccff;">
@@ -31,7 +31,7 @@
       </TextField>
       <TextField id="question1" fx:id="yourAnswerLabel" editable="false" layoutX="325.0" layoutY="10.0" prefHeight="57.0" prefWidth="211.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Your Answer: ">
          <font>
-            <Font size="30.0" />
+            <Font size="25.0" />
          </font>
       </TextField>
       <TextField id="question1" fx:id="yourAnswer" editable="false" layoutX="527.0" layoutY="10.0" prefHeight="57.0" prefWidth="150.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css">
@@ -42,27 +42,27 @@
       <Button layoutX="695.0" layoutY="25.0" maxHeight="27.0" maxWidth="85.0" minHeight="27.0" minWidth="59.0" mnemonicParsing="false" onAction="#loadMain" prefHeight="27.0" prefWidth="85.0" text="Next Round " />
       <TextField fx:id="resultLabel" layoutX="17.0" layoutY="10.0" prefHeight="57.0" prefWidth="238.0" style="-fx-background-color: None;" text="Your Answer is: ">
          <font>
-            <Font size="30.0" />
+            <Font size="25.0" />
          </font>
       </TextField>
       <TextField fx:id="result" layoutX="223.0" layoutY="10.0" prefHeight="57.0" prefWidth="127.0" style="-fx-background-color: None;">
          <font>
-            <Font size="30.0" />
+            <Font size="25.0" />
          </font>
       </TextField>
       <TextField fx:id="score" layoutX="515.0" layoutY="10.0" prefHeight="57.0" prefWidth="76.0" style="-fx-background-color: None;">
          <font>
-            <Font size="30.0" />
+            <Font size="25.0" />
          </font>
       </TextField>
-      <TextField fx:id="totalTrialsLabel" layoutX="569.0" layoutY="10.0" prefHeight="57.0" prefWidth="85.0" style="-fx-background-color: None;" text="/36">
+      <TextField fx:id="totalTrialsLabel" layoutX="569.0" layoutY="10.0" prefHeight="57.0" prefWidth="85.0" style="-fx-background-color: None;" text="/48">
          <font>
-            <Font size="30.0" />
+            <Font size="25.0" />
          </font>
       </TextField>
       <TextField fx:id="scoreLabel" layoutX="390.0" layoutY="10.0" prefHeight="57.0" prefWidth="117.0" style="-fx-background-color: None;" text="Score: ">
          <font>
-            <Font size="30.0" />
+            <Font size="25.0" />
          </font>
       </TextField>
    </children>

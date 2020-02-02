@@ -18,6 +18,8 @@ import java.text.Format.Field;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -30,7 +32,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 /**
@@ -42,11 +46,13 @@ public class WelcomeCanvasController implements Initializable {
     @FXML
     private Pane scene;
     @FXML
-    private AnchorPane rootPane;
+    private BorderPane pane;
     @FXML
-    private ScrollPane scrollCanvas;
+    private BorderPane scrollCanvas;
     @FXML
     private AnchorPane scrollAnchor;
+    @FXML
+    private ScrollPane scroll;
     @FXML
     private CheckBox consent;
     @FXML
@@ -68,7 +74,7 @@ public class WelcomeCanvasController implements Initializable {
     
     
     @FXML
-    private AnchorPane WelcomeCanvas;
+    private StackPane WelcomeCanvas;
     
     @FXML
     private ResultCanvasController resultController;
@@ -90,7 +96,7 @@ public class WelcomeCanvasController implements Initializable {
     @FXML
     private Button btnContinue;
     
-    static int participantID =0;
+    
     /**
      * Initializes the controller class.
      */
@@ -124,7 +130,7 @@ public class WelcomeCanvasController implements Initializable {
 //        MainCanvasController mainController = loader1.getController();
 
         
-              
+              consent.setDisable(true);
               scrollCanvas.setVisible(false);
               scrollAnchor.setVisible(false);
               secondScreen1.setVisible(false);
@@ -137,7 +143,18 @@ public class WelcomeCanvasController implements Initializable {
               btnContinue.setVisible(false);
               
               
-              participantID=(int)((Math.random()*9+1)*1000000000);
+            Timer timer = new Timer();
+            TimerTask showConsent;
+            
+            showConsent = new TimerTask()
+            {
+                public void run()
+                {
+                    consent.setDisable(false);
+                }
+            };
+            
+            timer.schedule(showConsent,45000);
               
 
 
@@ -161,7 +178,7 @@ public class WelcomeCanvasController implements Initializable {
               btnContinue.setVisible(true);
               scene.applyCss();
               scene.layout();
-              scrollCanvas.setVvalue(0);
+              scroll.setVvalue(0);
               firstScreen.setVisible(false);
               welcomeText.setVisible(false);
               consent.setVisible(false);
@@ -171,7 +188,7 @@ public class WelcomeCanvasController implements Initializable {
     
     @FXML
     private void loadGame(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
+        StackPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
         WelcomeCanvas.getChildren().setAll(pane);
     }
     
@@ -226,6 +243,15 @@ public class WelcomeCanvasController implements Initializable {
         
     }
     
+    public String realFollowerActionFromMainCanvas(){
+        return mainController.hunterActive;
+    }
+    
+    public void setrealFollowerActionFromMainCanvas(String SP) {
+        resultController.huntingActive = SP;
+        
+    }
+    
     public int followerAnswerFromQuestion2Canvas(){
         return question2Controller.followedShipAnswer;
     }
@@ -233,6 +259,7 @@ public class WelcomeCanvasController implements Initializable {
     public void setfollowerAnswerFromQuestion2Canvas(int SP) {
         resultController.followerAnswer = SP;
         question2Controller.followedShipAnswer = 0;
+        resultController.firstAnswer = question1Controller.answer1;
     }
     
 //    public int lastPositionXFromMainCanvas(){

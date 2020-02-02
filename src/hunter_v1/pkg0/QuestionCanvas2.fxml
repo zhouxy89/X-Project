@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="question2Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.QuestionCanvas2Controller">
+<AnchorPane fx:id="question2Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.QuestionCanvas2Controller">
    <children>
       <TextField id="question1" editable="false" layoutX="20.0" layoutY="10.0" prefHeight="57.0" prefWidth="211.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Which one?">
          <font>
-            <Font size="30.0" />
+            <Font size="25.0" />
          </font>
       </TextField>
       <Pane fx:id="scene3" layoutX="20.0" layoutY="71.0" prefHeight="515.0" prefWidth="760.0" style="-fx-background-color: #66ccff;">
@@ -25,36 +25,36 @@
             <Button id="btnShip6" fx:id="Q2Ship6" layoutX="524.0" layoutY="81.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;" text="6" />
          </children>
       </Pane>
-      <Button layoutX="661.0" layoutY="25.0" mnemonicParsing="false" onAction="#loadResult" prefHeight="27.0" prefWidth="119.0" text="Show Answer" />
-      <CheckBox fx:id="ship1" layoutX="222.0" layoutY="30.0" mnemonicParsing="false" text="1">
+      <Button layoutX="661.0" layoutY="25.0" mnemonicParsing="false" opacity="0.0" prefHeight="27.0" prefWidth="119.0" text="Show Answer" />
+      <RadioButton fx:id="ship1" layoutX="230.0" layoutY="30.0" mnemonicParsing="false" onAction="#loadResult" text="1">
          <font>
             <Font size="14.0" />
          </font>
-      </CheckBox>
-      <CheckBox fx:id="ship2" layoutX="290.0" layoutY="30.0" mnemonicParsing="false" text="2">
+      </RadioButton>
+      <RadioButton fx:id="ship2" layoutX="290.0" layoutY="30.0" mnemonicParsing="false" onAction="#loadResult" text="2">
          <font>
             <Font size="14.0" />
          </font>
-      </CheckBox>
-      <CheckBox fx:id="ship3" layoutX="355.0" layoutY="30.0" mnemonicParsing="false" text="3">
+      </RadioButton>
+      <RadioButton fx:id="ship3" layoutX="355.0" layoutY="30.0" mnemonicParsing="false" onAction="#loadResult" text="3">
          <font>
             <Font size="14.0" />
          </font>
-      </CheckBox>
-      <CheckBox fx:id="ship4" layoutX="420.0" layoutY="30.0" mnemonicParsing="false" text="4">
+      </RadioButton>
+      <RadioButton fx:id="ship4" layoutX="420.0" layoutY="30.0" mnemonicParsing="false" onAction="#loadResult" text="4">
          <font>
             <Font size="14.0" />
          </font>
-      </CheckBox>
-      <CheckBox fx:id="ship5" layoutX="488.0" layoutY="30.0" mnemonicParsing="false" text="5">
+      </RadioButton>
+      <RadioButton fx:id="ship5" layoutX="488.0" layoutY="30.0" mnemonicParsing="false" onAction="#loadResult" text="5">
          <font>
             <Font size="14.0" />
          </font>
-      </CheckBox>
-      <CheckBox fx:id="ship6" layoutX="555.0" layoutY="30.0" mnemonicParsing="false" text="6">
+      </RadioButton>
+      <RadioButton fx:id="ship6" layoutX="555.0" layoutY="30.0" mnemonicParsing="false" onAction="#loadResult" text="6">
          <font>
             <Font size="14.0" />
          </font>
-      </CheckBox>
+      </RadioButton>
    </children>
 </AnchorPane>

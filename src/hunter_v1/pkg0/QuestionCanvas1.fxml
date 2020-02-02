@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="question1Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.QuestionCanvas1Controller">
+<AnchorPane fx:id="question1Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.QuestionCanvas1Controller">
    <children>
       <TextField id="question1" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="57.0" prefWidth="464.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Are you being shadowed/hunted?" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="322.0" AnchorPane.topAnchor="14.0">
          <font>
-            <Font size="30.0" />
+            <Font size="25.0" />
          </font>
       </TextField>
       <RadioButton id="rdBtnYes" fx:id="shadowed" layoutX="478.0" layoutY="31.0" mnemonicParsing="false" onAction="#loadQuestion2" style="-fx-background-color: none;" text="Shadowed" AnchorPane.topAnchor="31.0">
