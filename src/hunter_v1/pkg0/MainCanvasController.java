@@ -207,6 +207,10 @@ public class MainCanvasController implements Initializable {
     int WDistance1_2 = 0;
     int LDistance2_2 = 0;
     int WDistance2_2 = 0;
+    int patrolShipX = 0;
+    int patrolShipY = 0;
+    int rand1 = 0;
+    int rand2 = 0;
     int patrolShip1X = 0;
     int patrolShip1Y = 0;
     int patrolShip2X = 0;
@@ -476,20 +480,38 @@ public class MainCanvasController implements Initializable {
             randomNum2 = (int)givenList_shouldReturnARandomElement()+ ShipY;
   
             
-            if(ShipX-shipWidth/2+randomMoveX<0){
+            if(ShipX-shipWidth+randomMoveX<0){
                 randomMoveX=0;
             }
             
-            if(canvasWidth<ShipX+shipWidth/2+randomMoveX){
+            if(canvasWidth<ShipX+shipWidth+randomMoveX){
                 randomMoveX=0;
             }
             
-            if(ShipY-shipHeight/2+randomMoveY<0){
+            if(ShipY-shipHeight+randomMoveY<0){
                 randomMoveY=0;
             }
             
             if(canvasHeight<ShipY+shipHeight+randomMoveY){
                 randomMoveY=0;
+            }
+            
+            
+            
+            if(randomNum1-shipWidth<0){
+                randomNum1=0;
+            }
+            
+            if(canvasWidth<randomNum1+shipWidth){
+                randomNum1=0;
+            }
+            
+            if(randomNum2-shipHeight<0){
+                randomNum2=0;
+            }
+            
+            if(canvasHeight<randomNum2+shipHeight){
+                randomNum2=0;
             }
             
 //            System.out.println((ShipX+randomMoveX) +","+(ShipY+shipHeight/2+randomMoveY));
@@ -543,7 +565,7 @@ public class MainCanvasController implements Initializable {
             switch (matchPercentage) {
             
                 case 100:
-                    if(canvas[ShipX +randomMoveX][ShipY +randomMoveY+shipHeight/2]!=1 && canvas[ShipX +randomMoveX][ShipY +randomMoveY-shipHeight/2]!=1 && canvas[ShipX +randomMoveX-shipWidth/2][ShipY +randomMoveY]!=1 &&canvas[ShipX +randomMoveX+shipWidth/2][ShipY +randomMoveY]!=1){
+                    if(ShipY +randomMoveY-shipHeight>0&&ShipX +randomMoveX-shipWidth>0&&ShipY +randomMoveY+shipHeight<canvasHeight&&ShipX +randomMoveX+shipWidth<canvasWidth&&canvas[ShipX +randomMoveX][ShipY +randomMoveY+shipHeight/2]!=1 && canvas[ShipX +randomMoveX][ShipY +randomMoveY-shipHeight/2]!=1 && canvas[ShipX +randomMoveX-shipWidth/2][ShipY +randomMoveY]!=1 &&canvas[ShipX +randomMoveX+shipWidth/2][ShipY +randomMoveY]!=1){
                         friendlyShip.relocate(ShipX +randomMoveX, ShipY +randomMoveY);
                     }
                     else{
@@ -560,7 +582,7 @@ public class MainCanvasController implements Initializable {
                         case 15:
                         case 17:
                         case 22:
-                            if(canvas[randomNum1][randomNum2+shipHeight]!=1 && canvas[randomNum1][randomNum2-shipHeight]!=1 && canvas[randomNum1-shipWidth][randomNum2]!=1 &&canvas[randomNum1+shipWidth][randomNum2]!=1){
+                            if(randomNum2-shipHeight>0&&randomNum1-shipWidth>0&&randomNum2+shipHeight<canvasHeight&&randomNum1+shipWidth<canvasWidth&&canvas[randomNum1][randomNum2+shipHeight/2]!=1 && canvas[randomNum1][randomNum2-shipHeight/2]!=1 && canvas[randomNum1-shipWidth/2][randomNum2]!=1 &&canvas[randomNum1+shipWidth/2][randomNum2]!=1){
                                 friendlyShip.relocate(randomNum1, randomNum2);
                             }
                             else{
@@ -569,7 +591,7 @@ public class MainCanvasController implements Initializable {
                             break;
                 
                         default:
-                            if(canvas[ShipX +randomMoveX][ShipY +randomMoveY+shipHeight]!=1 && canvas[ShipX +randomMoveX][ShipY +randomMoveY-shipHeight]!=1 && canvas[ShipX +randomMoveX-shipWidth][ShipY +randomMoveY]!=1 &&canvas[ShipX +randomMoveX+shipWidth][ShipY +randomMoveY]!=1){
+                            if(ShipY +randomMoveY-shipHeight>0&&ShipX +randomMoveX-shipWidth>0&&ShipY +randomMoveY+shipHeight<canvasHeight&&ShipX +randomMoveX+shipWidth<canvasWidth&&canvas[ShipX +randomMoveX][ShipY +randomMoveY+shipHeight/2]!=1 && canvas[ShipX +randomMoveX][ShipY +randomMoveY-shipHeight/2]!=1 && canvas[ShipX +randomMoveX-shipWidth/2][ShipY +randomMoveY]!=1 &&canvas[ShipX +randomMoveX+shipWidth/2][ShipY +randomMoveY]!=1){
                                 friendlyShip.relocate(ShipX+randomMoveX, ShipY+randomMoveY);
                             }
                             else{
@@ -594,7 +616,7 @@ public class MainCanvasController implements Initializable {
                         case 21:
                         case 22:
                         case 23:
-                            if(canvas[randomNum1][randomNum2+shipHeight]!=1 && canvas[randomNum1][randomNum2-shipHeight]!=1 && canvas[randomNum1-shipWidth][randomNum2]!=1 &&canvas[randomNum1+shipWidth][randomNum2]!=1){
+                            if(randomNum2-shipHeight>0&&randomNum1-shipWidth>0&&randomNum2+shipHeight<canvasHeight&&randomNum1+shipWidth<canvasWidth&&canvas[randomNum1][randomNum2+shipHeight/2]!=1 && canvas[randomNum1][randomNum2-shipHeight/2]!=1 && canvas[randomNum1-shipWidth/2][randomNum2]!=1 &&canvas[randomNum1+shipWidth/2][randomNum2]!=1){
                                 friendlyShip.relocate(randomNum1, randomNum2);
                             }
                             else{
@@ -603,7 +625,7 @@ public class MainCanvasController implements Initializable {
                             break;
                 
                         default:
-                            if(canvas[ShipX +randomMoveX][ShipY +randomMoveY+shipHeight]!=1 && canvas[ShipX +randomMoveX][ShipY +randomMoveY-shipHeight]!=1 && canvas[ShipX +randomMoveX-shipWidth][ShipY +randomMoveY]!=1 &&canvas[ShipX +randomMoveX+shipWidth][ShipY +randomMoveY]!=1){
+                            if(ShipY +randomMoveY-shipHeight>0&&ShipX +randomMoveX-shipWidth>0&&ShipY +randomMoveY+shipHeight<canvasHeight&&ShipX +randomMoveX+shipWidth<canvasWidth&&canvas[ShipX +randomMoveX][ShipY +randomMoveY+shipHeight/2]!=1 && canvas[ShipX +randomMoveX][ShipY +randomMoveY-shipHeight/2]!=1 && canvas[ShipX +randomMoveX-shipWidth/2][ShipY +randomMoveY]!=1 &&canvas[ShipX +randomMoveX+shipWidth/2][ShipY +randomMoveY]!=1){
                                 friendlyShip.relocate(ShipX +randomMoveX, ShipY +randomMoveY);
                             }
                             else{
@@ -625,10 +647,9 @@ public class MainCanvasController implements Initializable {
     private void friendlyShipWithPatrolBehavior(Button friendlyShip, int diagonaPointX,int diagonaPointY,int steps, int matchPercentage ){
         clearShipsOnCanvas();
         setAllShipsOnCanvas(friendlyShip);
-        int patrolShipX = (int)friendlyShip.getLayoutX();
-        int patrolShipY = (int)friendlyShip.getLayoutY();
-        int rand1 = 0;
-        int rand2 = 0;
+        patrolShipX = (int)friendlyShip.getLayoutX();
+        patrolShipY = (int)friendlyShip.getLayoutY();
+        
         
         rand1 = (int)givenList_shouldReturnARandomElement();
         rand2 = (int)givenList_shouldReturnARandomElement();
@@ -649,7 +670,7 @@ public class MainCanvasController implements Initializable {
                         case 15:
                         case 17:
                         case 22:
-                            if(canvas[patrolShipX+rand1][patrolShipY+rand2+shipHeight/2]!=1 && canvas[patrolShipX+rand1][patrolShipY+rand2-shipHeight/2]!=1 && canvas[patrolShipX+rand1-shipWidth/2][patrolShipY+rand2]!=1 &&canvas[patrolShipX+rand1+shipWidth/2][patrolShipY+rand2]!=1){
+                            if(patrolShipY+rand2+shipHeight<canvasHeight&&patrolShipX+rand1+shipWidth<canvasWidth&&patrolShipX+rand1-shipWidth>0&&patrolShipY+rand2-shipHeight>0&&canvas[patrolShipX+rand1][patrolShipY+rand2+shipHeight/2]!=1 && canvas[patrolShipX+rand1][patrolShipY+rand2-shipHeight/2]!=1 && canvas[patrolShipX+rand1-shipWidth/2][patrolShipY+rand2]!=1 &&canvas[patrolShipX+rand1+shipWidth/2][patrolShipY+rand2]!=1){
                                 friendlyShip.relocate(patrolShipX +rand1, patrolShipY +rand2);
                             }
                             else{
@@ -658,7 +679,7 @@ public class MainCanvasController implements Initializable {
                             break;
                 
                         default:
-                            patrolAction(friendlyShip, diagonaPointX,diagonaPointY,steps);
+                            patrolAction(friendlyShip, diagonaPointX,diagonaPointY,steps-step);
                             break;
                     }
                     break;
@@ -679,7 +700,7 @@ public class MainCanvasController implements Initializable {
                         case 22:
                         case 23:
                             
-                            if(canvas[patrolShipX+rand1][patrolShipY+rand2+shipHeight/2]!=1 && canvas[patrolShipX+rand1][patrolShipY+rand2-shipHeight/2]!=1 && canvas[patrolShipX+rand1-shipWidth/2][patrolShipY+rand2]!=1 &&canvas[patrolShipX+rand1+shipWidth/2][patrolShipY+rand2]!=1){
+                            if(patrolShipY+rand2+shipHeight<canvasHeight&&patrolShipX+rand1+shipWidth<canvasWidth&&patrolShipX+rand1-shipWidth>0&&patrolShipY+rand2-shipHeight>0&&canvas[patrolShipX+rand1][patrolShipY+rand2+shipHeight/2]!=1 && canvas[patrolShipX+rand1][patrolShipY+rand2-shipHeight/2]!=1 && canvas[patrolShipX+rand1-shipWidth/2][patrolShipY+rand2]!=1 &&canvas[patrolShipX+rand1+shipWidth/2][patrolShipY+rand2]!=1){
                                 friendlyShip.relocate(patrolShipX +rand1, patrolShipY +rand2);
                             }
                             else{
@@ -689,7 +710,7 @@ public class MainCanvasController implements Initializable {
                             break;
                 
                         default:
-                            patrolAction(friendlyShip, diagonaPointX,diagonaPointY,steps);
+                            patrolAction(friendlyShip, diagonaPointX,diagonaPointY,steps-step);
                             break;
                     }
                     break;
@@ -785,7 +806,7 @@ public class MainCanvasController implements Initializable {
         //if(isMoveToHunter(friendlyShip)!=1){
         if(diagonaPointY>patrolStartY&&diagonaPointX>patrolStartX){
             if(friendlyShipY+eachStepDistance<=diagonaPointY&&friendlyShipX+eachStepDistance<=diagonaPointX&&lengthDistance1+eachStepDistance<=sigleLength){
-                if(canvas[friendlyShipX][friendlyShipY+eachStepDistance+shipHeight]!=1 && canvas[friendlyShipX][friendlyShipY+eachStepDistance-shipHeight]!=1 && canvas[friendlyShipX-shipWidth][friendlyShipY+eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY+eachStepDistance]!=1){
+                if(friendlyShipY+eachStepDistance-shipHeight>0&&friendlyShipX-shipWidth>0&&friendlyShipX+shipWidth<canvasWidth&&friendlyShipY+eachStepDistance+shipHeight<canvasHeight&&canvas[friendlyShipX][friendlyShipY+eachStepDistance+shipHeight]!=1 && canvas[friendlyShipX][friendlyShipY+eachStepDistance-shipHeight]!=1 && canvas[friendlyShipX-shipWidth][friendlyShipY+eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY+eachStepDistance]!=1){
                     friendlyShip.relocate(friendlyShipX,friendlyShipY+eachStepDistance);
                     lengthDistance1=lengthDistance1+eachStepDistance;
                 }
@@ -802,7 +823,7 @@ public class MainCanvasController implements Initializable {
                 }
             }
             else if(friendlyShipY+eachStepDistance>diagonaPointY&&friendlyShipX+eachStepDistance<=diagonaPointX&&widthDistance1+eachStepDistance<=sigleWidth){
-                if(canvas[friendlyShipX+eachStepDistance][friendlyShipY+shipHeight]!=1 &&canvas[friendlyShipX+eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX+eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX+eachStepDistance+shipWidth][friendlyShipY]!=1){
+                if(friendlyShipY-shipHeight>0&&friendlyShipX+eachStepDistance-shipWidth>0&&friendlyShipX+eachStepDistance+shipWidth<canvasWidth&&friendlyShipY+shipHeight<canvasHeight&&canvas[friendlyShipX+eachStepDistance][friendlyShipY+shipHeight]!=1 &&canvas[friendlyShipX+eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX+eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX+eachStepDistance+shipWidth][friendlyShipY]!=1){
                     friendlyShip.relocate(friendlyShipX+eachStepDistance,friendlyShipY);
                     widthDistance1=widthDistance1+eachStepDistance;
                 }
@@ -819,7 +840,7 @@ public class MainCanvasController implements Initializable {
                 }
             }
             else if(lengthDistance2+eachStepDistance<=lengthDistance1){
-                if(canvas[friendlyShipX][friendlyShipY-eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY-eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY-eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY-eachStepDistance]!=1){
+                if(friendlyShipY-eachStepDistance-shipHeight>0&&friendlyShipX-eachStepDistance>0&&friendlyShipY-eachStepDistance+shipHeight<canvasHeight&&friendlyShipX+shipWidth<canvasWidth&&canvas[friendlyShipX][friendlyShipY-eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY-eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY-eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY-eachStepDistance]!=1){
                     friendlyShip.relocate(friendlyShipX,friendlyShipY-eachStepDistance);
                     lengthDistance2=lengthDistance2+eachStepDistance;
                 }
@@ -837,7 +858,7 @@ public class MainCanvasController implements Initializable {
 
             }
             else if(widthDistance2+eachStepDistance<=widthDistance1){
-                if(canvas[friendlyShipX-eachStepDistance][friendlyShipY+shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX-eachStepDistance+shipWidth][friendlyShipY]!=1){
+                if(friendlyShipY-shipHeight>0&&friendlyShipX-eachStepDistance-shipWidth>0&&friendlyShipX-eachStepDistance+shipWidth<canvasWidth&&friendlyShipY+shipHeight<canvasHeight&&canvas[friendlyShipX-eachStepDistance][friendlyShipY+shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX-eachStepDistance+shipWidth][friendlyShipY]!=1){
                     friendlyShip.relocate(friendlyShipX-eachStepDistance,friendlyShipY);
                     widthDistance2=widthDistance2+eachStepDistance;
                 }
@@ -861,7 +882,7 @@ public class MainCanvasController implements Initializable {
             //System.out.println("diagonaPointY: "+diagonaPointY);
             
             if(friendlyShipY+eachStepDistance<=diagonaPointY&&friendlyShipX-eachStepDistance>=diagonaPointX&&lengthDistance1+eachStepDistance<=sigleLength){
-                if(canvas[friendlyShipX][friendlyShipY+eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY+eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY+eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY+eachStepDistance]!=1){
+                if(friendlyShipY+eachStepDistance-shipHeight>0&&friendlyShipX-shipWidth>0&&friendlyShipY+eachStepDistance+shipHeight<canvasHeight&&friendlyShipX+shipWidth<canvasWidth&&canvas[friendlyShipX][friendlyShipY+eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY+eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY+eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY+eachStepDistance]!=1){
                 friendlyShip.relocate(friendlyShipX,friendlyShipY+eachStepDistance);
                 lengthDistance1=lengthDistance1+eachStepDistance;
                 }
@@ -878,7 +899,7 @@ public class MainCanvasController implements Initializable {
                 }
             }
             else if(friendlyShipY+eachStepDistance>diagonaPointY&&friendlyShipX-eachStepDistance>=diagonaPointX&&widthDistance1+eachStepDistance<=sigleWidth){
-                if(canvas[friendlyShipX-eachStepDistance][friendlyShipY+shipHeight]!=1&&canvas[friendlyShipX-eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX-eachStepDistance+shipWidth][friendlyShipY]!=1){
+                if(friendlyShipY-shipHeight>0&&friendlyShipX-eachStepDistance-shipWidth>0&&friendlyShipX-eachStepDistance+shipWidth<canvasWidth&&friendlyShipY+shipHeight<canvasHeight&&canvas[friendlyShipX-eachStepDistance][friendlyShipY+shipHeight]!=1&&canvas[friendlyShipX-eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX-eachStepDistance+shipWidth][friendlyShipY]!=1){
                 friendlyShip.relocate(friendlyShipX-eachStepDistance,friendlyShipY); 
                 widthDistance1=widthDistance1+eachStepDistance;
                 }
@@ -895,7 +916,7 @@ public class MainCanvasController implements Initializable {
                 } 
             }
             else if(lengthDistance2+eachStepDistance<=lengthDistance1){
-                if(canvas[friendlyShipX][friendlyShipY-eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY-eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY-eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY-eachStepDistance]!=1){
+                if(friendlyShipY-eachStepDistance-shipHeight>0&&friendlyShipX-shipWidth>0&&friendlyShipY-eachStepDistance-shipHeight<canvasHeight&&friendlyShipX+shipWidth<canvasWidth&&canvas[friendlyShipX][friendlyShipY-eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY-eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY-eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY-eachStepDistance]!=1){
                 friendlyShip.relocate(friendlyShipX,friendlyShipY-eachStepDistance);
                 lengthDistance2=lengthDistance2+eachStepDistance;
                 }
@@ -915,7 +936,7 @@ public class MainCanvasController implements Initializable {
 
             }
             else if(widthDistance2+eachStepDistance<=widthDistance1){
-                if(canvas[friendlyShipX+eachStepDistance][friendlyShipY+shipHeight]!=1&&canvas[friendlyShipX+eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX+eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX+eachStepDistance+shipWidth][friendlyShipY]!=1){
+                if(friendlyShipY-shipHeight>0&&friendlyShipX+eachStepDistance-shipWidth>0&&friendlyShipX+eachStepDistance+shipWidth<canvasWidth&&friendlyShipY+shipHeight<canvasHeight&&canvas[friendlyShipX+eachStepDistance][friendlyShipY+shipHeight]!=1&&canvas[friendlyShipX+eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX+eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX+eachStepDistance+shipWidth][friendlyShipY]!=1){
                 friendlyShip.relocate(friendlyShipX+eachStepDistance,friendlyShipY);
                 widthDistance2=widthDistance2+eachStepDistance;
                 }
@@ -934,7 +955,7 @@ public class MainCanvasController implements Initializable {
         }
         else if(diagonaPointY<patrolStartY&&diagonaPointX>patrolStartX){
             if(friendlyShipY-eachStepDistance>=diagonaPointY&&friendlyShipX+eachStepDistance<=diagonaPointX&&lengthDistance1+eachStepDistance<=sigleLength){
-                if(canvas[friendlyShipX][friendlyShipY-eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY-eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY-eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY-eachStepDistance]!=1){
+                if(friendlyShipY-eachStepDistance-shipHeight>0&&friendlyShipX-shipWidth>0&&friendlyShipY-eachStepDistance+shipHeight<canvasHeight&&friendlyShipX+shipWidth<canvasWidth&&canvas[friendlyShipX][friendlyShipY-eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY-eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY-eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY-eachStepDistance]!=1){
                 friendlyShip.relocate(friendlyShipX,friendlyShipY-eachStepDistance);
                 lengthDistance1=lengthDistance1+eachStepDistance;
                 }
@@ -951,7 +972,7 @@ public class MainCanvasController implements Initializable {
                 }
             }
             else if(friendlyShipY-eachStepDistance<diagonaPointY&&friendlyShipX+eachStepDistance<=diagonaPointX&&widthDistance1+eachStepDistance<=sigleWidth){
-                if(canvas[friendlyShipX+eachStepDistance][friendlyShipY+shipHeight]!=1&&canvas[friendlyShipX+eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX+eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX+eachStepDistance+shipWidth][friendlyShipY]!=1){
+                if(friendlyShipY-shipHeight>0&&friendlyShipX+eachStepDistance-shipWidth>0&&friendlyShipX+eachStepDistance+shipWidth<canvasWidth&&friendlyShipY+shipHeight<canvasHeight&&canvas[friendlyShipX+eachStepDistance][friendlyShipY+shipHeight]!=1&&canvas[friendlyShipX+eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX+eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX+eachStepDistance+shipWidth][friendlyShipY]!=1){
                 friendlyShip.relocate(friendlyShipX+eachStepDistance,friendlyShipY);
                 widthDistance1=widthDistance1+eachStepDistance;
                 }
@@ -968,7 +989,7 @@ public class MainCanvasController implements Initializable {
                 }
             }
             else if(lengthDistance2+eachStepDistance<=lengthDistance1){
-                if(canvas[friendlyShipX][friendlyShipY+eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY+eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY+eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY+eachStepDistance]!=1){
+                if(friendlyShipY+eachStepDistance-shipHeight>0&&friendlyShipX-shipWidth>0&&friendlyShipY+eachStepDistance+shipHeight<canvasHeight&&friendlyShipX+shipWidth<canvasWidth&&canvas[friendlyShipX][friendlyShipY+eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY+eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY+eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY+eachStepDistance]!=1){
                 friendlyShip.relocate(friendlyShipX,friendlyShipY+eachStepDistance);
                 lengthDistance2=lengthDistance2+eachStepDistance;
                 }
@@ -986,7 +1007,7 @@ public class MainCanvasController implements Initializable {
 
             }
             else if(widthDistance2+eachStepDistance<=widthDistance1){
-                if(canvas[friendlyShipX-eachStepDistance][friendlyShipY+shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX-eachStepDistance+shipWidth][friendlyShipY]!=1){
+                if(friendlyShipY-shipHeight>0&&friendlyShipX-eachStepDistance-shipWidth>0&&friendlyShipX-eachStepDistance+shipWidth<canvasWidth&&friendlyShipY+shipHeight<canvasHeight&&canvas[friendlyShipX-eachStepDistance][friendlyShipY+shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX-eachStepDistance+shipWidth][friendlyShipY]!=1){
                 friendlyShip.relocate(friendlyShipX-eachStepDistance,friendlyShipY);
                 widthDistance2=widthDistance2+eachStepDistance;
                 }
@@ -1005,7 +1026,7 @@ public class MainCanvasController implements Initializable {
         }
         else if(diagonaPointY<patrolStartY&&diagonaPointX<patrolStartX){
             if(friendlyShipY-eachStepDistance>=diagonaPointY&&friendlyShipX-eachStepDistance>=diagonaPointX&&lengthDistance1+eachStepDistance<=sigleLength){
-                if(canvas[friendlyShipX][friendlyShipY-eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY-eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY-eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY-eachStepDistance]!=1){
+                if(friendlyShipY-eachStepDistance-shipHeight>0&&friendlyShipX-shipWidth>0&&friendlyShipY-eachStepDistance+shipHeight<canvasHeight&&friendlyShipX+shipWidth<canvasWidth&&canvas[friendlyShipX][friendlyShipY-eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY-eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY-eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY-eachStepDistance]!=1){
                 friendlyShip.relocate(friendlyShipX,friendlyShipY-eachStepDistance);
                 lengthDistance1=lengthDistance1+eachStepDistance;
                 }
@@ -1022,7 +1043,7 @@ public class MainCanvasController implements Initializable {
                 }
             }
             else if(friendlyShipY-eachStepDistance<diagonaPointY&&friendlyShipX-eachStepDistance>=diagonaPointX&&widthDistance1+eachStepDistance<=sigleWidth){
-                if(canvas[friendlyShipX-eachStepDistance][friendlyShipY+shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX-eachStepDistance+shipWidth][friendlyShipY]!=1){
+                if(friendlyShipY-shipHeight>0&&friendlyShipX-eachStepDistance-shipWidth>0&&friendlyShipX-eachStepDistance+shipWidth<canvasWidth&&friendlyShipY+shipHeight<canvasHeight&&canvas[friendlyShipX-eachStepDistance][friendlyShipY+shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX-eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX-eachStepDistance+shipWidth][friendlyShipY]!=1){
                 friendlyShip.relocate(friendlyShipX-eachStepDistance,friendlyShipY); 
                 widthDistance1=widthDistance1+eachStepDistance;
                 }
@@ -1039,7 +1060,7 @@ public class MainCanvasController implements Initializable {
                 }
             }
             else if(lengthDistance2+eachStepDistance<=lengthDistance1){
-                if(canvas[friendlyShipX][friendlyShipY+eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY+eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY+eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY+eachStepDistance]!=1){
+                if(friendlyShipY+eachStepDistance-shipHeight>0&&friendlyShipX-shipWidth>0&&friendlyShipY+eachStepDistance+shipHeight<canvasHeight&&friendlyShipX+shipWidth<canvasWidth&&canvas[friendlyShipX][friendlyShipY+eachStepDistance+shipHeight]!=1 &&canvas[friendlyShipX][friendlyShipY+eachStepDistance-shipHeight]!=1 &&canvas[friendlyShipX-shipWidth][friendlyShipY+eachStepDistance]!=1 &&canvas[friendlyShipX+shipWidth][friendlyShipY+eachStepDistance]!=1){
                 friendlyShip.relocate(friendlyShipX,friendlyShipY+eachStepDistance);
                 lengthDistance2=lengthDistance2+eachStepDistance;
                 }
@@ -1057,7 +1078,7 @@ public class MainCanvasController implements Initializable {
 
             }
             else if(widthDistance2+eachStepDistance<=widthDistance1){
-                if(canvas[friendlyShipX+eachStepDistance][friendlyShipY+shipHeight]!=1&&canvas[friendlyShipX+eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX+eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX+eachStepDistance+shipWidth][friendlyShipY]!=1){
+                if(friendlyShipY-shipHeight>0&&friendlyShipX+eachStepDistance-shipWidth>0&&friendlyShipX+eachStepDistance+shipWidth<canvasWidth&&friendlyShipY+shipHeight<canvasHeight&&canvas[friendlyShipX+eachStepDistance][friendlyShipY+shipHeight]!=1&&canvas[friendlyShipX+eachStepDistance][friendlyShipY-shipHeight]!=1 &&canvas[friendlyShipX+eachStepDistance-shipWidth][friendlyShipY]!=1 &&canvas[friendlyShipX+eachStepDistance+shipWidth][friendlyShipY]!=1){
                 friendlyShip.relocate(friendlyShipX+eachStepDistance,friendlyShipY);
                 widthDistance2=widthDistance2+eachStepDistance;
                 }
@@ -1333,7 +1354,7 @@ public class MainCanvasController implements Initializable {
             
           case 1: 
               //if(hostileShipY>14 && isMoveToHunter(hostileShip)==0 && canvas[hostileShipX-shipWidth/2][hostileShipY- KEYBOARD_MOVEMENT_DELTA-shipHeight/2]!=1&& canvas[hostileShipX+shipWidth/2][hostileShipY- KEYBOARD_MOVEMENT_DELTA-shipHeight/2]!=1){
-              if(hostileShipY>14 && canvas[hostileShipX-shipWidth/2][hostileShipY- KEYBOARD_MOVEMENT_DELTA-shipHeight/2]!=1&& canvas[hostileShipX+shipWidth/2][hostileShipY- KEYBOARD_MOVEMENT_DELTA-shipHeight/2]!=1){
+              if(hostileShipY- KEYBOARD_MOVEMENT_DELTA-shipHeight>0 && canvas[hostileShipX-shipWidth/2][hostileShipY- KEYBOARD_MOVEMENT_DELTA-shipHeight/2]!=1&& canvas[hostileShipX+shipWidth/2][hostileShipY- KEYBOARD_MOVEMENT_DELTA-shipHeight/2]!=1){
 
                   Y = hostileShipY- KEYBOARD_MOVEMENT_DELTA;
               }
@@ -1346,7 +1367,7 @@ public class MainCanvasController implements Initializable {
           case 2:
               //if(hostileShipX<scene.getPrefWidth()- hostileShip.getPrefWidth()&& isMoveToHunter(hostileShip)==0 && canvas[hostileShipX+shipWidth/2+ KEYBOARD_MOVEMENT_DELTA][hostileShipY+shipHeight/2]!=1&& canvas[hostileShipX+shipWidth/2+ KEYBOARD_MOVEMENT_DELTA][hostileShipY-shipHeight/2]!=1){
               
-              if(hostileShipX<scene.getPrefWidth()- hostileShip.getPrefWidth()&& canvas[hostileShipX+shipWidth/2+ KEYBOARD_MOVEMENT_DELTA][hostileShipY+shipHeight/2]!=1&& canvas[hostileShipX+shipWidth/2+ KEYBOARD_MOVEMENT_DELTA][hostileShipY-shipHeight/2]!=1){
+              if(hostileShipX+ KEYBOARD_MOVEMENT_DELTA+shipWidth<canvasWidth&& canvas[hostileShipX+shipWidth/2+ KEYBOARD_MOVEMENT_DELTA][hostileShipY+shipHeight/2]!=1&& canvas[hostileShipX+shipWidth/2+ KEYBOARD_MOVEMENT_DELTA][hostileShipY-shipHeight/2]!=1){
                  X = hostileShipX+ KEYBOARD_MOVEMENT_DELTA;
               }
               else{
@@ -1358,7 +1379,7 @@ public class MainCanvasController implements Initializable {
           case 3:
               //if(hostileShipY<scene.getPrefHeight()-hostileShip.getPrefHeight()&& isMoveToHunter(hostileShip)==0 && canvas[hostileShipX+shipWidth/2][hostileShipY+ KEYBOARD_MOVEMENT_DELTA+shipHeight/2]!=1&& canvas[hostileShipX-shipWidth/2][hostileShipY+ KEYBOARD_MOVEMENT_DELTA+shipHeight/2]!=1){
               
-              if(hostileShipY<scene.getPrefHeight()-hostileShip.getPrefHeight()&& canvas[hostileShipX+shipWidth/2][hostileShipY+ KEYBOARD_MOVEMENT_DELTA+shipHeight/2]!=1&& canvas[hostileShipX-shipWidth/2][hostileShipY+ KEYBOARD_MOVEMENT_DELTA+shipHeight/2]!=1){
+              if(hostileShipY+ KEYBOARD_MOVEMENT_DELTA+shipHeight<canvasHeight&& canvas[hostileShipX+shipWidth/2][hostileShipY+ KEYBOARD_MOVEMENT_DELTA+shipHeight/2]!=1&& canvas[hostileShipX-shipWidth/2][hostileShipY+ KEYBOARD_MOVEMENT_DELTA+shipHeight/2]!=1){
                  Y = hostileShipY+ KEYBOARD_MOVEMENT_DELTA;
               }
               else{
@@ -1370,7 +1391,7 @@ public class MainCanvasController implements Initializable {
           case 4:
               //if(hostileShipX>14&& isMoveToHunter(hostileShip)==0 && canvas[hostileShipX- KEYBOARD_MOVEMENT_DELTA-shipWidth/2][hostileShipY-shipHeight/2]!=1&& canvas[hostileShipX- KEYBOARD_MOVEMENT_DELTA-shipWidth/2][hostileShipY+shipHeight/2]!=1){
               
-              if(hostileShipX>14&& canvas[hostileShipX- KEYBOARD_MOVEMENT_DELTA-shipWidth/2][hostileShipY-shipHeight/2]!=1&& canvas[hostileShipX- KEYBOARD_MOVEMENT_DELTA-shipWidth/2][hostileShipY+shipHeight/2]!=1){
+              if(hostileShipX- KEYBOARD_MOVEMENT_DELTA-shipWidth>0&& canvas[hostileShipX- KEYBOARD_MOVEMENT_DELTA-shipWidth/2][hostileShipY-shipHeight/2]!=1&& canvas[hostileShipX- KEYBOARD_MOVEMENT_DELTA-shipWidth/2][hostileShipY+shipHeight/2]!=1){
                  X = hostileShipX- KEYBOARD_MOVEMENT_DELTA;
               }
               else{
