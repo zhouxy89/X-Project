@@ -44,7 +44,9 @@ import javafx.scene.text.Text;
  */
 public class WelcomeCanvasController implements Initializable {
     @FXML
-    private Pane scene;
+    private AnchorPane scene;
+    @FXML
+    private ScrollPane scrollConsent;
     @FXML
     private BorderPane pane;
     @FXML
@@ -69,6 +71,8 @@ public class WelcomeCanvasController implements Initializable {
     private Text secondScreen6;
     @FXML
     private Text secondScreen7;
+    @FXML
+    private Text secondScreen8;
     
     
     
@@ -97,40 +101,11 @@ public class WelcomeCanvasController implements Initializable {
     private Button btnContinue;
     
     
-    /**
-     * Initializes the controller class.
-     */
-    
-//    @FXML
-//    public void init(){
-//        mainController.init(this);
-//            resultController.init(this);
-//    }
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        setFileNameFromResultCanvas(fileNameFromResultCanvas());
-//        mainController.file = new File(mainController.filePath);
 
-    //FXMLLoader loader = new FXMLLoader(getClass().getResource("ResultCanvas.fxml"));
-//        try {
-//            Parent root = (Parent)loader.load();
-//        } catch (IOException ex) {
-//            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        ResultCanvasController resultController = loader.getController();
-//        
-//        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("MainCanvas.fxml"));
-//        try {
-//            Parent root = (Parent)loader1.load();
-//        } catch (IOException ex) {
-//            Logger.getLogger(MainCanvasController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        MainCanvasController mainController = loader1.getController();
-
-        
-              consent.setDisable(true);
+              
               scrollCanvas.setVisible(false);
               scrollAnchor.setVisible(false);
               secondScreen1.setVisible(false);
@@ -140,25 +115,10 @@ public class WelcomeCanvasController implements Initializable {
               secondScreen5.setVisible(false);
               secondScreen6.setVisible(false);
               secondScreen7.setVisible(false);
+              secondScreen8.setVisible(false);
               btnContinue.setVisible(false);
               
               
-            Timer timer = new Timer();
-            TimerTask showConsent;
-            
-            showConsent = new TimerTask()
-            {
-                public void run()
-                {
-                    consent.setDisable(false);
-                }
-            };
-            
-            timer.schedule(showConsent,45000);
-              
-
-
-
     } 
     
     @FXML
@@ -175,6 +135,7 @@ public class WelcomeCanvasController implements Initializable {
               secondScreen5.setVisible(true);
               secondScreen6.setVisible(true);
               secondScreen7.setVisible(true);
+              secondScreen8.setVisible(true);
               btnContinue.setVisible(true);
               scene.applyCss();
               scene.layout();
@@ -262,9 +223,7 @@ public class WelcomeCanvasController implements Initializable {
         resultController.firstAnswer = question1Controller.answer1;
     }
     
-//    public int lastPositionXFromMainCanvas(){
-//        return mainController.lastStepX;
-//    }
+
     
     public void setlastPositionFromMainCanvas() {
         question1Controller.practiclastX = mainController.lastStepPracticX;

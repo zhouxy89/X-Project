@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="end" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" style="-fx-background-color: #ffdab3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.EndCanvasController">
+   <center>
+      <HBox fx:id="hBox" alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1300.0" prefWidth="1500.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fx:id="scrollEnd" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1300.0" prefWidth="1500.0">
+              <content>
+                <AnchorPane fx:id="EndCanvas" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="1300.0" prefWidth="1500.0" style="-fx-background-color: #ffdab3;">
+                     <children>
+                        <Text focusTraversable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognitive Performance and Decision Making" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Text>
+                        <Text focusTraversable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="In general terms, in our experiments we are looking at how you perform in a task, and how that relates to the information present and the type of decision or response that you must make. The foundation for this research is questions about how to understand and support people’s decision making. &#10;&#10;In the experiment both your success at the task, and the way that you responded were collected, and these will be used to determine performance on different aspects of the task. However, we are not looking at any individual’s performance, but rather try to determine whether differences between groups of people performing under the different conditions can be explained by factors like the type of support you received and how you were trained on the task. &#10;&#10;Note that your data will be identified using an arbitrary subject number. At no time will your name be connected with your data.&#10;&#10;These studies advance both basic science in Psychology, adding to our understanding of human capacities and limitations; and also contribute to the potential future application of Psychology to real-world situations, for example through identifying methods to present information so it is better understood or guide decision making towards optimal outcomes.&#10;&#10;If you are student in CSU’s General Psychology course (PSY100) you can find links to the types of questions being explored in this research in Module 25 “Thinking” in your Myer’s textbook.&#10;&#10;If you have any questions or concerns about this research, or would like to discuss the results after the experiment has been completed, please contact Ben Clegg using the following information:&#10;&#10;Benjamin Clegg&#10;benjamin.clegg@colostate.edu&#10;(970) 491-2211&#10;Rm 244 Behavioral Sciences Building&#10;Department of Psychology&#10;Colorado State University&#10;Fort Collins, CO 80523&#10;&#10;&#10;THANK YOU FOR YOUR PARTICIPATION!&#10;&#10;PLEASE CLOSE THIS TAB ON YOUR BROWSER." wrappingWidth="713.79052734375" AnchorPane.bottomAnchor="488.02734375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="70.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text focusTraversable="true" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thank you for your participation!&#10;&#10;PLEASE CLOSE THIS TAB ON YOUR BROWSER." textAlignment="CENTER" AnchorPane.bottomAnchor="488.02734375" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="100.0">
+                           <font>
+                              <Font name="System Bold Italic" size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

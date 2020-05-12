@@ -1,0 +1,128 @@
+
+/**
+ ******************  Script Configuration ******************
+ */
+buildscript {
+  repositories {
+    jcenter()
+
+    maven {
+      //url "https://plugins.gradle.org/m2/"
+      url "https://sandec.bintray.com/repo"
+    }
+   
+
+  dependencies {
+    //classpath 'org.openjfx:javafx-plugin:0.0.7'
+    classpath 'com.sandec.jpro:jpro-plugin-gradle:2019.2.2' 
+ }
+
+}
+   
+}
+
+
+/**
+ ******************  Java Configuration ******************
+ */
+apply plugin: 'java'
+apply plugin: 'application'
+//apply plugin: "org.openjfx.javafxplugin" 
+apply plugin: "com.google.osdetector" 
+compileJava {
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+}
+
+
+
+repositories {
+  jcenter()
+}
+
+ext.platform = osdetector.os == 'osx' ? 'mac' : osdetector.os == 'windows' ? 'win' : osdetector.os
+
+dependencies {
+    // Add your dependencies here, for example:
+    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
+    //compile "org.openjfx:javafx-base:11:$platform"
+    //compile "org.openjfx:javafx-graphics:11:$platform"
+    //compile "org.openjfx:javafx-controls:11:$platform"
+    //compile "org.openjfx:javafx-fxml:11:$platform"
+    //compile "org.openjfx:javafx-media:11:$platform"
+    //compile "org.openjfx:javafx-web:11:$platform"
+}
+
+
+/*jar {
+    manifest {
+    attributes(
+            'Implementation-Title': 'Hunter_v10',
+            'Implementation-Version': '1.0',
+            'Class-Path': configurations.compile.collect {it.getName()}.join(' '),
+            'Main-Class': 'hunter_v1.pkg0.Hunter_v10'
+    )        
+    }
+    
+}*/
+
+//javafx {
+     //modules = ['javafx.controls', 'javafx.fxml']
+     //version = '11.0.2'
+//}
+
+
+compileJava {
+  doFirst {
+    options.compilerArgs = [
+            //'--module-path', classpath.asPath,
+            //'--add-modules', 'javafx.fxml,javafx.controls'
+    ]
+  }
+}
+
+
+run {
+  doFirst {
+    jvmArgs = [
+            //'--module-path', classpath.asPath,
+            //'--add-modules', 'javafx.fxml,javafx.controls'
+    ]
+  }
+}
+
+sourceSets {
+  main {
+    resources {
+        srcDirs = ["src/main/java"]
+        includes = ["**/*.fxml"]
+    }
+  }
+}
+
+
+/**
+ ******************  jpro Configuration ******************
+ */
+apply plugin: 'com.sandec.jpro'
+
+
+/**
+ * App Main Class
+ */
+//mainClassName = "hunter_v1.pkg0.Hunter_v10"
+mainClassName = "hunter_v1.pkg0.Hunter_v10"
+
+/**
+ * jpro settings
+ */
+jpro {
+  // for debugging
+  // JVMArgs << '-agentlib:jdwp=transport=dt_socket,server=n,address=5006,suspend=y'
+
+  JVMArgs << '-Xmx1000m'
+
+  //jpro server port
+  port = 1234
+
+}

@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import java.io.IOException;
 
 /**
  *
@@ -25,34 +26,25 @@ public class Hunter_v10 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("MainCanvas.fxml"));
-        //MainCanvasController controller = new MainCanvasController();
-        //Parent root = loader.load();
-        Parent root = FXMLLoader.load(getClass().getResource("WelcomeCanvas.fxml"));
-       //loader.setController(controller);
         
+        Parent root = FXMLLoader.load(getClass().getResource("WelcomeCanvas.fxml"));
+       
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
         @Override
         public void handle(WindowEvent event) {
+            
             System.exit(0);
+            
         }
         });
         stage.show();
     }
     
-//        @Override
     
-//public void stop() throws Exception {
-//        super.stop();
-//        System.exit(1);
-//    }
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }

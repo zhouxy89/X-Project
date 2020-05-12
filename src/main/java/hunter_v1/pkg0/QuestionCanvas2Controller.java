@@ -82,9 +82,8 @@ public class QuestionCanvas2Controller implements Initializable {
     public static List<Integer> practicAllY = Arrays.asList(1,2,3,4,5,6,7);
     
     public static String pickSecondAnswerTime = "";
-    /**
-     * Initializes the controller class.
-     */
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -99,7 +98,7 @@ public class QuestionCanvas2Controller implements Initializable {
         welcomeController.setlastPositionFromMainCanvas();
         
         
-        
+        //show the last position of each ship
         if(welcomeController.trialFromMain()>=3){
 
             Q2Ship1.relocate(allX.get(0),allY.get(0));
@@ -147,14 +146,10 @@ public class QuestionCanvas2Controller implements Initializable {
         if(ship6.isSelected()){
             followedShipAnswer = 6;
         }
-        System.out.println("followedShipAnswer: "+followedShipAnswer);
+        //System.out.println("followedShipAnswer: "+followedShipAnswer);
         
         AnchorPane pane = FXMLLoader.load(getClass().getResource("ResultCanvas.fxml"));
         question2Pane.getChildren().setAll(pane);
     }
-
-    
-
-    
-    
+ 
 }

@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="ResultCanvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.ResultCanvasController">
    <children>
@@ -29,17 +30,23 @@
             <Font size="20.0" />
          </font>
       </TextField>
+      <Button fx:id="continueGame" mnemonicParsing="false" onAction="#endBreak" text="Continue" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="400.0" />
       <TextField id="question1" fx:id="yourAnswerLabel" editable="false" layoutX="325.0" layoutY="10.0" prefHeight="57.0" prefWidth="211.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css" text="Your Answer: ">
          <font>
             <Font size="25.0" />
          </font>
       </TextField>
+      <Text fx:id="message" strokeType="OUTSIDE" strokeWidth="0.0" text="You have completed block 1 of 3. &#10;&#10; If you need a quick break, you can take one now and resume by pressing the “Continue” button." textAlignment="CENTER" wrappingWidth="713.373046875" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="280.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
       <TextField id="question1" fx:id="yourAnswer" editable="false" layoutX="527.0" layoutY="10.0" prefHeight="57.0" prefWidth="150.0" style="-fx-background-color: none;" styleClass="question" stylesheets="@CSS.css">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button layoutX="695.0" layoutY="25.0" maxHeight="27.0" maxWidth="85.0" minHeight="27.0" minWidth="59.0" mnemonicParsing="false" onAction="#loadMain" prefHeight="27.0" prefWidth="85.0" text="Next Round " />
+      <Button fx:id="nextRound" layoutX="695.0" layoutY="25.0" maxHeight="27.0" maxWidth="85.0" minHeight="27.0" minWidth="59.0" mnemonicParsing="false" onAction="#loadMain" prefHeight="27.0" prefWidth="85.0" text="Next Round " />
       <TextField fx:id="resultLabel" layoutX="17.0" layoutY="10.0" prefHeight="57.0" prefWidth="238.0" style="-fx-background-color: None;" text="Your Answer is: ">
          <font>
             <Font size="25.0" />

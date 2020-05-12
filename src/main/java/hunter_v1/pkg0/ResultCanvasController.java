@@ -33,6 +33,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -44,7 +45,7 @@ public class ResultCanvasController implements Initializable {
     @FXML
     private AnchorPane ResultCanvas;
     @FXML
-    private Pane sceneResult;
+    private Pane scene;
     @FXML
     private TextField rightAnswer;
     @FXML
@@ -63,10 +64,9 @@ public class ResultCanvasController implements Initializable {
     private TextField totalTrialsLabel;
     @FXML
     private TextField scoreLabel;
-//    @FXML
-//    MainCanvasController mainController;
-//    @FXML
-//    QuestionCanvas2Controller question2Controller;
+    @FXML
+    private Text message;
+
     @FXML
     private Button resultShip1;
     @FXML
@@ -81,6 +81,10 @@ public class ResultCanvasController implements Initializable {
     private Button resultShip6;
     @FXML
     private Button resultMyShip;
+    @FXML
+    private Button nextRound;
+    @FXML
+    private Button continueGame;
     
     @FXML
     private MainCanvasController mainController;
@@ -123,22 +127,15 @@ public class ResultCanvasController implements Initializable {
      */
     @FXML public static List<List> blockListAfterShuffle_result = Arrays.asList(block50_result,block75_result,block100_result);
     
-    //public List<Integer> blockListAfterShuffle_result = Arrays.asList(1,2,3);
-    //public static int blockListAfterShuffle_num = 123;
     
     FileWriter resultWriter= null;
     PrintWriter resultPrint = null;
     String resultRecord="";
    
-    //public static int dateNum=1;
-    /**
-     * Initializes the controller class.
-     */
-
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //System.out.println("dateNum: "+dateNum);
+        
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeCanvas.fxml"));
         try {
@@ -154,10 +151,10 @@ public class ResultCanvasController implements Initializable {
         
         welcomeController.setrealFollowerFromMainCanvas(welcomeController.realFollowerFromMainCanvas());
         
-        System.out.println("welcomeController.followerAnswerFromQuestion2Canvas(): "+welcomeController.followerAnswerFromQuestion2Canvas());
-        
         welcomeController.setfollowerAnswerFromQuestion2Canvas(welcomeController.followerAnswerFromQuestion2Canvas());
+        
         welcomeController.setrealFollowerActionFromMainCanvas(welcomeController.realFollowerActionFromMainCanvas());
+        
         if(welcomeController.trialFromMain()==1&&mainController.noChange==0){
         Collections.shuffle(block50_result);
         Collections.shuffle(block75_result);
@@ -165,8 +162,10 @@ public class ResultCanvasController implements Initializable {
         
         Collections.shuffle(blockListAfterShuffle_result);
         }
+        
         showRightAnswer = "1";
         showYourAnswer = "2";
+        
         if(realFollower==0){
             showRightAnswer = "None";
             }
@@ -188,7 +187,8 @@ public class ResultCanvasController implements Initializable {
         if(realFollower==6){
             showRightAnswer = "Ship6";
         }
-        System.out.println("followerAnswer: "+followerAnswer);
+        
+        
         if(followerAnswer==0){
             showYourAnswer = "None";
             }
@@ -230,31 +230,24 @@ public class ResultCanvasController implements Initializable {
                showYourAnswer = "Ship6";
            }
            
-           // System.out.println("mainController.noChange: "+mainController.noChange);
-           //System.out.println("rightAnswer: "+showRightAnswer);
-           //System.out.println("yourAnswer: "+showYourAnswer);
-           //System.out.println("rightGuessFromMain: "+welcomeController.rightGuessFromMain());
-          // welcomeController.setrightGuessFromMainCanvas(welcomeController.rightGuessFromMain());
-          System.out.println("showRightAnswer: "+showRightAnswer);
-          System.out.println("showYourAnswer: "+showYourAnswer);
+           
+          //System.out.println("showRightAnswer: "+showRightAnswer);
+          //System.out.println("showYourAnswer: "+showYourAnswer);
+          
            if(showRightAnswer==showYourAnswer&&huntingActive.equals(firstAnswer)){
-               System.out.println("huntingActive: "+ huntingActive);
-               System.out.println("firstAnswer: "+firstAnswer);
-               
-               System.out.println("showRightAnswer==showYourAnswer: "+ (showRightAnswer==showYourAnswer));
-               System.out.println("huntingActive==firstAnswer: "+ (huntingActive==firstAnswer));
                
                result.setText("Right");
                answerResult = "Right";
                rightAnswerNum+=1;
                score.setText(Integer.toString(rightAnswerNum));
                
-               //System.out.println("rightAnswerNum: "+rightAnswerNum);
            }
            else{
+               
                result.setText("Wrong");
                answerResult = "Wrong";
                score.setText(Integer.toString(rightAnswerNum));
+               
            }
            
         }
@@ -265,8 +258,9 @@ public class ResultCanvasController implements Initializable {
         System.out.println("block50_result: "+block50_result);
         System.out.println("blockListAfterShuffle_result: "+blockListAfterShuffle_result);
         
-        System.out.println("filePath: "+mainController.filepath);
+        //System.out.println("filePath: "+mainController.filepath);
         
+        //show the last position of each ship
         if(welcomeController.trialFromMain()>=3){
             
             resultShip1.relocate(positionX.get(0),positionY.get(0));
@@ -286,17 +280,19 @@ public class ResultCanvasController implements Initializable {
             resultShip6.relocate(practicPositionX.get(5),practicPositionY.get(5));
             resultMyShip.relocate(practicPositionX.get(6),practicPositionY.get(6));
         }
+        
+         continueGame.setVisible(false);
+         message.setVisible(false);
     }   
+    
+    
     @FXML
     private void setText(){
  
-        System.out.println("real followShip: "+realFollower);
-        System.out.println("real followedShipAnswer: "+followerAnswer);
+        //System.out.println("real followShip: "+realFollower);
+        //System.out.println("real followedShipAnswer: "+followerAnswer);
         
         rightAnswer.setText(showRightAnswer);
-        
-        
-
         
         yourAnswer.setText(showYourAnswer);
         
@@ -318,9 +314,7 @@ public class ResultCanvasController implements Initializable {
         WelcomeCanvasController welcomeController = loader.getController();
        
         welcomeController.setblockListFromMainCanvas(welcomeController.blockListAfterShuffleFromMainCanvas());
-        
-        //blockListAfterShuffle_result=welcomeController.blockListAfterShuffleFromMainCanvas();
-//        
+         
     }
     
     @FXML
@@ -346,15 +340,16 @@ public class ResultCanvasController implements Initializable {
         if(showYourAnswer=="None"){
            secondAnswerPickTime = " "; 
         }
-        resultRecord = MainCanvasController.PID+","+"S"+","+(trial-2) +","+MainCanvasController.lastStep+","+ MainCanvasController.keyPressTime+MainCanvasController.record+","+gameStartTime+","+endGameTime+","+firstAnswer+","+firstAnswerPickTime+","+showYourAnswer+","+secondAnswerPickTime+","+MainCanvasController.hunterActive+","+showRightAnswer+","+answerResult;
         
+        resultRecord = MainCanvasController.PID+","+"S"+","+(trial-2) +","+MainCanvasController.lastStep+","+ MainCanvasController.keyPressTime+MainCanvasController.record+","+gameStartTime+","+endGameTime+","+firstAnswer+","+firstAnswerPickTime+","+showYourAnswer+","+secondAnswerPickTime+","+MainCanvasController.hunterActive+","+showRightAnswer+","+answerResult;
         
         resultPrint.println(resultRecord);
         resultPrint.flush();
         resultPrint.close();
         }
     }
-//    
+    
+    
     @FXML
     private void loadMain(ActionEvent event) throws IOException {
         randomBlock();
@@ -368,10 +363,29 @@ public class ResultCanvasController implements Initializable {
         
         welcomeController.setEndGameTimeFromMainCanvas();
         recordResults();
+        
+        //show break reminder after block 1 and 2
         if(trial<totalTrial){
-        StackPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
-        //System.out.println("trial2: "+trial);
-        ResultCanvas.getChildren().setAll(pane);
+            if(trial==18 || trial==34){
+                if(trial==34){
+                message.setText("You have completed block 2 of 3. \n" +"\n" +" If you need a quick break, you can take one now and resume by pressing the \"Continue\" button.");
+                }
+                nextRound.setVisible(false);
+                resultLabel.setVisible(false);
+                result.setVisible(false);
+                score.setVisible(false);
+                totalTrialsLabel.setVisible(false);
+                scoreLabel.setVisible(false);
+                scene.setVisible(false);
+                continueGame.setVisible(true);
+                message.setVisible(true);
+                        
+            }
+            else{
+                StackPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
+                ResultCanvas.getChildren().setAll(pane);
+            }
+        
         }
         else{
         BorderPane pane = FXMLLoader.load(getClass().getResource("EndCanvas.fxml"));
@@ -379,9 +393,12 @@ public class ResultCanvasController implements Initializable {
         }
         
     }
+    
+    @FXML
+    private void endBreak(ActionEvent event) throws IOException{
+        StackPane pane = FXMLLoader.load(getClass().getResource("MainCanvas.fxml"));
+        ResultCanvas.getChildren().setAll(pane);
+    }
 
-//    void init(WelcomeCanvasController welcomeController) {
-//        welcomeController=welcomeController; //To change body of generated methods, choose Tools | Templates.
-//    }
 
 }

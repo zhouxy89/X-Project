@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import java.io.IOException;
+import javafx.scene.control.Button;
 
 
 /**
@@ -20,12 +22,23 @@ import javafx.scene.layout.AnchorPane;
 public class EndCanvasController implements Initializable {
     @FXML
     private AnchorPane EndCanvas;
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private Button Close;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    public void restartApp(){
+        /* try{
+                Runtime.getRuntime().exec("shuntdown -r -t 0");
+            }catch (IOException e){
+                e.printStackTrace();
+        } */
+
+        System.exit(0);
+    }
     
 }

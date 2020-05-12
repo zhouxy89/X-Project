@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="WelcomeCanvas" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hunter_v1.pkg0.WelcomeCanvasController">
+   <children>
+      <BorderPane fx:id="pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2500.0" prefWidth="1500.0" style="-fx-background-color: #ffdab3;">
+         <center>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2500.0" prefWidth="1500.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="scrollConsent" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2500.0" prefWidth="1500.0">
+                    <content>
+                      <AnchorPane fx:id="scene" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="2500.0" prefWidth="1500.0" style="-fx-background-color: #ffdab3;">
+                           <children>
+                              <Text fx:id="firstScreen11" focusTraversable="true" layoutX="200.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognitive Performance &amp; Decision Making" AnchorPane.leftAnchor="170.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="welcomeText11" focusTraversable="true" layoutX="28.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TITLE OF STUDY: Cognitive Performance &amp; Decision Making&#10;&#10;PRINCIPAL INVESTIGATOR:  Ben Clegg, PhD, Department of Psychology, (970) 491 2211&#10;&#10;SPONSOR OF PROJECT Office of Naval Research (ONR).&#10;&#10;WHY AM I BEING INVITED TO TAKE PART IN THIS RESEARCH? The general goal&#10;of this research is to better understand the way that people process information and reach decisions, and how their performance might be best supported with automated systems.&#10;&#10;WHAT IS THE PURPOSE OF THIS STUDY? The purpose of the research is to investigate underlying processes and characteristics of human cognitive performance.&#10;&#10;WHAT WILL I BE ASKED TO DO? You will be shown information on a computer screen that may include a task like tracking the heading of an object, deciding which of a set of alternatives represents the best choice, remembering lists of words, pictures, or diagrams. You may be asked to do just one task or you may be asked to do several tasks at the same time. In some experiments your performance might be aided by an automated system. This system might highlight information, suggest an option, or hold information for your later use. &#10;&#10;1 Hour Session Version (1 credits)&#10;&#10;This experiment will be conducted in sessions lasting 90 minutes or less. &#10;&#10;CAN MY TAKING PART IN THE STUDY END EARLY? Your participation in this study will end if (a) you are not responding in a serious way, or (b) if you are not on time for your scheduled session.&#10;&#10;WHAT ARE THE POSSIBLE RISKS AND DISCOMFORTS?&#10;There are no known risks involved in participation in this project.  It is not possible to identify all potential risks in research procedures, but the researcher(s) have taken reasonable safeguards to minimize any known and potential, but unknown, risks.&#10;&#10;ARE THERE ANY BENEFITS FROM TAKING PART IN THIS STUDY? There are no&#10;direct benefits from participating in this study. However, by virtue of participating, you will gain some insights into the types of techniques being used in current research in cognitive psychology and other areas of psychology.&#10;&#10;DO I HAVE TO TAKE PART IN THE STUDY? Your participation in this research is voluntary.  If you decide to participate in the study, you may withdraw your consent and stop participating at any time without penalty or loss of benefits to which you are otherwise entitled.&#10; &#10;WHO WILL SEE THE INFORMATION THAT I GIVE?&#10;We will keep private all research records that identify you, to the extent allowed by law.&#10;&#10;Your data will be collected anonymously, and identified and stored using a random subject number.&#10;&#10;You will login to the psychology department server at the end of the study session to receive your research credit, or provide information to verify your participation, but this identifying information is collected entirely separately from the data collected during the actual study. Your responses in the experiment will be combined with information from other people taking part in the study. When we write about the study to share it with other researchers, we will write about the combined information we have gathered. You will not be identified in these written materials. We may publish the results of this study; however, we will keep you name and other identifying information private.&#10;&#10;WILL I RECEIVE ANY COMPENSATION FOR TAKING PART IN THIS STUDY? You&#10;will receive 1 [one] research participation credit for this study.&#10;&#10;WHAT HAPPENS IF I AM INJURED BECAUSE OF THE RESEARCH?  The Colorado&#10;Governmental Immunity Act determines and may limit Colorado State University's legal responsibility if an injury happens because of this study. Claims against the University must be filed within 180 days of the injury.&#10;&#10;WHAT IF I HAVE QUESTIONS? Before you decide whether to accept this invitation to take part in the study, please ask any questions that might come to mind now.  Later, if you have questions about the study, you can contact the investigator, Ben Clegg at benjamin.clegg@colostate.edu.  If you have any questions about your rights as a volunteer in this research, contact CSU IRB at RICRO_IRB@mail.colostate.edu; 970- 491-1553.  We will give you a copy of this consent form to take with you.&#10;&#10;WHAT ELSE DO I NEED TO KNOW?  You will receive a debriefing at the end of your participation in the study.&#10;&#10;Clicking on the button below implies your consent for data on your responses to be collected.&#10;&#10;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;I AGREE&#10;" wrappingWidth="725.54296875">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <CheckBox fx:id="consent" focusTraversable="false" layoutX="420.0" layoutY="2287.0" mnemonicParsing="false" onAction="#loadSecondScreen" AnchorPane.topAnchor="2120.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </center>
+      </BorderPane>
+      <BorderPane fx:id="scrollCanvas" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1500.0">
+         <center>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1500.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="scroll" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1500.0" style="-fx-background-color: #ffdab3;" styleClass="CSS.css" stylesheets="@CSS.css">
+                     <content>
+                        <AnchorPane fx:id="scrollAnchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="1700.0" prefWidth="1500.0" style="-fx-background-color: #ffdab3;">
+                           <children>
+                              <Text fx:id="secondScreen1" layoutX="28.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLEASE READ THE FOLLOWING INSTRUCTIONS CAREFULLY." wrappingWidth="742.283203125" AnchorPane.leftAnchor="28.0">
+                                 <font>
+                                    <Font name="System Bold Italic" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="secondScreen2" layoutX="31.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In this experiment, you are the captain of a Navy ship in a busy section of open water. There are several other ships moving nearby; most of them are not interested in you.  However, one of the ships is either “shadowing” or “hunting” you.  Your task is to discover the identity of that ship. The only information you have is based on the ships’ movements and how they act when you move.&#10;&#10;In each trial, you need to identify the ships that are shadowing or hunting you. Ship movements are affected by currents and tides, and are not always linear. You will need to maneuver your ship and watch carefully to decide. &#10;&#10;It is your job to determine which ships are hostile and to report that information to your chain of command. &#10;" wrappingWidth="735.3798828125" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="65.59765625">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="secondScreen3" layoutX="28.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THE DISPLAY CONSOLE" wrappingWidth="742.283203125" AnchorPane.leftAnchor="28.0">
+                                 <font>
+                                    <Font name="System Bold Italic" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="secondScreen4" layoutX="30.0" layoutY="875.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This will be your display console. Your ship is the green cross and the numbered circles are the other ships. You can control your ship using the green arrow buttons at the bottom of the screen. Each press of an arrow button will move your ship one step in the indicated direction. If you are directly next to a ship, you may not move towards it (you can’t collide with another ship).  Otherwise, you may move in any direction you choose at any time, however, you must pause for at least 1 second between moves (the arrows will appear brighter when you can use them). The other ships will move when you do." wrappingWidth="735.3798828125" AnchorPane.leftAnchor="30.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fx:id="secondScreen5" fitHeight="435.0" fitWidth="666.0" layoutX="28.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="652.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="413.0">
+                                 <image>
+                                    <Image url="@Screen1.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fx:id="secondScreen8" layoutX="30.0" layoutY="1025.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Try to only click on the arrows when they are brighter, extraneous clicking will hurt &#10;the program.">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="secondScreen6" layoutX="35.0" layoutY="1330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRACTICE" wrappingWidth="742.283203125" AnchorPane.bottomAnchor="289.203125" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="1050.0">
+                                 <font>
+                                    <Font name="System Bold Italic" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="secondScreen7" layoutX="39.0" layoutY="1380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The next two trials are practice trials. They are designed to show you what hunting and shadowing behaviors look like. A hunting behavior means the hostile ship is attempting to close in on you. A shadowing behavior means the hostile ship keeps a relatively stable distance from you, but mirrors your movements. In the following two practice trials, the hostile ship will be indicated in red, and you will be told whether it is shadowing or hunting. In the actual trials, you will not be told what to expect, and the hostile ship will look like the others.  Play through the practice scenarios as if they were real, and pay attention to the hostile ship. Remember, ship movements may not always be linear." wrappingWidth="735.3798828125" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="1080.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="btnContinue" alignment="CENTER" layoutX="300.0" layoutY="1450.0" mnemonicParsing="false" onAction="#loadGame" text="Continue" AnchorPane.bottomAnchor="360.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="1310.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

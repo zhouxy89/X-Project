@@ -85,9 +85,7 @@ public class QuestionCanvas1Controller implements Initializable {
     public static String answer1 = "";
     public static String pickFirstAnswerTime = "";
     
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -101,28 +99,9 @@ public class QuestionCanvas1Controller implements Initializable {
         
         welcomeController.setlastPositionFromMainCanvas();
         
-        
-        
+        //show the last position of each ship
         if(welcomeController.trialFromMain()>=3){
-//            System.out.println("practiclastX: "+practiclastX);
-//        System.out.println("practiclastY: "+practiclastY);
-//        
-//        System.out.println("lastX1: "+lastX.get(0));
-//        System.out.println("lastX2: "+lastX.get(1));
-//        System.out.println("lastX3: "+lastX.get(2));
-//        System.out.println("lastX4: "+lastX.get(3));
-//        System.out.println("lastX5: "+lastX.get(4));
-//        System.out.println("lastX6: "+lastX.get(5));
-//        System.out.println("lastX7: "+lastX.get(6));
-//        
-//        System.out.println("lastY1: "+lastY.get(0));
-//        System.out.println("lastY2: "+lastY.get(1));
-//        System.out.println("lastY3: "+lastY.get(2));
-//        System.out.println("lastY4: "+lastY.get(3));
-//        System.out.println("lastY5: "+lastY.get(4));
-//        System.out.println("lastY6: "+lastY.get(5));
-//        System.out.println("lastY7: "+lastY.get(6));
-        
+
             Q1Ship1.relocate(lastX.get(0),lastY.get(0));
             Q1Ship2.relocate(lastX.get(1),lastY.get(1));
             Q1Ship3.relocate(lastX.get(2),lastY.get(2));
@@ -130,11 +109,10 @@ public class QuestionCanvas1Controller implements Initializable {
             Q1Ship5.relocate(lastX.get(4),lastY.get(4));
             Q1Ship6.relocate(lastX.get(5),lastY.get(5));
             Q1MyShip.relocate(lastX.get(6),lastY.get(6));
+            
         }
         else{
-            System.out.println("practiclastX: "+practiclastX);
-        System.out.println("practiclastY: "+practiclastY);
-        
+            
             Q1Ship1.relocate(practiclastX.get(0),practiclastY.get(0));
             Q1Ship2.relocate(practiclastX.get(1),practiclastY.get(1));
             Q1Ship3.relocate(practiclastX.get(2),practiclastY.get(2));
@@ -142,8 +120,12 @@ public class QuestionCanvas1Controller implements Initializable {
             Q1Ship5.relocate(practiclastX.get(4),practiclastY.get(4));
             Q1Ship6.relocate(practiclastX.get(5),practiclastY.get(5));
             Q1MyShip.relocate(practiclastX.get(6),practiclastY.get(6));
+            
         }
+        
     }    
+    
+    
     @FXML
     private void loadQuestion2(ActionEvent event) throws IOException {
         
@@ -180,4 +162,5 @@ public class QuestionCanvas1Controller implements Initializable {
             question1Pane.getChildren().setAll(pane);
         
     }
+    
 }
