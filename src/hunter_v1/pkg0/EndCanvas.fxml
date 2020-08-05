@@ -9,7 +9,7 @@
    <center>
       <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField alignment="CENTER" focusTraversable="false" layoutX="300.0" layoutY="320.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="86.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" text="Thanks for participating! Please let the RA know you are finished." HBox.hgrow="ALWAYS">
+            <TextField alignment="CENTER" focusTraversable="false" layoutX="300.0" layoutY="320.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="86.0" prefWidth="800.0" style="-fx-background-color: #ffdab3;" text="Thank you very much for participating! Please let the RA know you are finished." HBox.hgrow="ALWAYS">
                <font>
                   <Font size="26.0" />
                </font>
